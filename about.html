@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us & Customer Reviews — TechHub</title>
+  <meta name="description" content="Learn about TechHub's mission and read 6 verified customer reviews from tech lovers across the Philippines." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="TechHub_Logo.png" />
+  <meta name="theme-color" content="#0f172a" />
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container announcement-inner">
+      <div class="announcement-text">
+        <span class="announcement-pill">ABOUT TECHHUB</span>
+        <span>Trusted by 6 satisfied customers nationwide since birth</span>
+      </div>
+      <div class="announcement-links">
+        <a href="contact.html">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header / Navigation -->
+    <header class="site-header" id="navbar">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-link" aria-label="TechHub Home">
+        <img src="TechHub_Logo.png" alt="TechHub Logo" class="brand-logo" id="main-logo" />
+        <span class="brand-text"><span class="brand-white">Tech</span><span class="brand-accent">Hub</span></span>
+      </a>
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link" data-page="index.html">Home</a>
+        <a href="categories.html" class="nav-link" data-page="categories.html">Categories</a>
+        <a href="flash-sale.html" class="nav-link" data-page="flash-sale.html">Flash Sale</a>
+        <a href="products.html" class="nav-link" data-page="products.html">Products</a>
+        <a href="about.html" class="nav-link" data-page="about.html">About Us</a>
+        <a href="contact.html" class="nav-link" data-page="contact.html">Contact Us</a>
+      </nav>
+      <div class="header-actions">
+        <button class="action-btn" id="search-btn" aria-label="Search products" title="Search">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+        </button>
+        <button class="action-btn" id="wishlist-btn" aria-label="Wishlist" title="Saved Items">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path></svg>
+          <span class="badge" id="wishlist-count">0</span>
+        </button>
+        <button class="action-btn cart-btn" id="cart-btn" aria-label="Shopping cart" title="View Cart">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 01-8 0"></path></svg>
+          <span class="badge badge-accent" id="cart-count">0</span>
+        </button>
+        <div id="user-auth-area"></div>
+        <button class="action-btn mobile-menu-btn" id="mobile-toggle" aria-label="Toggle Mobile Menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-drawer" id="mobile-drawer">
+      <nav class="mobile-nav">
+        <a href="index.html" class="mobile-link">Home</a>
+        <a href="categories.html" class="mobile-link">Categories</a>
+        <a href="flash-sale.html" class="mobile-link">Flash Sale</a>
+        <a href="products.html" class="mobile-link">Products</a>
+        <a href="about.html" class="mobile-link">About Us & Reviews</a>
+        <a href="contact.html" class="mobile-link">Contact Us</a>
+        <div class="mobile-cta" id="mobile-user-auth-area">
+          <button class="btn btn-primary btn-block" onclick="openAuthModal('login')">Sign In / Register</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="pill-badge">OUR STORY & SOCIAL PROOF</span>
+      <h1>About Us & <span class="gradient-text">Customer Reviews</span></h1>
+      <p>We are the Philippines' dedicated destination for genuine electronics, unbeatable pricing, and honest verified reviews.</p>
+    </div>
+  </section>
+
+  <!-- ABOUT COMPANY SECTION -->
+  <section class="section">
+    <div class="container">
+      <div class="about-text-container">
+        <h2 class="section-title">Built by Group 4, for Introduction to Computing</h2>
+        <p class="about-text-content">
+          Founded in Technological Institute of the Philippines (Quezon City) on September 19, 2026. TechHub was created with a straightforward ambition: to eliminate fake products, inflated retail markups, and slow deliveries. Every single item we stock is sourced directly through brand-authorized Philippine distributors, guaranteeing 100% genuine hardware, original seals, official manufacturer warranties, and immediate dispatch.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon-box">🏆</div>
+          <h3 class="feature-title">100% Authentic</h3>
+          <p class="feature-desc">All smartphones, laptops, audio systems, and gaming gear come with manufacturer serial validation.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box">⚡</div>
+          <h3 class="feature-title">Fast Metro Dispatch</h3>
+          <p class="feature-desc">Metro Manila orders arrive in 24–48 hours. Nationwide deliveries arrive safely via insured couriers.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box">🛡️</div>
+          <h3 class="feature-title">Official PH Warranty</h3>
+          <p class="feature-desc">Enjoy full support through official authorized service centers nationwide with zero hassle.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box">💳</div>
+          <h3 class="feature-title">Flexible Payments</h3>
+          <p class="feature-desc">GCash, Maya, credit/debit cards, 0% installment plans, and Cash on Delivery for maximum convenience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUSTOMER REVIEWS SECTION (Moved here as explicitly requested) -->
+  <section class="section reviews-section section-dark-bordered" id="reviews">
+    <div class="container">
+      <div class="section-header text-center">
+        <h2 class="section-title">What Our Customers Say</h2>
+        <div class="overall-rating">
+          <div class="stars-gold">★★★★★</div>
+          <span class="rating-stat">5 out of 5 · 6 verified customer reviews</span>
+        </div>
+      </div>
+
+      <div class="reviews-grid">
+        <!-- Review 1 -->
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-comment">"TechHub delivered my ASUS ROG laptop in just 2 days and the price was ₱15,000 lower than retail mall branches. Bubble wrapped with supreme care!"</p>
+          <div class="reviewer-meta">
+            <div class="reviewer-avatar">RB</div>
+            <div>
+              <h4 class="reviewer-name">Rommel Bhien Nebres</h4>
+              <span class="reviewer-date">Verified Buyer · Japan · Sept 19, 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-comment">"Amazing selection of headphones. Got my Sony WH-1000XM5 with a 20% flash discount and they arrived sealed with official Sony PH warranty card!"</p>
+          <div class="reviewer-meta">
+            <div class="reviewer-avatar">LA</div>
+            <div>
+              <h4 class="reviewer-name">Lance Angelo Adriatico</h4>
+              <span class="reviewer-date">Verified Buyer · Marikina · Sept 19, 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-comment">"Great customer service. Had a question about warranty registration on my Samsung Galaxy S24 Ultra and support replied within an hour. Highly recommended!"</p>
+          <div class="reviewer-meta">
+            <div class="reviewer-avatar">JR</div>
+            <div>
+              <h4 class="reviewer-name">John Robert Ortega</h4>
+              <span class="reviewer-date">Verified Buyer · Caloocan · Sept 19, 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 4 -->
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-comment">"The product quality is top-notch. Love my new ASUS 165Hz gaming monitor — zero dead pixels, zero backlight bleed, and arrived in Davao in only 3 days."</p>
+          <div class="reviewer-meta">
+            <div class="reviewer-avatar">JD</div>
+            <div>
+              <h4 class="reviewer-name">Joenash Gavilo</h4>
+              <span class="reviewer-date">Verified Buyer · Caloocan · Sept 19, 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 5 -->
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-comment">"Paid through GCash smoothly and received automated tracking updates via SMS and email. Will definitely buy all my future tech gear from TechHub."</p>
+          <div class="reviewer-meta">
+            <div class="reviewer-avatar">AC</div>
+            <div>
+              <h4 class="reviewer-name">Allen Clyde Mindanao</h4>
+              <span class="reviewer-date">Verified Buyer · Makati · Sept 19, 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 6 -->
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-comment">"Student discount process was super simple. Uploaded my school ID and got a 10% voucher code right away for my Lenovo IdeaPad laptop."</p>
+          <div class="reviewer-meta">
+            <div class="reviewer-avatar">JJ</div>
+            <div>
+              <h4 class="reviewer-name">Justine James Armstrong</h4>
+              <span class="reviewer-date">(VIP!) Verified Buyer · Rizal · Sept 19, 2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col brand-col">
+          <a href="index.html" class="brand-link">
+            <img src="TechHub_Logo.png" alt="TechHub Logo" class="brand-logo" />
+            <span class="brand-text"><span class="brand-white">Tech</span><span class="brand-accent">Hub</span></span>
+          </a>
+          <p class="footer-tagline">Your premier destination for authentic, high-performance electronics.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Pages</h4>
+          <ul class="footer-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="flash-sale.html">Flash Sale</a></li>
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="about.html">About Us & Reviews</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Customer Reviews</h4>
+          <ul class="footer-list">
+            <li><a href="#reviews">Verified Buyer Quotes</a></li>
+            <li><a href="#reviews">Rating Metrics</a></li>
+            <li><a href="contact.html">Submit Your Feedback</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Need Support?</h4>
+          <ul class="footer-list">
+            <li><a href="contact.html">Official Warranty Claims</a></li>
+            <li><a href="contact.html">Order Status & Tracking</a></li>
+            <li><a href="contact.html">Contact Support Team</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 TechHub Philippines Inc. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,762 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechHub — Upgrade Your Tech | Modern Electronics Store</title>
+  <meta name="description" content="Discover premium smartphones, laptops, gaming setups, and audio gear with fast nationwide delivery in the Philippines." />
+  
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="TechHub_Logo.png" />
+  <meta name="theme-color" content="#0f172a" />
+
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container announcement-inner">
+      <div class="announcement-text">
+        <span class="announcement-pill">⚡ FLASH SALE</span>
+        <span>Free delivery nationwide on orders over ₱10,000 | Have some freebies on First Time Buyer!!</span>
+      </div>
+      <div class="announcement-links">
+        <a href="contact.html">Track Order</a>
+        <span class="divider">|</span>
+        <a href="contact.html">Customer Support</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header / Navigation -->
+    <header class="site-header" id="navbar">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-link" aria-label="TechHub Home">
+        <img src="TechHub_Logo.png" alt="TechHub Logo" class="brand-logo" id="main-logo" />
+        <span class="brand-text"><span class="brand-white">Tech</span><span class="brand-accent">Hub</span></span>
+      </a>
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link" data-page="index.html">Home</a>
+        <a href="categories.html" class="nav-link" data-page="categories.html">Categories</a>
+        <a href="flash-sale.html" class="nav-link" data-page="flash-sale.html">Flash Sale</a>
+        <a href="products.html" class="nav-link" data-page="products.html">Products</a>
+        <a href="about.html" class="nav-link" data-page="about.html">About Us</a>
+        <a href="contact.html" class="nav-link" data-page="contact.html">Contact Us</a>
+      </nav>
+      <div class="header-actions">
+        <button class="action-btn" id="search-btn" aria-label="Search products" title="Search">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+        </button>
+        <button class="action-btn" id="wishlist-btn" aria-label="Wishlist" title="Saved Items">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path></svg>
+          <span class="badge" id="wishlist-count">0</span>
+        </button>
+        <button class="action-btn cart-btn" id="cart-btn" aria-label="Shopping cart" title="View Cart">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 01-8 0"></path></svg>
+          <span class="badge badge-accent" id="cart-count">0</span>
+        </button>
+        <div id="user-auth-area"></div>
+        <button class="action-btn mobile-menu-btn" id="mobile-toggle" aria-label="Toggle Mobile Menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-drawer" id="mobile-drawer">
+      <nav class="mobile-nav">
+        <a href="index.html" class="mobile-link">Home</a>
+        <a href="categories.html" class="mobile-link">Categories</a>
+        <a href="flash-sale.html" class="mobile-link">Flash Sale</a>
+        <a href="products.html" class="mobile-link">Products</a>
+        <a href="about.html" class="mobile-link">About Us & Reviews</a>
+        <a href="contact.html" class="mobile-link">Contact Us</a>
+        <div class="mobile-cta" id="mobile-user-auth-area">
+          <button class="btn btn-primary btn-block" onclick="openAuthModal('login')">Sign In / Register</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="home">
+      <div class="hero-glow-blob hero-glow-1"></div>
+      <div class="hero-glow-blob hero-glow-2"></div>
+      
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="pill-badge">
+            <span class="pulse-dot"></span>
+            <span>New arrivals just landed</span>
+          </div>
+
+          <h1 class="hero-title">
+            Upgrade<br />
+            <span class="gradient-text">Your Tech</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            Discover the latest smartphones, laptops, gaming gear, and audio — at unbeatable prices with fast, insured delivery across the Philippines.
+          </p>
+
+          <div class="hero-actions">
+            <a href="products.html" class="btn btn-primary btn-lg glow-blue">
+              <span>Shop All Gear</span>
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+              </svg>
+            </a>
+            <a href="categories.html" class="btn btn-outline btn-lg">
+              <span>Browse Categories</span>
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-number">67+</div>
+              <div class="stat-label">Products in Stock</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <div class="stat-number">6</div>
+              <div class="stat-label">Bisayang Customers</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <div class="stat-number">5 ★</div>
+              <div class="stat-label">Overall Rating</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Visual (Tap opens Product Detail Modal) -->
+        <div class="hero-visual">
+          <div class="visual-card-wrapper" onclick="openProductModal('p1')">
+            <div class="visual-card-glow"></div>
+            <div class="visual-card">
+              <img 
+                src="samsung-galaxy-s24-ultra.jpg" 
+                alt="Samsung Galaxy S24 Ultra Flagship" 
+                class="hero-product-img"
+              />
+              
+              <div class="floating-badge badge-bottom-left">
+                <div class="badge-icon">⚡</div>
+                <div class="badge-content">
+                  <span class="badge-title">Buy Now!</span>
+                  <span class="badge-desc">Tap for Specs & Colors</span>
+                </div>
+              </div>
+
+              <div class="floating-badge badge-top-right">
+                <span class="badge-tag">Galaxy S24 Ultra</span>
+                <div class="badge-price-row">
+                  <span class="badge-price">Best Seller!</span>
+                  <span class="badge-discount">-14% OFF</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHOP BY CATEGORY -->
+    <section class="section categories-section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Shop by Category</h2>
+            <p class="section-subtitle">Explore 6 major hardware departments with dedicated sub-categories</p>
+          </div>
+          <a href="categories.html" class="link-arrow">
+            <span>View All Sub-Categories</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+
+        <div class="category-grid">
+          <a href="categories.html#cat-smartphones" class="category-card">
+            <div class="category-img-wrap">
+              <!-- CHANGE PICTURE HERE: Replace src with your category image URL or file path -->
+              <img src="apple-iphone-15-pro-max.jpg" alt="Smartphones" loading="lazy" />
+            </div>
+            <div class="category-details">
+              <span class="category-icon">📱</span>
+              <h3 class="category-name">Smartphones</h3>
+              <span class="category-count">5 Sub-Categories</span>
+            </div>
+          </a>
+
+          <a href="categories.html#cat-laptops" class="category-card">
+            <div class="category-img-wrap">
+              <!-- CHANGE PICTURE HERE: Replace src with your category image URL or file path -->
+              <img src="apple-macbook-pro-16-m3-max.jpg" alt="Laptops" loading="lazy" />
+            </div>
+            <div class="category-details">
+              <span class="category-icon">💻</span>
+              <h3 class="category-name">Laptops</h3>
+              <span class="category-count">5 Sub-Categories</span>
+            </div>
+          </a>
+
+          <a href="categories.html#cat-tablets" class="category-card">
+            <div class="category-img-wrap">
+              <!-- CHANGE PICTURE HERE: Replace src with your category image URL or file path -->
+              <img src="galaxy-tab-s9-ultra-14-6.jpg" alt="Tablets" loading="lazy" />
+            </div>
+            <div class="category-details">
+              <span class="category-icon">📲</span>
+              <h3 class="category-name">Tablets</h3>
+              <span class="category-count">5 Sub-Categories</span>
+            </div>
+          </a>
+
+          <a href="categories.html#cat-audio" class="category-card">
+            <div class="category-img-wrap">
+              <!-- CHANGE PICTURE HERE: Replace src with your category image URL or file path -->
+              <img src="bose-quietcomfort-ultra.jpg" alt="Headphones" loading="lazy" />
+            </div>
+            <div class="category-details">
+              <span class="category-icon">🎧</span>
+              <h3 class="category-name">Headphones</h3>
+              <span class="category-count">5 Sub-Categories</span>
+            </div>
+          </a>
+
+          <a href="categories.html#cat-wearables" class="category-card">
+            <div class="category-img-wrap">
+              <!-- CHANGE PICTURE HERE: Replace src with your category image URL or file path -->
+              <img src="galaxy-watch-6-classic-47mm.jpg" alt="Smartwatches" loading="lazy" />
+            </div>
+            <div class="category-details">
+              <span class="category-icon">⌚</span>
+              <h3 class="category-name">Wearables</h3>
+              <span class="category-count">5 Sub-Categories</span>
+            </div>
+          </a>
+
+          <a href="categories.html#cat-gaming" class="category-card">
+            <div class="category-img-wrap">
+              <!-- CHANGE PICTURE HERE: Replace src with your category image URL or file path -->
+              <img src="asus-rog-zephyrus-g14.png" alt="Gaming" loading="lazy" />
+            </div>
+            <div class="category-details">
+              <span class="category-icon">🎮</span>
+              <h3 class="category-name">Gaming</h3>
+              <span class="category-count">5 Sub-Categories</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FLASH SALE SECTION -->
+    <section class="section flash-sale-section" id="flash-sale">
+      <div class="container">
+        <div class="flash-header">
+          <div class="flash-title-wrap">
+            <div class="flash-tag-live">
+              <span class="pulse-dot-red"></span>
+              <span>LIVE NOW</span>
+            </div>
+            <h2 class="section-title">⚡ Flash Sale</h2>
+            <p class="section-subtitle">Limited time offers — tap any product to inspect specs, definition, & color options!</p>
+          </div>
+
+          <div class="countdown-wrapper">
+            <span class="countdown-label">Ends in:</span>
+            <div class="countdown-timer">
+              <div class="time-box">
+                <span class="time-val" id="timer-hrs">02</span>
+                <span class="time-unit">HRS</span>
+              </div>
+              <span class="time-separator">:</span>
+              <div class="time-box">
+                <span class="time-val" id="timer-min">14</span>
+                <span class="time-unit">MIN</span>
+              </div>
+              <span class="time-separator">:</span>
+              <div class="time-box">
+                <span class="time-val" id="timer-sec">37</span>
+                <span class="time-unit">SEC</span>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-grid">
+          <!-- Item p16 -->
+          <div class="product-card" data-id="p16">
+            <div class="card-thumb">
+              <!-- CHANGE PICTURE HERE: Replace src with your image URL or file path -->
+                <img src="asus-rog-zephyrus-g14.png" alt="ASUS ROG Zephyrus G14" loading="lazy" />
+              <div class="card-badges">
+                <span class="badge-chip badge-flash">-17%</span>
+                <span class="badge-chip badge-orange">FLASH</span>
+              </div>
+              <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p16')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                </svg>
+              </button>
+              <div class="stock-warning">Only 8 left!</div>
+            </div>
+            <div class="card-body">
+              <span class="product-brand">ASUS</span>
+              <h3 class="product-title">ASUS ROG Zephyrus G14</h3>
+              <p class="product-spec">14" QHD 165Hz · Ryzen 9 · RTX 4060</p>
+              <div class="rating-row">
+                <div class="stars">★★★★★</div>
+                <span class="rating-text">4.7 (1,187)</span>
+              </div>
+              <div class="price-row">
+                <span class="current-price">₱74,995</span>
+                <span class="old-price">₱89,995</span>
+              </div>
+              <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p16', 1)">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+
+          <!-- Item p31 -->
+          <div class="product-card" data-id="p31">
+            <div class="card-thumb">
+              <!-- CHANGE PICTURE HERE: Replace src with your image URL or file path -->
+                <img src="sony-wh-1000xm5-anc.png" alt="Sony WH-1000XM5" loading="lazy" />
+              <div class="card-badges">
+                <span class="badge-chip badge-flash">-20%</span>
+                <span class="badge-chip badge-orange">FLASH</span>
+              </div>
+              <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p31')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                </svg>
+              </button>
+              <div class="stock-warning">Fast Selling</div>
+            </div>
+            <div class="card-body">
+              <span class="product-brand">Sony</span>
+              <h3 class="product-title">Sony WH-1000XM5 ANC</h3>
+              <p class="product-spec">Industry-leading ANC · 30hr Battery</p>
+              <div class="rating-row">
+                <div class="stars">★★★★★</div>
+                <span class="rating-text">4.9 (4,521)</span>
+              </div>
+              <div class="price-row">
+                <span class="current-price">₱18,495</span>
+                <span class="old-price">₱22,995</span>
+              </div>
+              <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p31', 1)">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+
+          <!-- Item p32 -->
+          <div class="product-card" data-id="p32">
+            <div class="card-thumb">
+              <!-- CHANGE PICTURE HERE: Replace src with your image URL or file path -->
+                <img src="jbl-tune-760nc-wireless.jpg" alt="JBL Tune 760NC" loading="lazy" />
+              <div class="card-badges">
+                <span class="badge-chip badge-flash">-29%</span>
+                <span class="badge-chip badge-orange">FLASH</span>
+              </div>
+              <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p32')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                </svg>
+              </button>
+              <div class="stock-warning">Only 14 left!</div>
+            </div>
+            <div class="card-body">
+              <span class="product-brand">JBL</span>
+              <h3 class="product-title">JBL Tune 760NC Wireless</h3>
+              <p class="product-spec">Adaptive ANC · 35 Hours · Pure Bass</p>
+              <div class="rating-row">
+                <div class="stars">★★★★☆</div>
+                <span class="rating-text">4.4 (3,102)</span>
+              </div>
+              <div class="price-row">
+                <span class="current-price">₱4,995</span>
+                <span class="old-price">₱6,995</span>
+              </div>
+              <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p32', 1)">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+
+          <!-- Item p76 -->
+          <div class="product-card" data-id="p76">
+            <div class="card-thumb">
+              <!-- CHANGE PICTURE HERE: Replace src with your image URL or file path -->
+                <img src="razer-blackwidow-v4-pro.jpg" alt="Razer BlackWidow V4 Pro" loading="lazy" />
+              <div class="card-badges">
+                <span class="badge-chip badge-flash">-25%</span>
+                <span class="badge-chip badge-orange">FLASH</span>
+              </div>
+              <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p76')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                </svg>
+              </button>
+              <div class="stock-warning">Limited Units</div>
+            </div>
+            <div class="card-body">
+              <span class="product-brand">Razer</span>
+              <h3 class="product-title">Razer BlackWidow V4 Pro</h3>
+              <p class="product-spec">Yellow Switches · Chroma RGB · Wireless</p>
+              <div class="rating-row">
+                <div class="stars">★★★★★</div>
+                <span class="rating-text">4.5 (921)</span>
+              </div>
+              <div class="price-row">
+                <span class="current-price">₱8,990</span>
+                <span class="old-price">₱11,990</span>
+              </div>
+              <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p76', 1)">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 36px;">
+          <a href="flash-sale.html" class="btn btn-outline btn-lg">View All Flash Sale Deals &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- DUAL PROMOTIONAL BANNERS -->
+    <section class="section promo-banners-section">
+      <div class="container banner-dual-grid">
+        <a href="products.html?cat=gaming" class="promo-banner banner-gaming">
+          <img src="asus-rog-phone-8-pro.png" alt="Gaming Setup" class="banner-bg-img" />
+          <div class="banner-overlay"></div>
+          <div class="banner-content">
+            <span class="banner-pill pill-blue">Gaming Zone</span>
+            <h3 class="banner-title">Level Up Your Setup</h3>
+            <span class="banner-link">Shop Gaming &rarr;</span>
+          </div>
+        </a>
+
+        <a href="products.html?cat=laptops" class="promo-banner banner-student">
+          <img src="apple-macbook-pro-16-m3-max.jpg" alt="Laptops for School" class="banner-bg-img" />
+          <div class="banner-overlay"></div>
+          <div class="banner-content">
+            <span class="banner-pill pill-green">Student Deals</span>
+            <h3 class="banner-title">Back to School Sale</h3>
+            <span class="banner-link">Save up to 20% &rarr;</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- FEATURED PRODUCTS -->
+    <section class="section featured-section" id="products">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Featured Gear</h2>
+            <p class="section-subtitle">Tap any item to see full specifications, color options, and definition</p>
+          </div>
+          
+          <div class="filter-tabs">
+            <button class="tab-btn active" data-filter="all">All</button>
+            <button class="tab-btn" data-filter="smartphones">Smartphones</button>
+            <button class="tab-btn" data-filter="laptops">Laptops</button>
+            <button class="tab-btn" data-filter="audio">Audio</button>
+            <button class="tab-btn" data-filter="wearables">Wearables</button>
+          </div>
+        </div>
+
+        <div class="product-grid" id="featured-grid">
+          <!-- Item p1 -->
+          <div class="product-card" data-category="smartphones" data-id="p1">
+            <div class="card-thumb">
+              <!-- CHANGE PICTURE HERE: Replace src with your image URL or file path -->
+                <img src="samsung-galaxy-s24-ultra.jpg" alt="Samsung Galaxy S24 Ultra" loading="lazy" />
+              <div class="card-badges">
+                <span class="badge-chip badge-flash">-14%</span>
+                <span class="badge-chip badge-cyan">NEW</span>
+              </div>
+              <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p1')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="card-body">
+              <span class="product-brand">Samsung</span>
+              <h3 class="product-title">Samsung Galaxy S24 Ultra</h3>
+              <p class="product-spec">6.8" QHD+ Dynamic AMOLED · 200MP Quad Cam</p>
+              <div class="rating-row">
+                <div class="stars">★★★★★</div>
+                <span class="rating-text">4.8 (2,341)</span>
+              </div>
+              <div class="price-row">
+                <span class="current-price">₱59,990</span>
+                <span class="old-price">₱69,990</span>
+              </div>
+              <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p1', 1)">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+
+          <!-- Item p46 -->
+          <div class="product-card" data-category="wearables" data-id="p46">
+            <div class="card-thumb">
+              <!-- CHANGE PICTURE HERE: Replace src with your image URL or file path -->
+                <img src="apple-ipad-pro-12-9-m2.jpg" alt="Apple iPad Pro 12.9" loading="lazy" />
+              <div class="card-badges">
+                <span class="badge-chip badge-cyan">NEW</span>
+              </div>
+              <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p46')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="card-body">
+              <span class="product-brand">Apple</span>
+              <h3 class="product-title">Apple iPad Pro 12.9" M2</h3>
+              <p class="product-spec">Liquid Retina XDR · Apple M2 Chip · 256GB</p>
+              <div class="rating-row">
+                <div class="stars">★★★★★</div>
+                <span class="rating-text">4.8 (987)</span>
+              </div>
+              <div class="price-row">
+                <span class="current-price">₱62,990</span>
+                <span class="old-price">₱68,990</span>
+              </div>
+              <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p46', 1)">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+
+          <!-- Item p61 -->
+          <div class="product-card" data-category="wearables" data-id="p61">
+            <div class="card-thumb">
+              <!-- CHANGE PICTURE HERE: Replace src with your image URL or file path -->
+                <img src="apple-watch-series-9-gps.jpg" alt="Apple Watch Series 9" loading="lazy" />
+              <div class="card-badges">
+                <span class="badge-chip badge-flash">-11%</span>
+              </div>
+              <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p61')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="card-body">
+              <span class="product-brand">Apple</span>
+              <h3 class="product-title">Apple Watch Series 9</h3>
+              <p class="product-spec">S9 SiP · Double Tap Gesture · Always-On Retina</p>
+              <div class="rating-row">
+                <div class="stars">★★★★★</div>
+                <span class="rating-text">4.7 (1,654)</span>
+              </div>
+              <div class="price-row">
+                <span class="current-price">₱24,990</span>
+                <span class="old-price">₱27,990</span>
+              </div>
+              <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p61', 1)">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+
+          <!-- Item p19 -->
+          <div class="product-card" data-category="laptops" data-id="p19">
+            <div class="card-thumb">
+              <!-- CHANGE PICTURE HERE: Replace src with your image URL or file path -->
+                <img src="lenovo-ideapad-5-pro-oled.png" alt="Lenovo IdeaPad 5 Pro" loading="lazy" />
+              <div class="card-badges">
+                <span class="badge-chip badge-flash">-16%</span>
+              </div>
+              <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p19')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="card-body">
+              <span class="product-brand">Lenovo</span>
+              <h3 class="product-title">Lenovo IdeaPad 5 Pro</h3>
+              <p class="product-spec">14" 2.8K OLED · AMD Ryzen 7 7700 · 16GB RAM</p>
+              <div class="rating-row">
+                <div class="stars">★★★★☆</div>
+                <span class="rating-text">4.5 (843)</span>
+              </div>
+              <div class="price-row">
+                <span class="current-price">₱52,995</span>
+                <span class="old-price">₱62,995</span>
+              </div>
+              <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p19', 1)">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 36px;">
+          <a href="products.html" class="btn btn-primary btn-lg glow-blue">Browse Complete Catalog &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE TECHHUB -->
+    <section class="section why-us-section" id="why-us">
+      <div class="container">
+        <div class="section-header text-center">
+          <h2 class="section-title">Why Choose TechHub?</h2>
+          <p class="section-subtitle">We're committed to giving you the premier consumer tech shopping experience in the Philippines.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon-box">🚀</div>
+            <h3 class="feature-title">Fast Delivery</h3>
+            <p class="feature-desc">Same-day and next-day express delivery in Metro Manila. Nationwide door-to-door in 2–5 days.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-box">🔒</div>
+            <h3 class="feature-title">Secure Payment</h3>
+            <p class="feature-desc">Shop safely with 256-bit SSL encrypted checkout. Pay conveniently with GCash, Maya, cards, or Cash on Delivery.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-box">🛡️</div>
+            <h3 class="feature-title">Product Warranty</h3>
+            <p class="feature-desc">100% genuine products sourced directly from authorized brand distributors with complete official warranties.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-box">💬</div>
+            <h3 class="feature-title">24/7 Support</h3>
+            <p class="feature-desc">Dedicated human support ready to assist you anytime via live chat, email, or telephone with fast response times.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALL TO ACTION / NEWSLETTER -->
+    <section class="section cta-section">
+      <div class="container">
+        <div class="cta-banner">
+          <div class="cta-glow"></div>
+          <div class="cta-content">
+            <span class="cta-badge">STAY AHEAD</span>
+            <h2 class="cta-title">Ready to Upgrade?</h2>
+            <p class="cta-subtitle">Join over 67 satisfied tech lovers in the Philippines. Get member-only discounts, new releases, and secret flash drops.</p>
+            
+            <form class="cta-form" onsubmit="event.preventDefault(); showToast('Thank you for subscribing! Check your email for your ₱500 voucher.', 'success');">
+              <input type="email" placeholder="Enter your email address..." required class="cta-input" />
+              <button type="submit" class="btn btn-primary btn-lg glow-blue">
+                <span>Start Shopping</span>
+              </button>
+            </form>
+
+            <p class="cta-note">🔒 No spam ever. Unsubscribe anytime with one single click.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col brand-col">
+          
+          <a href="index.html" class="brand-link" aria-label="TechHub Home">
+            <img src="TechHub_Logo.png" alt="TechHub Logo" class="brand-logo" />
+            <span class="brand-text">
+              <span class="brand-white">Tech</span><span class="brand-accent">Hub</span>
+            </span>
+          </a>
+
+          <p class="footer-tagline">
+            Your premier destination for authentic, high-performance electronics. We bring the world's best technology straight to your doorstep with guaranteed peace of mind.
+          </p>
+
+          <div class="social-links">
+            <a href="#" class="social-btn" aria-label="Facebook">f</a>
+            <a href="#" class="social-btn" aria-label="Instagram">in</a>
+            <a href="#" class="social-btn" aria-label="YouTube">yt</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Pages</h4>
+          <ul class="footer-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="flash-sale.html">Flash Sale</a></li>
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="about.html">About Us & Customer Reviews</a></li>
+            <li><a href="contact.html">Contact Us & FAQs</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Hardware</h4>
+          <ul class="footer-list">
+            <li><a href="categories.html#cat-smartphones">Smartphones (5G & Flagship)</a></li>
+            <li><a href="categories.html#cat-laptops">Laptops & PCs</a></li>
+            <li><a href="categories.html#cat-tablets">Tablets & iPads</a></li>
+            <li><a href="categories.html#cat-audio">Audio & Headphones</a></li>
+            <li><a href="categories.html#cat-gaming">Gaming Gear</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Customer Care</h4>
+          <ul class="footer-list">
+            <li><a href="contact.html">Track Order</a></li>
+            <li><a href="contact.html">Warranty Claims</a></li>
+            <li><a href="contact.html">Shipping Guidelines</a></li>
+            <li><a href="contact.html">30-Day Returns</a></li>
+            <li><a href="about.html#reviews">Customer Reviews</a></li>
+          </ul>
+
+          <div class="payment-badges-wrap">
+            <span class="payment-title">Accepted Payments:</span>
+            <div class="payment-badges">
+              <span class="pay-tag">GCash</span>
+              <span class="pay-tag">Maya</span>
+              <span class="pay-tag">Visa</span>
+              <span class="pay-tag">Mastercard</span>
+              <span class="pay-tag">COD</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 TechHub Philippines Inc. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <span class="divider">·</span>
+          <a href="#">Terms of Service</a>
+          <span class="divider">·</span>
+          <a href="#">Security Standards</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

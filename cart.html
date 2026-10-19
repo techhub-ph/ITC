@@ -1,0 +1,883 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopping Cart &amp; Checkout — TechHub</title>
+  <meta name="description" content="Review your selected electronics, apply vouchers, and complete your order with secure checkout." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="TechHub_Logo.png" />
+  <meta name="theme-color" content="#0f172a" />
+
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container announcement-inner">
+      <div class="announcement-text">
+        <span class="announcement-pill">SECURE CHECKOUT</span>
+        <span>256-Bit SSL Encrypted Payment Processing | GCash, Maya, Cards, &amp; COD</span>
+      </div>
+      <div class="announcement-links">
+        <a href="#" onclick="openOrdersModal(); return false;">Track My Order</a>
+        <span class="divider">|</span>
+        <a href="contact.html">Need Help?</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header class="site-header" id="navbar">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-link" aria-label="TechHub Home">
+        <img src="TechHub_Logo.png" alt="TechHub Logo" class="brand-logo" id="main-logo" />
+        <span class="brand-text"><span class="brand-white">Tech</span><span class="brand-accent">Hub</span></span>
+      </a>
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link" data-page="index.html">Home</a>
+        <a href="categories.html" class="nav-link" data-page="categories.html">Categories</a>
+        <a href="flash-sale.html" class="nav-link" data-page="flash-sale.html">Flash Sale</a>
+        <a href="products.html" class="nav-link" data-page="products.html">Products</a>
+        <a href="about.html" class="nav-link" data-page="about.html">About Us</a>
+        <a href="contact.html" class="nav-link" data-page="contact.html">Contact Us</a>
+      </nav>
+      <div class="header-actions">
+        <button class="action-btn" id="search-btn" aria-label="Search products" title="Search">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+        </button>
+        <button class="action-btn" id="wishlist-btn" aria-label="Wishlist" title="Saved Items">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path></svg>
+          <span class="badge" id="wishlist-count">0</span>
+        </button>
+        <button class="action-btn cart-btn" id="cart-btn" aria-label="Shopping cart" title="View Cart">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 01-8 0"></path></svg>
+          <span class="badge badge-accent" id="cart-count">0</span>
+        </button>
+        <div id="user-auth-area"></div>
+        <button class="action-btn mobile-menu-btn" id="mobile-toggle" aria-label="Toggle Mobile Menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-drawer" id="mobile-drawer">
+      <nav class="mobile-nav">
+        <a href="index.html" class="mobile-link">Home</a>
+        <a href="categories.html" class="mobile-link">Categories</a>
+        <a href="flash-sale.html" class="mobile-link">Flash Sale</a>
+        <a href="products.html" class="mobile-link">Products</a>
+        <a href="about.html" class="mobile-link">About Us &amp; Reviews</a>
+        <a href="contact.html" class="mobile-link">Contact Us</a>
+        <div class="mobile-cta" id="mobile-user-auth-area">
+          <button class="btn btn-primary btn-block" onclick="openAuthModal('login')">Sign In / Register</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CART PAGE CONTENT -->
+  <main class="section" style="min-height: 70vh;">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h1 class="section-title">Your Shopping Cart</h1>
+          <p class="section-subtitle">Review your items, apply vouchers, and confirm your delivery destination</p>
+        </div>
+        <a href="products.html" class="link-arrow">&larr; Continue Shopping</a>
+      </div>
+
+      <div class="cart-page-layout" id="cart-page-layout">
+
+        <!-- Left: Cart Items List -->
+        <div id="full-cart-items" class="cart-items-list">
+          <!-- Rendered via JS -->
+        </div>
+
+        <!-- Right: Summary & Checkout Form -->
+        <div class="cart-summary-box" id="checkout-right-panel">
+
+          <h3 class="cart-summary-title">Order Summary</h3>
+
+          <div class="cart-summary-row">
+            <span>Subtotal:</span>
+            <span style="color: #fff; font-weight: 700;" id="page-cart-subtotal">&#8369;0</span>
+          </div>
+
+          <div id="promo-discount-row" class="cart-summary-row" style="display:none;">
+            <span>Promo Discount:</span>
+            <span style="color: #10b981; font-weight: 700;" id="page-cart-discount">-&#8369;0</span>
+          </div>
+
+          <div class="cart-summary-row">
+            <span>Nationwide Delivery:</span>
+            <span style="color: var(--color-green); font-weight: 700;" id="page-cart-shipping">FREE</span>
+          </div>
+
+          <div id="free-ship-hint-wrap" class="free-ship-hint" style="display:none;" id="free-ship-hint-text"></div>
+
+          <div class="cart-summary-total-row">
+            <span>Total:</span>
+            <span style="color: var(--accent-blue-light);" id="page-cart-total">&#8369;0</span>
+          </div>
+
+          <!-- Promo Input -->
+          <div id="promo-input-area" style="margin-bottom: 16px;">
+            <div style="display: flex; gap: 8px;">
+              <input type="text" placeholder="Promo code (e.g. TECH500)" id="promo-input" class="form-input" style="flex: 1;" />
+              <button class="btn btn-secondary btn-sm" onclick="applyPromoCart()">Apply</button>
+            </div>
+          </div>
+          <div id="promo-applied-display" style="display:none;" class="promo-applied-row">
+            <span>&#127881; TECH500 applied &mdash; &#8369;500 off</span>
+            <button class="promo-remove-btn" onclick="removePromoCart()">Remove</button>
+          </div>
+
+          <!-- Checkout Form - 2 Sections -->
+          <form id="checkout-form" onsubmit="handlePlaceOrder(event)" novalidate style="display: flex; flex-direction: column; gap: 0;">
+
+            <!-- Section 1: Delivery Details -->
+            <div class="checkout-section-title">&#128205; Delivery Details</div>
+
+            <div class="form-group">
+              <label class="form-label" for="co-fullname">Full Name *</label>
+              <input type="text" id="co-fullname" class="form-input" placeholder="Juan Dela Cruz" autocomplete="name" />
+              <div class="field-error" id="err-fullname">Please enter your full name.</div>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label" for="co-mobile">Mobile Number *</label>
+                <input type="tel" id="co-mobile" class="form-input" placeholder="09XXXXXXXXX" autocomplete="tel" />
+                <div class="field-error" id="err-mobile">Enter a valid PH mobile number (09XX or +639XX).</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="co-email">Email *</label>
+                <input type="email" id="co-email" class="form-input" placeholder="you@email.com" autocomplete="email" />
+                <div class="field-error" id="err-email">Please enter a valid email address.</div>
+              </div>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label" for="co-house">House/Unit No. &amp; Street *</label>
+                <input type="text" id="co-house" class="form-input" placeholder="123 Rizal St." autocomplete="address-line1" />
+                <div class="field-error" id="err-house">Please enter your house/unit number and street.</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="co-barangay">Barangay *</label>
+                <input type="text" id="co-barangay" class="form-input" placeholder="Brgy. San Jose" autocomplete="address-line2" />
+                <div class="field-error" id="err-barangay">Please enter your barangay.</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="co-city">City / Municipality *</label>
+              <input type="text" id="co-city" class="form-input" placeholder="Quezon City" autocomplete="address-level2" />
+              <div class="field-error" id="err-city">Please enter your city or municipality.</div>
+            </div>
+
+            <div class="form-row-prov-zip">
+              <div class="form-group">
+                <label class="form-label" for="co-province">Province *</label>
+                <input type="text" id="co-province" class="form-input" placeholder="Metro Manila" autocomplete="address-level1" />
+                <div class="field-error" id="err-province">Please enter your province.</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="co-zip">ZIP Code *</label>
+                <input type="text" id="co-zip" class="form-input" placeholder="1100" maxlength="4" autocomplete="postal-code" />
+                <div class="field-error" id="err-zip">Please enter a valid 4-digit ZIP code.</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="co-notes">Delivery Notes / Landmark <span style="color:var(--text-muted);font-weight:400;">(optional)</span></label>
+              <input type="text" id="co-notes" class="form-input" placeholder="Near the 7-Eleven, blue gate" />
+            </div>
+
+            <label class="save-addr-row">
+              <input type="checkbox" id="co-save-addr" />
+              <span>Save this address for next time</span>
+            </label>
+
+            <!-- Section 2: Payment Method -->
+            <div class="checkout-section-title" style="margin-top: 24px;">&#128179; Payment Method</div>
+            <div class="demo-banner" style="margin-bottom: 14px;">&#128274; Demo payment &mdash; no real charge will be made</div>
+
+            <div class="payment-radio-cards">
+
+              <!-- COD -->
+              <div>
+                <label class="pay-card" id="pay-card-cod" onclick="selectPayment('cod')">
+                  <div class="pay-card-left">
+                    <input type="radio" name="payment_method" id="pay-radio-cod" value="cod" />
+                    <span class="pay-card-icon">&#128666;</span>
+                    <div>
+                      <div class="pay-card-title">Cash on Delivery</div>
+                      <div class="pay-card-desc">Pay when your order arrives</div>
+                    </div>
+                  </div>
+                  <div class="pay-badges-inline"><span class="pay-mini-badge">COD</span></div>
+                </label>
+                <div class="pay-fields" id="pay-fields-cod">
+                  <div style="display: flex; gap: 10px; align-items: flex-start; color: var(--text-secondary); font-size: 0.9rem;">
+                    <span style="font-size: 1.3rem;">&#128337;</span>
+                    <span>Please prepare the <strong style="color:#fff;">exact amount</strong>. Our rider will collect payment upon delivery.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- E-Wallet -->
+              <div>
+                <label class="pay-card" id="pay-card-ewallet" onclick="selectPayment('ewallet')">
+                  <div class="pay-card-left">
+                    <input type="radio" name="payment_method" id="pay-radio-ewallet" value="ewallet" />
+                    <span class="pay-card-icon">&#128241;</span>
+                    <div>
+                      <div class="pay-card-title">E-Wallet</div>
+                      <div class="pay-card-desc">GCash or Maya instant payment</div>
+                    </div>
+                  </div>
+                  <div class="pay-badges-inline">
+                    <span class="pay-mini-badge gcash">GCash</span>
+                    <span class="pay-mini-badge maya">Maya</span>
+                  </div>
+                </label>
+                <div class="pay-fields" id="pay-fields-ewallet">
+                  <div class="form-group">
+                    <label class="form-label">E-Wallet Provider *</label>
+                    <div style="display: flex; gap: 10px;">
+                      <label style="flex:1; display:flex; align-items:center; gap:8px; padding: 10px 14px; background: var(--bg-darker); border: 1px solid var(--border-color); border-radius:8px; cursor:pointer;">
+                        <input type="radio" name="ewallet_provider" value="gcash" id="ewallet-gcash" style="accent-color:#3b82f6;" /> <span style="font-weight:600;">GCash</span>
+                      </label>
+                      <label style="flex:1; display:flex; align-items:center; gap:8px; padding: 10px 14px; background: var(--bg-darker); border: 1px solid var(--border-color); border-radius:8px; cursor:pointer;">
+                        <input type="radio" name="ewallet_provider" value="maya" id="ewallet-maya" style="accent-color:#10b981;" /> <span style="font-weight:600;">Maya</span>
+                      </label>
+                    </div>
+                    <div class="field-error" id="err-ewallet-provider">Please choose GCash or Maya.</div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="ewallet-mobile">Registered Mobile Number *</label>
+                    <input type="tel" id="ewallet-mobile" class="form-input" placeholder="09XXXXXXXXX" />
+                    <div class="field-error" id="err-ewallet-mobile">Enter a valid PH mobile number.</div>
+                  </div>
+                  <div id="ewallet-qr-area" style="display:none;">
+                    <div class="qr-sim-box">
+                      <div class="qr-sim-graphic"><div class="qr-sim-matrix"></div></div>
+                      <div id="ewallet-status-text" style="font-weight:700; font-size:0.95rem; color:#fff; margin-bottom:4px;"></div>
+                      <div id="ewallet-ref-text" style="font-size:0.8rem; color: var(--text-secondary);"></div>
+                    </div>
+                  </div>
+                  <button type="button" id="ewallet-pay-btn" class="btn btn-primary btn-block" onclick="simulateEwalletPay()" style="margin-top:6px;">
+                    Pay Now
+                  </button>
+                </div>
+              </div>
+
+              <!-- Card -->
+              <div>
+                <label class="pay-card" id="pay-card-card" onclick="selectPayment('card')">
+                  <div class="pay-card-left">
+                    <input type="radio" name="payment_method" id="pay-radio-card" value="card" />
+                    <span class="pay-card-icon">&#128179;</span>
+                    <div>
+                      <div class="pay-card-title">Credit / Debit Card</div>
+                      <div class="pay-card-desc">Visa, Mastercard accepted</div>
+                    </div>
+                  </div>
+                  <div class="pay-badges-inline">
+                    <span class="pay-mini-badge">Visa</span>
+                    <span class="pay-mini-badge">MC</span>
+                  </div>
+                </label>
+                <div class="pay-fields" id="pay-fields-card">
+                  <div class="form-group">
+                    <label class="form-label" for="card-number">Card Number *</label>
+                    <div style="position:relative;">
+                      <input type="text" id="card-number" class="form-input" placeholder="0000 0000 0000 0000" maxlength="19" oninput="formatCardNumber(this)" style="padding-right: 60px;" />
+                      <span id="card-brand-icon" style="position:absolute; right:12px; top:50%; transform:translateY(-50%); font-size:0.8rem; font-weight:700; color: var(--text-muted);"></span>
+                    </div>
+                    <div class="field-error" id="err-card-number">Enter a valid card number.</div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="card-name">Name on Card *</label>
+                    <input type="text" id="card-name" class="form-input" placeholder="JUAN DELA CRUZ" style="text-transform:uppercase;" />
+                    <div class="field-error" id="err-card-name">Please enter the name on your card.</div>
+                  </div>
+                  <div class="form-row-2">
+                    <div class="form-group">
+                      <label class="form-label" for="card-expiry">Expiry MM/YY *</label>
+                      <input type="text" id="card-expiry" class="form-input" placeholder="MM/YY" maxlength="5" oninput="formatCardExpiry(this)" />
+                      <div class="field-error" id="err-card-expiry">Enter a valid future expiry date.</div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="card-cvv">CVV *</label>
+                      <input type="password" id="card-cvv" class="form-input" placeholder="123" maxlength="3" />
+                      <div class="field-error" id="err-card-cvv">CVV must be 3 digits.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- end payment-radio-cards -->
+            <div class="field-error" id="err-payment" style="margin-top:8px;">Please select a payment method.</div>
+
+            <button type="submit" class="btn btn-primary btn-block glow-blue" id="place-order-btn" style="margin-top: 20px; padding: 16px; font-size: 1.05rem;">
+              Place Order &amp; Pay &rarr;
+            </button>
+          </form>
+
+          <p style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 14px;">
+            &#128274; Guaranteed authentic. 30-day defective replacement warranty included.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col brand-col">
+          <a href="index.html" class="brand-link">
+            <img src="TechHub_Logo.png" alt="TechHub Logo" class="brand-logo" />
+            <span class="brand-text"><span class="brand-white">Tech</span><span class="brand-accent">Hub</span></span>
+          </a>
+          <p class="footer-tagline">Your premier destination for authentic, high-performance electronics.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Pages</h4>
+          <ul class="footer-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="flash-sale.html">Flash Sale</a></li>
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="about.html">About Us &amp; Reviews</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Hardware</h4>
+          <ul class="footer-list">
+            <li><a href="categories.html#cat-smartphones">Smartphones (5G &amp; Flagship)</a></li>
+            <li><a href="categories.html#cat-laptops">Laptops &amp; PCs</a></li>
+            <li><a href="categories.html#cat-tablets">Tablets &amp; iPads</a></li>
+            <li><a href="categories.html#cat-audio">Audio &amp; Headphones</a></li>
+            <li><a href="categories.html#cat-gaming">Gaming Gear</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Customer Care</h4>
+          <ul class="footer-list">
+            <li><a href="#" onclick="openOrdersModal(); return false;">Track Order</a></li>
+            <li><a href="contact.html">Warranty Claims</a></li>
+            <li><a href="contact.html">Shipping Guidelines</a></li>
+            <li><a href="contact.html">30-Day Returns</a></li>
+            <li><a href="about.html#reviews">Customer Reviews</a></li>
+          </ul>
+
+          <div class="payment-badges-wrap">
+            <span class="payment-title">Accepted Payments:</span>
+            <div class="payment-badges">
+              <span class="pay-tag">GCash</span>
+              <span class="pay-tag">Maya</span>
+              <span class="pay-tag">Visa</span>
+              <span class="pay-tag">Mastercard</span>
+              <span class="pay-tag">COD</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 TechHub Philippines Inc. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <span class="divider">&middot;</span>
+          <a href="#">Terms of Service</a>
+          <span class="divider">&middot;</span>
+          <a href="#">Security Standards</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // ========== CART PAGE LOCAL FUNCTIONS ==========
+    // These are page-specific helpers that rely on script.js globals.
+
+    // Render cart items left panel
+    function renderPageCart() {
+      const container = document.getElementById('full-cart-items');
+      const subtotalEl = document.getElementById('page-cart-subtotal');
+      const shippingEl = document.getElementById('page-cart-shipping');
+      const totalEl = document.getElementById('page-cart-total');
+      const discountRow = document.getElementById('promo-discount-row');
+      const discountEl = document.getElementById('page-cart-discount');
+      const hintWrap = document.getElementById('free-ship-hint-wrap');
+      const placeBtn = document.getElementById('place-order-btn');
+
+      if (!container) return;
+
+      if (!cart || cart.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state" style="padding: 60px 20px;">
+            <div class="empty-icon">&#128722;</div>
+            <h3 style="color: #fff; margin-bottom: 8px;">Your cart is empty</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 24px;">Explore our catalog to find laptops, phones, and gaming gear.</p>
+            <a href="products.html" class="btn btn-primary glow-blue">Start Shopping Now</a>
+          </div>
+        `;
+        if (subtotalEl) subtotalEl.textContent = '&#8369;0';
+        if (totalEl) totalEl.textContent = '&#8369;0';
+        if (placeBtn) { placeBtn.disabled = true; placeBtn.style.opacity = '0.5'; }
+        return;
+      }
+
+      if (placeBtn) { placeBtn.disabled = false; placeBtn.style.opacity = ''; }
+
+      let subtotal = 0;
+      container.innerHTML = cart.map((item, idx) => {
+        subtotal += item.price * item.qty;
+        const name = escapeHtml(item.name || '');
+        const variant = escapeHtml(item.variant || '');
+        return `
+          <div class="drawer-item" style="padding: 16px; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-color);">
+            <img src="${escapeHtml(item.image || '')}" alt="${name}" class="drawer-item-img" style="width: 90px; height: 90px; border-radius:8px; object-fit:cover;" />
+            <div class="drawer-item-info">
+              <div style="font-size: 1.05rem; font-weight: 700; color: #fff;">${name}</div>
+              <div class="drawer-item-variant">Selected Color: ${variant}</div>
+              <div class="drawer-item-price" style="font-size: 1.15rem; color: var(--accent-blue-light); margin-top: 4px;">
+                &#8369;${(item.price * item.qty).toLocaleString()}
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 10px;">
+                <div class="qty-control">
+                  <button class="qty-btn" onclick="updateCartQty(${idx}, -1); renderPageCart();">-</button>
+                  <span class="qty-val">${item.qty}</span>
+                  <button class="qty-btn" onclick="updateCartQty(${idx}, 1); renderPageCart();">+</button>
+                </div>
+                <button class="item-delete-btn" onclick="removeCartItem(${idx}); renderPageCart();" style="font-size: 0.9rem;">&#128465; Remove</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const promoDiscount = getAppliedPromoDiscount();
+      const shipping = subtotal >= 3000 ? 0 : 150;
+      const discounted = Math.max(0, subtotal - promoDiscount);
+      const total = discounted + shipping;
+
+      if (subtotalEl) subtotalEl.textContent = `\u20B1${subtotal.toLocaleString()}`;
+      if (shippingEl) shippingEl.textContent = shipping === 0 ? 'FREE' : `\u20B1${shipping}`;
+      if (totalEl) totalEl.textContent = `\u20B1${total.toLocaleString()}`;
+
+      if (promoDiscount > 0 && discountRow && discountEl) {
+        discountRow.style.display = 'flex';
+        discountEl.textContent = `-\u20B1${promoDiscount.toLocaleString()}`;
+      } else if (discountRow) {
+        discountRow.style.display = 'none';
+      }
+
+      // Free shipping hint
+      if (hintWrap) {
+        if (shipping > 0) {
+          const needed = 3000 - subtotal;
+          hintWrap.style.display = 'block';
+          hintWrap.textContent = `Add \u20B1${needed.toLocaleString()} more for FREE shipping!`;
+        } else {
+          hintWrap.style.display = 'none';
+        }
+      }
+    }
+
+    // Promo helpers (cart page specific, piggy-backs on script.js storage)
+    function getAppliedPromoDiscount() {
+      const saved = localStorage.getItem('techhub_promo');
+      if (!saved) return 0;
+      try {
+        const d = JSON.parse(saved);
+        return d.discount || 0;
+      } catch (e) { return 0; }
+    }
+
+    function applyPromoCart() {
+      const input = document.getElementById('promo-input');
+      const code = (input ? input.value.trim().toUpperCase() : '');
+      if (!code) { showToast('Please enter a promo code.', 'error'); return; }
+
+      const existing = getAppliedPromoDiscount();
+      if (existing > 0) { showToast('A promo code is already applied.', 'warning'); return; }
+
+      if (code === 'TECH500') {
+        localStorage.setItem('techhub_promo', JSON.stringify({ code: 'TECH500', discount: 500 }));
+        document.getElementById('promo-input-area').style.display = 'none';
+        document.getElementById('promo-applied-display').style.display = 'flex';
+        showToast('Promo code TECH500 applied! \u20B1500 off.', 'success');
+        renderPageCart();
+      } else {
+        showToast('Invalid promo code. Try TECH500.', 'error');
+      }
+    }
+
+    function removePromoCart() {
+      localStorage.removeItem('techhub_promo');
+      document.getElementById('promo-input-area').style.display = 'block';
+      document.getElementById('promo-applied-display').style.display = 'none';
+      const inp = document.getElementById('promo-input');
+      if (inp) inp.value = '';
+      showToast('Promo code removed.', 'info');
+      renderPageCart();
+    }
+
+    // Payment selection
+    let currentPayment = null;
+    let ewalletRefNum = null;
+    let ewalletPaid = false;
+
+    function selectPayment(method) {
+      currentPayment = method;
+      ewalletPaid = false;
+      ewalletRefNum = null;
+
+      ['cod', 'ewallet', 'card'].forEach(m => {
+        const card = document.getElementById('pay-card-' + m);
+        const fields = document.getElementById('pay-fields-' + m);
+        const radio = document.getElementById('pay-radio-' + m);
+        if (card) card.classList.toggle('active', m === method);
+        if (fields) fields.classList.toggle('visible', m === method);
+        if (radio) radio.checked = (m === method);
+      });
+
+      // Reset ewallet state
+      if (method === 'ewallet') {
+        document.getElementById('ewallet-qr-area').style.display = 'none';
+        document.getElementById('ewallet-pay-btn').style.display = 'block';
+        document.getElementById('ewallet-pay-btn').disabled = false;
+        document.getElementById('ewallet-pay-btn').textContent = 'Pay Now';
+      }
+
+      const errEl = document.getElementById('err-payment');
+      if (errEl) errEl.classList.remove('show');
+    }
+
+    function updateEwalletPayBtn() {
+      const provider = document.querySelector('input[name="ewallet_provider"]:checked');
+      const btn = document.getElementById('ewallet-pay-btn');
+      if (!btn) return;
+      btn.textContent = provider ? `Pay with ${provider.value === 'gcash' ? 'GCash' : 'Maya'}` : 'Pay Now';
+    }
+
+    document.querySelectorAll('input[name="ewallet_provider"]').forEach(r => {
+      r.addEventListener('change', updateEwalletPayBtn);
+    });
+
+    function simulateEwalletPay() {
+      const providerEl = document.querySelector('input[name="ewallet_provider"]:checked');
+      const mobileEl = document.getElementById('ewallet-mobile');
+      const errProvider = document.getElementById('err-ewallet-provider');
+      const errMobile = document.getElementById('err-ewallet-mobile');
+
+      let valid = true;
+      if (!providerEl) {
+        errProvider.classList.add('show');
+        valid = false;
+      } else {
+        errProvider.classList.remove('show');
+      }
+      const mobile = mobileEl ? mobileEl.value.trim() : '';
+      if (!/^(09\d{9}|\+639\d{9})$/.test(mobile)) {
+        if (errMobile) errMobile.classList.add('show');
+        valid = false;
+      } else {
+        if (errMobile) errMobile.classList.remove('show');
+      }
+      if (!valid) return;
+
+      const provider = providerEl.value;
+      const btn = document.getElementById('ewallet-pay-btn');
+      btn.disabled = true;
+      btn.textContent = 'Processing...';
+
+      document.getElementById('ewallet-qr-area').style.display = 'block';
+      document.getElementById('ewallet-status-text').textContent = 'Scan QR or waiting for confirmation...';
+      document.getElementById('ewallet-ref-text').textContent = '';
+
+      setTimeout(() => {
+        const prefix = provider === 'gcash' ? 'GC' : 'MY';
+        ewalletRefNum = prefix + '-' + Math.random().toString(36).substr(2, 10).toUpperCase();
+        ewalletPaid = true;
+
+        document.getElementById('ewallet-status-text').textContent = '✓ Payment Successful!';
+        document.getElementById('ewallet-ref-text').textContent = 'Ref: ' + ewalletRefNum;
+        btn.style.display = 'none';
+        showToast('E-Wallet payment confirmed! Ref: ' + ewalletRefNum, 'success');
+      }, 2200);
+    }
+
+    // Card formatting helpers
+    function formatCardNumber(input) {
+      let v = input.value.replace(/\D/g, '').substring(0, 16);
+      input.value = v.replace(/(.{4})/g, '$1 ').trim();
+      const brandEl = document.getElementById('card-brand-icon');
+      if (brandEl) {
+        if (/^4/.test(v)) brandEl.textContent = 'VISA';
+        else if (/^5[1-5]/.test(v) || /^2(2[2-9]|[3-6]\d|7[01])/.test(v)) brandEl.textContent = 'MC';
+        else brandEl.textContent = '';
+      }
+    }
+
+    function formatCardExpiry(input) {
+      let v = input.value.replace(/\D/g, '').substring(0, 4);
+      if (v.length >= 3) v = v.substring(0, 2) + '/' + v.substring(2);
+      input.value = v;
+    }
+
+    function luhnCheck(num) {
+      const digits = num.replace(/\D/g, '');
+      let sum = 0, alt = false;
+      for (let i = digits.length - 1; i >= 0; i--) {
+        let d = parseInt(digits[i]);
+        if (alt) { d *= 2; if (d > 9) d -= 9; }
+        sum += d;
+        alt = !alt;
+      }
+      return sum % 10 === 0;
+    }
+
+    // Field validation helpers
+    function setFieldError(id, errId, show) {
+      const el = document.getElementById(id);
+      const errEl = document.getElementById(errId);
+      if (el) el.classList.toggle('input-error', show);
+      if (errEl) errEl.classList.toggle('show', show);
+      return !show;
+    }
+
+    function clearErrors() {
+      document.querySelectorAll('.field-error').forEach(e => e.classList.remove('show'));
+      document.querySelectorAll('.form-input').forEach(e => e.classList.remove('input-error'));
+    }
+
+    function validateAndCollect() {
+      clearErrors();
+      let valid = true;
+
+      const fullname = document.getElementById('co-fullname').value.trim();
+      if (!fullname) valid = setFieldError('co-fullname', 'err-fullname', true) && valid;
+
+      const mobile = document.getElementById('co-mobile').value.trim();
+      if (!/^(09\d{9}|\+639\d{9})$/.test(mobile)) valid = setFieldError('co-mobile', 'err-mobile', true) && valid;
+
+      const email = document.getElementById('co-email').value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) valid = setFieldError('co-email', 'err-email', true) && valid;
+
+      const house = document.getElementById('co-house').value.trim();
+      if (!house) valid = setFieldError('co-house', 'err-house', true) && valid;
+
+      const barangay = document.getElementById('co-barangay').value.trim();
+      if (!barangay) valid = setFieldError('co-barangay', 'err-barangay', true) && valid;
+
+      const city = document.getElementById('co-city').value.trim();
+      if (!city) valid = setFieldError('co-city', 'err-city', true) && valid;
+
+      const province = document.getElementById('co-province').value.trim();
+      if (!province) valid = setFieldError('co-province', 'err-province', true) && valid;
+
+      const zip = document.getElementById('co-zip').value.trim();
+      if (!/^\d{4}$/.test(zip)) valid = setFieldError('co-zip', 'err-zip', true) && valid;
+
+      const notes = document.getElementById('co-notes').value.trim();
+
+      // Payment validation
+      if (!currentPayment) {
+        document.getElementById('err-payment').classList.add('show');
+        valid = false;
+      } else if (currentPayment === 'ewallet') {
+        const providerEl = document.querySelector('input[name="ewallet_provider"]:checked');
+        if (!providerEl) { document.getElementById('err-ewallet-provider').classList.add('show'); valid = false; }
+        const ewMobile = document.getElementById('ewallet-mobile').value.trim();
+        if (!/^(09\d{9}|\+639\d{9})$/.test(ewMobile)) { document.getElementById('err-ewallet-mobile').classList.add('show'); valid = false; }
+        if (!ewalletPaid) { showToast('Please complete the e-wallet payment step first.', 'warning'); valid = false; }
+      } else if (currentPayment === 'card') {
+        const cardNum = document.getElementById('card-number').value.replace(/\s/g, '');
+        if (cardNum.length < 16 || !luhnCheck(cardNum)) { setFieldError('card-number', 'err-card-number', true); valid = false; }
+
+        const cardName = document.getElementById('card-name').value.trim();
+        if (!cardName) { setFieldError('card-name', 'err-card-name', true); valid = false; }
+
+        const expiry = document.getElementById('card-expiry').value.trim();
+        if (!/^\d{2}\/\d{2}$/.test(expiry)) { setFieldError('card-expiry', 'err-card-expiry', true); valid = false; }
+        else {
+          const [mm, yy] = expiry.split('/').map(Number);
+          const now = new Date();
+          const exp = new Date(2000 + yy, mm - 1, 1);
+          if (mm < 1 || mm > 12 || exp <= now) { setFieldError('card-expiry', 'err-card-expiry', true); valid = false; }
+        }
+
+        const cvv = document.getElementById('card-cvv').value.trim();
+        if (!/^\d{3}$/.test(cvv)) { setFieldError('card-cvv', 'err-card-cvv', true); valid = false; }
+      }
+
+      if (!valid) return null;
+
+      // Build delivery object
+      const formatted = `${house}, ${barangay}, ${city}, ${province} ${zip}`;
+      const delivery = { fullName: fullname, mobile, email, house, street: house, barangay, city, province, zip, notes, formatted };
+
+      // Save address if requested
+      if (document.getElementById('co-save-addr').checked && currentUser) {
+        localStorage.setItem(`techhub_addr_${currentUser.email}`, JSON.stringify(delivery));
+      }
+
+      // Build payment object
+      let payment = {};
+      if (currentPayment === 'cod') {
+        payment = { method: 'cod', label: 'Cash on Delivery', refNum: null, mobileMasked: null, cardBrand: null, last4: null, status: 'Pay on delivery' };
+      } else if (currentPayment === 'ewallet') {
+        const provider = document.querySelector('input[name="ewallet_provider"]:checked').value;
+        const rawMobile = document.getElementById('ewallet-mobile').value.trim();
+        const masked = rawMobile.slice(0, 4) + ' XXX ' + rawMobile.slice(-4);
+        payment = { method: provider, label: provider === 'gcash' ? 'GCash' : 'Maya', refNum: ewalletRefNum, mobileMasked: masked, cardBrand: null, last4: null, status: 'Paid' };
+      } else if (currentPayment === 'card') {
+        const rawNum = document.getElementById('card-number').value.replace(/\s/g, '');
+        const brand = /^4/.test(rawNum) ? 'Visa' : 'Mastercard';
+        payment = { method: 'card', label: `${brand} ending in ${rawNum.slice(-4)}`, refNum: null, mobileMasked: null, cardBrand: brand, last4: rawNum.slice(-4), status: 'Paid' };
+      }
+
+      return { delivery, payment };
+    }
+
+    function handlePlaceOrder(e) {
+      e.preventDefault();
+
+      if (!cart || cart.length === 0) {
+        showToast('Your cart is empty! Please add items before checking out.', 'error');
+        return;
+      }
+      if (!currentUser) {
+        showToast('Sign-in Required! Please log in to complete your order.', 'error');
+        openAuthModal('login');
+        return;
+      }
+
+      const collected = validateAndCollect();
+      if (!collected) {
+        // Scroll to first error
+        const firstErr = document.querySelector('.field-error.show');
+        if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      const { delivery, payment } = collected;
+
+      const placeBtn = document.getElementById('place-order-btn');
+      if (placeBtn) { placeBtn.disabled = true; placeBtn.textContent = 'Placing Order...'; }
+
+      const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      const promoDiscount = getAppliedPromoDiscount();
+      const promoSaved = localStorage.getItem('techhub_promo');
+      const promoCode = promoSaved ? (JSON.parse(promoSaved).code || '') : '';
+      const shipping = subtotal >= 3000 ? 0 : 150;
+      const total = Math.max(0, subtotal - promoDiscount + shipping);
+
+      const orderNum = 'TH-' + Math.floor(100000 + Math.random() * 900000);
+      const purchaseDate = new Date().toISOString();
+
+      const items = cart.map(item => {
+        const warrantyCode = 'WR-' + Math.random().toString(36).substr(2, 8).toUpperCase();
+        const exp = new Date(purchaseDate);
+        exp.setFullYear(exp.getFullYear() + 1);
+        return {
+          id: item.id,
+          name: item.name,
+          variant: item.variant,
+          qty: item.qty,
+          price: item.price,
+          image: item.image,
+          warrantyCode,
+          warrantyExpiry: exp.toISOString()
+        };
+      });
+
+      const order = {
+        orderNum,
+        date: purchaseDate,
+        status: 'Order Placed',
+        receivedAt: null,
+        items,
+        subtotal,
+        discount: promoDiscount,
+        promoCode,
+        shipping,
+        total,
+        payment,
+        delivery
+      };
+
+      createOrder(order);
+
+      // Clear cart and promo
+      cart = [];
+      localStorage.removeItem('techhub_cart');
+      localStorage.removeItem('techhub_promo');
+      updateCartUI();
+      renderPageCart();
+
+      showOrderSuccessModal(order);
+    }
+
+    // Prefill saved address and user data on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      renderPageCart();
+
+      // Show promo state if previously applied
+      const promoSaved = localStorage.getItem('techhub_promo');
+      if (promoSaved) {
+        try {
+          const p = JSON.parse(promoSaved);
+          if (p.code === 'TECH500') {
+            document.getElementById('promo-input-area').style.display = 'none';
+            document.getElementById('promo-applied-display').style.display = 'flex';
+          }
+        } catch (e) {}
+      }
+
+      // Prefill name and email from current user
+      if (currentUser) {
+        const nameEl = document.getElementById('co-fullname');
+        const emailEl = document.getElementById('co-email');
+        if (nameEl && currentUser.name) nameEl.value = currentUser.name;
+        if (emailEl && currentUser.email) emailEl.value = currentUser.email;
+
+        // Prefill saved address
+        const savedAddr = localStorage.getItem(`techhub_addr_${currentUser.email}`);
+        if (savedAddr) {
+          try {
+            const addr = JSON.parse(savedAddr);
+            const set = (id, val) => { const el = document.getElementById(id); if (el && val) el.value = val; };
+            set('co-mobile', addr.mobile || '');
+            set('co-house', addr.house || addr.street || '');
+            set('co-barangay', addr.barangay || '');
+            set('co-city', addr.city || '');
+            set('co-province', addr.province || '');
+            set('co-zip', addr.zip || '');
+            set('co-notes', addr.notes || '');
+            document.getElementById('co-save-addr').checked = true;
+          } catch (e) {}
+        }
+      }
+    });
+  </script>
+</body>
+</html>

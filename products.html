@@ -1,0 +1,385 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Products — TechHub Electronics Store</title>
+  <meta name="description" content="Browse our complete catalog of certified smartphones, laptops, audio systems, and gaming gear." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="TechHub_Logo.png" />
+  <meta name="theme-color" content="#0f172a" />
+
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container announcement-inner">
+      <div class="announcement-text">
+        <span class="announcement-pill">⚡ OFFICIAL PH STOCK</span>
+        <span>All products include 100% authentic manufacturer receipts & warranties</span>
+      </div>
+      <div class="announcement-links">
+        <a href="contact.html">Track My Order</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header / Navigation -->
+    <header class="site-header" id="navbar">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-link" aria-label="TechHub Home">
+        <img src="TechHub_Logo.png" alt="TechHub Logo" class="brand-logo" id="main-logo" />
+        <span class="brand-text"><span class="brand-white">Tech</span><span class="brand-accent">Hub</span></span>
+      </a>
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link" data-page="index.html">Home</a>
+        <a href="categories.html" class="nav-link" data-page="categories.html">Categories</a>
+        <a href="flash-sale.html" class="nav-link" data-page="flash-sale.html">Flash Sale</a>
+        <a href="products.html" class="nav-link" data-page="products.html">Products</a>
+        <a href="about.html" class="nav-link" data-page="about.html">About Us</a>
+        <a href="contact.html" class="nav-link" data-page="contact.html">Contact Us</a>
+      </nav>
+      <div class="header-actions">
+        <button class="action-btn" id="search-btn" aria-label="Search products" title="Search">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+        </button>
+        <button class="action-btn" id="wishlist-btn" aria-label="Wishlist" title="Saved Items">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path></svg>
+          <span class="badge" id="wishlist-count">0</span>
+        </button>
+        <button class="action-btn cart-btn" id="cart-btn" aria-label="Shopping cart" title="View Cart">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 01-8 0"></path></svg>
+          <span class="badge badge-accent" id="cart-count">0</span>
+        </button>
+        <div id="user-auth-area"></div>
+        <button class="action-btn mobile-menu-btn" id="mobile-toggle" aria-label="Toggle Mobile Menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-drawer" id="mobile-drawer">
+      <nav class="mobile-nav">
+        <a href="index.html" class="mobile-link">Home</a>
+        <a href="categories.html" class="mobile-link">Categories</a>
+        <a href="flash-sale.html" class="mobile-link">Flash Sale</a>
+        <a href="products.html" class="mobile-link">Products</a>
+        <a href="about.html" class="mobile-link">About Us & Reviews</a>
+        <a href="contact.html" class="mobile-link">Contact Us</a>
+        <div class="mobile-cta" id="mobile-user-auth-area">
+          <button class="btn btn-primary btn-block" onclick="openAuthModal('login')">Sign In / Register</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="pill-badge">CERTIFIED HARDWARE</span>
+      <h1>Full Product <span class="gradient-text">Catalog</span></h1>
+      <p>Search, filter, and compare authentic consumer tech. Tap any card to open the quick-view specs and color picker modal.</p>
+    </div>
+  </section>
+
+  <!-- PRODUCTS TOOLBAR & CATALOG -->
+  <main class="section">
+    <div class="container">
+      
+      <!-- Filter Toolbar -->
+      <div class="products-toolbar">
+        <!-- Live Search Field -->
+        <div class="search-input-wrap">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+          <input type="text" id="catalog-search-input" placeholder="Search by name, specs, brand..." oninput="handleCatalogSearch(this.value)" />
+        </div>
+
+        <!-- Category Filter Tabs -->
+        <div class="filter-tabs">
+          <button class="tab-btn active" data-filter="all">All Products</button>
+          <button class="tab-btn" data-filter="smartphones">Smartphones</button>
+          <button class="tab-btn" data-filter="laptops">Laptops</button>
+          <button class="tab-btn" data-filter="audio">Audio</button>
+          <button class="tab-btn" data-filter="wearables">Wearables & Tablets</button>
+          <button class="tab-btn" data-filter="gaming">Gaming</button>
+        </div>
+      </div>
+
+      <!-- Catalog Grid -->
+      <div class="product-grid" id="products-catalog-grid">
+        
+        <!-- p1: Samsung S24 Ultra -->
+        <div class="product-card" data-category="smartphones" data-id="p1">
+          <div class="card-thumb">
+            <!-- CHANGE PICTURE HERE: Replace src with your image URL or file path -->
+                <img src="samsung-galaxy-s24-ultra.jpg" alt="Samsung Galaxy S24 Ultra" loading="lazy" />
+            <div class="card-badges"><span class="badge-chip badge-flash">-14%</span><span class="badge-chip badge-cyan">NEW</span></div>
+            <button class="wishlist-toggle" onclick="toggleHeart(this, 'p1')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path></svg></button>
+          </div>
+          <div class="card-body">
+            <span class="product-brand">Samsung</span>
+            <h3 class="product-title">Samsung Galaxy S24 Ultra</h3>
+            <p class="product-spec">6.8" QHD+ AMOLED · Snapdragon 8 Gen 3 · 200MP</p>
+            <div class="rating-row"><div class="stars">★★★★★</div><span class="rating-text">4.8 (2,341)</span></div>
+            <div class="price-row"><span class="current-price">₱59,990</span><span class="old-price">₱69,990</span></div>
+            <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p1', 1)">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- p16: ASUS G14 -->
+        <div class="product-card" data-category="laptops" data-id="p16">
+          <div class="card-thumb">
+            <!-- CHANGE PICTURE HERE: Replace src with your image URL or file path -->
+                <img src="asus-rog-zephyrus-g14.png" alt="ASUS ROG Zephyrus G14" loading="lazy" />
+            <div class="card-badges"><span class="badge-chip badge-flash">-17%</span><span class="badge-chip badge-orange">FLASH</span></div>
+            <button class="wishlist-toggle" onclick="toggleHeart(this, 'p16')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path></svg></button>
+          </div>
+          <div class="card-body">
+            <span class="product-brand">ASUS</span>
+            <h3 class="product-title">ASUS ROG Zephyrus G14</h3>
+            <p class="product-spec">14" QHD 165Hz · Ryzen 9 · RTX 4060 · 1TB SSD</p>
+            <div class="rating-row"><div class="stars">★★★★★</div><span class="rating-text">4.7 (1,187)</span></div>
+            <div class="price-row"><span class="current-price">₱74,995</span><span class="old-price">₱89,995</span></div>
+            <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p16', 1)">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- p31: Sony WH-1000XM5 -->
+        <div class="product-card" data-category="audio" data-id="p31">
+          <div class="card-thumb">
+            <!-- CHANGE PICTURE HERE: Replace src with your image URL or file path -->
+                <img src="sony-wh-1000xm5-anc.png" alt="Sony WH-1000XM5" loading="lazy" />
+            <div class="card-badges"><span class="badge-chip badge-flash">-20%</span></div>
+            <button class="wishlist-toggle" onclick="toggleHeart(this, 'p31')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path></svg></button>
+          </div>
+          <div class="card-body">
+            <span class="product-brand">Sony</span>
+            <h3 class="product-title">Sony WH-1000XM5 ANC</h3>
+            <p class="product-spec">Industry-leading ANC · 30hr Battery · Hi-Res Audio</p>
+            <div class="rating-row"><div class="stars">★★★★★</div><span class="rating-text">4.9 (4,521)</span></div>
+            <div class="price-row"><span class="current-price">₱18,495</span><span class="old-price">₱22,995</span></div>
+            <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p31', 1)">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- p46: iPad Pro 12.9" -->
+        <div class="product-card" data-category="wearables" data-id="p46">
+          <div class="card-thumb">
+            <!-- CHANGE PICTURE HERE: Replace src with your image URL or file path -->
+                <img src="apple-ipad-pro-12-9-m2.jpg" alt="Apple iPad Pro 12.9" loading="lazy" />
+            <div class="card-badges"><span class="badge-chip badge-cyan">NEW</span></div>
+            <button class="wishlist-toggle" onclick="toggleHeart(this, 'p46')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path></svg></button>
+          </div>
+          <div class="card-body">
+            <span class="product-brand">Apple</span>
+            <h3 class="product-title">Apple iPad Pro 12.9" M2</h3>
+            <p class="product-spec">Liquid Retina XDR · Apple M2 Chip · 256GB</p>
+            <div class="rating-row"><div class="stars">★★★★★</div><span class="rating-text">4.8 (987)</span></div>
+            <div class="price-row"><span class="current-price">₱62,990</span><span class="old-price">₱68,990</span></div>
+            <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p46', 1)">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- p61: Apple Watch Series 9 -->
+        <div class="product-card" data-category="wearables" data-id="p61">
+          <div class="card-thumb">
+            <!-- CHANGE PICTURE HERE: Replace src with your image URL or file path -->
+                <img src="apple-watch-series-9-gps.jpg" alt="Apple Watch Series 9" loading="lazy" />
+            <div class="card-badges"><span class="badge-chip badge-flash">-11%</span></div>
+            <button class="wishlist-toggle" onclick="toggleHeart(this, 'p61')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path></svg></button>
+          </div>
+          <div class="card-body">
+            <span class="product-brand">Apple</span>
+            <h3 class="product-title">Apple Watch Series 9</h3>
+            <p class="product-spec">S9 SiP · Double Tap Gesture · Always-On Retina</p>
+            <div class="rating-row"><div class="stars">★★★★★</div><span class="rating-text">4.7 (1,654)</span></div>
+            <div class="price-row"><span class="current-price">₱24,990</span><span class="old-price">₱27,990</span></div>
+            <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p61', 1)">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- p82: ROG Strix Monitor -->
+        <div class="product-card" data-category="gaming" data-id="p82">
+          <div class="card-thumb">
+            <!-- CHANGE PICTURE HERE: Replace src with your image URL or file path -->
+                <img src="rog-strix-gaming-monitor-27.jpg" alt="ASUS ROG Strix Monitor" loading="lazy" />
+            <div class="card-badges"><span class="badge-chip badge-flash">-21%</span></div>
+            <button class="wishlist-toggle" onclick="toggleHeart(this, 'p82')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path></svg></button>
+          </div>
+          <div class="card-body">
+            <span class="product-brand">ASUS</span>
+            <h3 class="product-title">ROG Strix Gaming Monitor 27"</h3>
+            <p class="product-spec">27" QHD 2560x1440 · 165Hz · 1ms IPS Panel</p>
+            <div class="rating-row"><div class="stars">★★★★★</div><span class="rating-text">4.6 (732)</span></div>
+            <div class="price-row"><span class="current-price">₱22,995</span><span class="old-price">₱28,995</span></div>
+            <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p82', 1)">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- p19: Lenovo IdeaPad 5 Pro -->
+        <div class="product-card" data-category="laptops" data-id="p19">
+          <div class="card-thumb">
+            <!-- CHANGE PICTURE HERE: Replace src with your image URL or file path -->
+                <img src="lenovo-ideapad-5-pro-oled.png" alt="Lenovo IdeaPad 5 Pro" loading="lazy" />
+            <div class="card-badges"><span class="badge-chip badge-flash">-16%</span></div>
+            <button class="wishlist-toggle" onclick="toggleHeart(this, 'p19')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path></svg></button>
+          </div>
+          <div class="card-body">
+            <span class="product-brand">Lenovo</span>
+            <h3 class="product-title">Lenovo IdeaPad 5 Pro</h3>
+            <p class="product-spec">14" 2.8K OLED · AMD Ryzen 7 7700 · 16GB RAM</p>
+            <div class="rating-row"><div class="stars">★★★★☆</div><span class="rating-text">4.5 (843)</span></div>
+            <div class="price-row"><span class="current-price">₱52,995</span><span class="old-price">₱62,995</span></div>
+            <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p19', 1)">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- p10: Infinix Note 40 Pro -->
+        <div class="product-card" data-category="smartphones" data-id="p10">
+          <div class="card-thumb">
+            <!-- CHANGE PICTURE HERE: Replace src with your image URL or file path -->
+                <img src="infinix-note-40-pro-5g.jpg" alt="Infinix Note 40 Pro" loading="lazy" />
+            <div class="card-badges"><span class="badge-chip badge-cyan">NEW</span><span class="badge-chip badge-flash">-19%</span></div>
+            <button class="wishlist-toggle" onclick="toggleHeart(this, 'p10')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path></svg></button>
+          </div>
+          <div class="card-body">
+            <span class="product-brand">Infinix</span>
+            <h3 class="product-title">Infinix Note 40 Pro</h3>
+            <p class="product-spec">6.78" AMOLED 144Hz · 108MP · 45W Fast Charge</p>
+            <div class="rating-row"><div class="stars">★★★★☆</div><span class="rating-text">4.3 (2,187)</span></div>
+            <div class="price-row"><span class="current-price">₱12,990</span><span class="old-price">₱15,990</span></div>
+            <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p10', 1)">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- p79: Logitech G502 X -->
+        <div class="product-card" data-category="gaming" data-id="p79">
+          <div class="card-thumb">
+            <!-- CHANGE PICTURE HERE: Replace src with your image URL or file path -->
+                <img src="logitech-g502-x-wireless.jpg" alt="Logitech G502 X" loading="lazy" />
+            <div class="card-badges"><span class="badge-chip badge-flash">-22%</span></div>
+            <button class="wishlist-toggle" onclick="toggleHeart(this, 'p79')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path></svg></button>
+          </div>
+          <div class="card-body">
+            <span class="product-brand">Logitech</span>
+            <h3 class="product-title">Logitech G502 X Wireless</h3>
+            <p class="product-spec">HERO 25K Sensor · LIGHTFORCE · 140hr Battery</p>
+            <div class="rating-row"><div class="stars">★★★★★</div><span class="rating-text">4.6 (1,876)</span></div>
+            <div class="price-row"><span class="current-price">₱4,290</span><span class="old-price">₱5,490</span></div>
+            <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p79', 1)">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- p49: Samsung Tab S9 -->
+        <div class="product-card" data-category="wearables" data-id="p49">
+          <div class="card-thumb">
+            <!-- CHANGE PICTURE HERE: Replace src with your image URL or file path -->
+                <img src="samsung-galaxy-tab-s9-11.jpg" alt="Samsung Galaxy Tab S9" loading="lazy" />
+            <div class="card-badges"><span class="badge-chip badge-cyan">NEW</span></div>
+            <button class="wishlist-toggle" onclick="toggleHeart(this, 'p49')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path></svg></button>
+          </div>
+          <div class="card-body">
+            <span class="product-brand">Samsung</span>
+            <h3 class="product-title">Samsung Galaxy Tab S9</h3>
+            <p class="product-spec">11" Dynamic AMOLED 2X · Snapdragon 8 Gen 2</p>
+            <div class="rating-row"><div class="stars">★★★★★</div><span class="rating-text">4.7 (654)</span></div>
+            <div class="price-row"><span class="current-price">₱42,990</span><span class="old-price">₱49,990</span></div>
+            <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p49', 1)">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- p76: Razer BlackWidow -->
+        <div class="product-card" data-category="gaming" data-id="p76">
+          <div class="card-thumb">
+            <!-- CHANGE PICTURE HERE: Replace src with your image URL or file path -->
+                <img src="razer-blackwidow-v4-pro.jpg" alt="Razer BlackWidow V4 Pro" loading="lazy" />
+            <div class="card-badges"><span class="badge-chip badge-flash">-25%</span></div>
+            <button class="wishlist-toggle" onclick="toggleHeart(this, 'p76')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path></svg></button>
+          </div>
+          <div class="card-body">
+            <span class="product-brand">Razer</span>
+            <h3 class="product-title">Razer BlackWidow V4 Pro</h3>
+            <p class="product-spec">Yellow Switches · Chroma RGB · Wireless 2.4GHz</p>
+            <div class="rating-row"><div class="stars">★★★★★</div><span class="rating-text">4.5 (921)</span></div>
+            <div class="price-row"><span class="current-price">₱8,990</span><span class="old-price">₱11,990</span></div>
+            <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p76', 1)">Add to Cart</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col brand-col">
+          <a href="index.html" class="brand-link">
+            <img src="TechHub_Logo.png" alt="TechHub Logo" class="brand-logo" />
+            <span class="brand-text"><span class="brand-white">Tech</span><span class="brand-accent">Hub</span></span>
+          </a>
+          <p class="footer-tagline">Your premier destination for authentic, high-performance electronics.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Pages</h4>
+          <ul class="footer-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="categories.html">Categories Directory</a></li>
+            <li><a href="flash-sale.html">Flash Sale</a></li>
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="about.html">About Us & Reviews</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Categories</h4>
+          <ul class="footer-list">
+            <li><a href="categories.html#cat-smartphones">Smartphones</a></li>
+            <li><a href="categories.html#cat-laptops">Laptops</a></li>
+            <li><a href="categories.html#cat-audio">Audio Gear</a></li>
+            <li><a href="categories.html#cat-gaming">Gaming Hardware</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Support</h4>
+          <ul class="footer-list">
+            <li><a href="contact.html">Track Order</a></li>
+            <li><a href="contact.html">Warranty Claims</a></li>
+            <li><a href="contact.html">Shipping Guidelines</a></li>
+            <li><a href="about.html#reviews">Customer Reviews</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 TechHub Philippines Inc. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    function handleCatalogSearch(query) {
+      const q = query.toLowerCase().trim();
+      const cards = document.querySelectorAll('#products-catalog-grid .product-card');
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (!q || text.includes(q)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

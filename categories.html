@@ -1,0 +1,3103 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Categories - TechHub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="TechHub_Logo.png" />
+  <meta name="theme-color" content="#0f172a" />
+
+</head>
+<body>
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container announcement-inner">
+      <div class="announcement-text">
+        <span class="announcement-pill">&#9889; OFFICIAL PH STOCK</span>
+        <span>All products include 100% authentic manufacturer receipts & warranties</span>
+      </div>
+      <div class="announcement-links">
+        <a href="contact.html">Track My Order</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header / Navigation (Consistent with Home / Products) -->
+    <header class="site-header" id="navbar">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-link" aria-label="TechHub Home">
+        <img src="TechHub_Logo.png" alt="TechHub Logo" class="brand-logo" id="main-logo" />
+        <span class="brand-text"><span class="brand-white">Tech</span><span class="brand-accent">Hub</span></span>
+      </a>
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link" data-page="index.html">Home</a>
+        <a href="categories.html" class="nav-link" data-page="categories.html">Categories</a>
+        <a href="flash-sale.html" class="nav-link" data-page="flash-sale.html">Flash Sale</a>
+        <a href="products.html" class="nav-link" data-page="products.html">Products</a>
+        <a href="about.html" class="nav-link" data-page="about.html">About Us</a>
+        <a href="contact.html" class="nav-link" data-page="contact.html">Contact Us</a>
+      </nav>
+      <div class="header-actions">
+        <button class="action-btn" id="search-btn" aria-label="Search products" title="Search">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+        </button>
+        <button class="action-btn" id="wishlist-btn" aria-label="Wishlist" title="Saved Items">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path></svg>
+          <span class="badge" id="wishlist-count">0</span>
+        </button>
+        <button class="action-btn cart-btn" id="cart-btn" aria-label="Shopping cart" title="View Cart">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 01-8 0"></path></svg>
+          <span class="badge badge-accent" id="cart-count">0</span>
+        </button>
+        <div id="user-auth-area"></div>
+        <button class="action-btn mobile-menu-btn" id="mobile-toggle" aria-label="Toggle Mobile Menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-drawer" id="mobile-drawer">
+      <nav class="mobile-nav">
+        <a href="index.html" class="mobile-link">Home</a>
+        <a href="categories.html" class="mobile-link">Categories</a>
+        <a href="flash-sale.html" class="mobile-link">Flash Sale</a>
+        <a href="products.html" class="mobile-link">Products</a>
+        <a href="about.html" class="mobile-link">About Us & Reviews</a>
+        <a href="contact.html" class="mobile-link">Contact Us</a>
+        <div class="mobile-cta" id="mobile-user-auth-area">
+          <button class="btn btn-primary btn-block" onclick="openAuthModal('login')">Sign In / Register</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="pill-badge">CATEGORIES DIRECTORY</span>
+      <h1>Explore by <span class="gradient-text">Category</span></h1>
+      <p>Discover high-end electronics, enterprise workstations, audiophile gear, and gaming hardware engineered for peak performance.</p>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT SECTION -->
+  <main class="section">
+    <div class="container">
+      <!-- Category Block: Smartphones -->
+      <div class="category-group-block" id="cat-smartphones">
+        <div class="category-group-header">
+          <div class="category-group-title">
+            <span class="cat-icon">📱</span>
+            <h2 class="cat-heading">Smartphones</h2>
+          </div>
+          <a href="products.html?cat=smartphones" class="cat-view-all">View All Phones &rarr;</a>
+        </div>
+        <!-- Subcategory Navigation Chips -->
+        <div class="subcategories-list">
+          <button class="subcategory-chip active" onclick="switchSubcategory('smartphones', 1, this)">1. Flagship 5G</button>
+          <button class="subcategory-chip " onclick="switchSubcategory('smartphones', 2, this)">2. Gaming Performance</button>
+          <button class="subcategory-chip " onclick="switchSubcategory('smartphones', 3, this)">3. Foldable & Flip</button>
+          <button class="subcategory-chip " onclick="switchSubcategory('smartphones', 4, this)">4. Camera & Creator</button>
+          <button class="subcategory-chip " onclick="switchSubcategory('smartphones', 5, this)">5. Budget & Daily</button>
+        </div>
+        <!-- Subcategory Panel 1 -->
+        <div class="subcategory-content active" id="sub-smartphones-1">
+          <div class="product-grid">
+            <!-- Product Item: p1 -->
+            <div class="product-card" data-category="smartphones" data-id="p1">
+              <div class="card-thumb">
+                <img src="samsung-galaxy-s24-ultra.jpg" alt="Samsung Galaxy S24 Ultra" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-14%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p1')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Samsung</span>
+                <h3 class="product-title">Samsung Galaxy S24 Ultra</h3>
+                <p class="product-spec">6.8" QHD+ Dynamic AMOLED 2X (120Hz)</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (2341)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;59,990</span>
+                  <span class="old-price">&#8369;69,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p1', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p2 -->
+            <div class="product-card" data-category="smartphones" data-id="p2">
+              <div class="card-thumb">
+                <img src="apple-iphone-15-pro-max.jpg" alt="Apple iPhone 15 Pro Max" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-12%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p2')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Apple</span>
+                <h3 class="product-title">Apple iPhone 15 Pro Max</h3>
+                <p class="product-spec">6.7" Super Retina XDR with ProMotion 120Hz</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.9 (3120)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;74,990</span>
+                  <span class="old-price">&#8369;84,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p2', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p3 -->
+            <div class="product-card" data-category="smartphones" data-id="p3">
+              <div class="card-thumb">
+                <img src="xiaomi-14-ultra-5g.jpg" alt="Xiaomi 14 Ultra 5G" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-13%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p3')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Xiaomi</span>
+                <h3 class="product-title">Xiaomi 14 Ultra 5G</h3>
+                <p class="product-spec">6.73" WQHD+ 120Hz LTPO AMOLED</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.7 (1450)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;54,990</span>
+                  <span class="old-price">&#8369;62,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p3', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Subcategory Panel 2 -->
+        <div class="subcategory-content " id="sub-smartphones-2">
+          <div class="product-grid">
+            <!-- Product Item: p4 -->
+            <div class="product-card" data-category="smartphones" data-id="p4">
+              <div class="card-thumb">
+                <img src="asus-rog-phone-8-pro.png" alt="ASUS ROG Phone 8 Pro" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-11%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p4')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">ASUS</span>
+                <h3 class="product-title">ASUS ROG Phone 8 Pro</h3>
+                <p class="product-spec">6.78" Samsung AMOLED 165Hz Display</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (890)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;60,995</span>
+                  <span class="old-price">&#8369;68,995</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p4', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p5 -->
+            <div class="product-card" data-category="smartphones" data-id="p5">
+              <div class="card-thumb">
+                <img src="redmagic-9-pro-gaming.png" alt="RedMagic 9 Pro Gaming" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-10%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p5')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Nubia</span>
+                <h3 class="product-title">RedMagic 9 Pro Gaming</h3>
+                <p class="product-spec">6.8" 120Hz BOE Q9+ Flat AMOLED (Zero Cutout)</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.7 (742)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;46,990</span>
+                  <span class="old-price">&#8369;51,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p5', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p6 -->
+            <div class="product-card" data-category="smartphones" data-id="p6">
+              <div class="card-thumb">
+                <img src="black-shark-5-pro-turbo.jpg" alt="Black Shark 5 Pro Turbo" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-13%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p6')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Black Shark</span>
+                <h3 class="product-title">Black Shark 5 Pro Turbo</h3>
+                <p class="product-spec">6.67" 2K AMOLED 144Hz Display</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.6 (430)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;34,990</span>
+                  <span class="old-price">&#8369;39,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p6', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Subcategory Panel 3 -->
+        <div class="subcategory-content " id="sub-smartphones-3">
+          <div class="product-grid">
+            <!-- Product Item: p7 -->
+            <div class="product-card" data-category="smartphones" data-id="p7">
+              <div class="card-thumb">
+                <img src="samsung-galaxy-z-fold-5-5g.png" alt="Samsung Galaxy Z Fold 5 5G" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-15%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p7')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Samsung</span>
+                <h3 class="product-title">Samsung Galaxy Z Fold 5 5G</h3>
+                <p class="product-spec">7.6" QXGA+ Dynamic AMOLED 2X Inner Screen</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (1120)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;83,990</span>
+                  <span class="old-price">&#8369;98,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p7', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p8 -->
+            <div class="product-card" data-category="smartphones" data-id="p8">
+              <div class="card-thumb">
+                <img src="google-pixel-fold.jpg" alt="Google Pixel Fold" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-11%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p8')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Google</span>
+                <h3 class="product-title">Google Pixel Fold</h3>
+                <p class="product-spec">5.8" Outer OLED + 7.6" 120Hz Inner Screen</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                  <span class="rating-text">4.5 (412)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;84,999</span>
+                  <span class="old-price">&#8369;95,000</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p8', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p9 -->
+            <div class="product-card" data-category="smartphones" data-id="p9">
+              <div class="card-thumb">
+                <img src="oneplus-open-5g-foldable.jpg" alt="OnePlus Open 5G Foldable" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-10%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p9')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">OnePlus</span>
+                <h3 class="product-title">OnePlus Open 5G Foldable</h3>
+                <p class="product-spec">7.82" 2K Flexi-fluid AMOLED 120Hz Inner Display</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.6 (742)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;89,990</span>
+                  <span class="old-price">&#8369;99,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p9', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Subcategory Panel 4 -->
+        <div class="subcategory-content " id="sub-smartphones-4">
+          <div class="product-grid">
+            <!-- Product Item: p10 -->
+            <div class="product-card" data-category="smartphones" data-id="p10">
+              <div class="card-thumb">
+                <img src="infinix-note-40-pro-5g.jpg" alt="Infinix Note 40 Pro 5G" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-19%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p10')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Infinix</span>
+                <h3 class="product-title">Infinix Note 40 Pro 5G</h3>
+                <p class="product-spec">6.78" 3D Curved 120Hz AMOLED Display</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                  <span class="rating-text">4.3 (2187)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;12,990</span>
+                  <span class="old-price">&#8369;15,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p10', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p11 -->
+            <div class="product-card" data-category="smartphones" data-id="p11">
+              <div class="card-thumb">
+                <img src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Cdefs%3E%3CradialGradient%20id%3D%22cardGrad%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%20fx%3D%2250%25%22%20fy%3D%2250%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%231e293b%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230b0f19%22%2F%3E%3C%2FradialGradient%3E%3ClinearGradient%20id%3D%22accentGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%233b82f6%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2322d3ee%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22url(%23cardGrad)%22%2F%3E%3Cg%20transform%3D%22translate(160%2C%20120)%22%20stroke%3D%22url(%23accentGrad)%22%20stroke-width%3D%223%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2280%22%20height%3D%2296%22%20rx%3D%2210%22%2F%3E%3Cpath%20d%3D%22M24%2032h32M24%2048h20M40%2076v2%22%2F%3E%3C%2Fg%3E%3Ctext%20x%3D%22200%22%20y%3D%22255%22%20text-anchor%3D%22middle%22%20fill%3D%22%2360a5fa%22%20font-family%3D%22%27Plus%20Jakarta%20Sans%27%2C%20sans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2214%22%20letter-spacing%3D%222%22%3EGOOGLE%3C%2Ftext%3E%3Ctext%20x%3D%22200%22%20y%3D%22285%22%20text-anchor%3D%22middle%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22%27Outfit%27%2C%20sans-serif%22%20font-weight%3D%22600%22%20font-size%3D%2216%22%3EGoogle%20Pixel%208%20Pro%205G%3C%2Ftext%3E%3Ctext%20x%3D%22200%22%20y%3D%22312%22%20text-anchor%3D%22middle%22%20fill%3D%22%2364748b%22%20font-family%3D%22%27Plus%20Jakarta%20Sans%27%2C%20sans-serif%22%20font-weight%3D%22500%22%20font-size%3D%2212%22%3EPREVIEW%20CURRENTLY%20UNAVAILABLE%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Google Pixel 8 Pro 5G" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-11%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p11')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Google</span>
+                <h3 class="product-title">Google Pixel 8 Pro 5G</h3>
+                <p class="product-spec">6.7" Super Actua LTPO OLED 120Hz Display</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.7 (918)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;64,990</span>
+                  <span class="old-price">&#8369;72,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p11', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p12 -->
+            <div class="product-card" data-category="smartphones" data-id="p12">
+              <div class="card-thumb">
+                <img src="vivo-x100-pro-zeiss-5g.png" alt="Vivo X100 Pro Zeiss 5G" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-13%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p12')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">vivo</span>
+                <h3 class="product-title">Vivo X100 Pro Zeiss 5G</h3>
+                <p class="product-spec">6.78" 8T LTPO AMOLED 120Hz Display</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.7 (821)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;69,990</span>
+                  <span class="old-price">&#8369;79,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p12', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Subcategory Panel 5 -->
+        <div class="subcategory-content " id="sub-smartphones-5">
+          <div class="product-grid">
+            <!-- Product Item: p13 -->
+            <div class="product-card" data-category="smartphones" data-id="p13">
+              <div class="card-thumb">
+                <img src="poco-x6-pro-5g.jpg" alt="POCO X6 Pro 5G" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-20%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p13')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">POCO</span>
+                <h3 class="product-title">POCO X6 Pro 5G</h3>
+                <p class="product-spec">Dimensity 8300-Ultra (4nm Flagship TSMC)</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.7 (3200)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;15,990</span>
+                  <span class="old-price">&#8369;19,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p13', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p14 -->
+            <div class="product-card" data-category="smartphones" data-id="p14">
+              <div class="card-thumb">
+                <img src="realme-12-plus-5g-pioneer.jpg" alt="Realme 12+ 5G Pioneer" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-15%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p14')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">realme</span>
+                <h3 class="product-title">Realme 12+ 5G Pioneer</h3>
+                <p class="product-spec">6.67" 120Hz Super AMOLED FHD+ Display</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.6 (684)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;14,490</span>
+                  <span class="old-price">&#8369;16,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p14', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p15 -->
+            <div class="product-card" data-category="smartphones" data-id="p15">
+              <div class="card-thumb">
+                <img src="redmi-note-13-4g.jpg" alt="Redmi Note 13 4G" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-18%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p15')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Redmi</span>
+                <h3 class="product-title">Redmi Note 13 4G</h3>
+                <p class="product-spec">6.67" FHD+ AMOLED 120Hz Display</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                  <span class="rating-text">4.5 (743)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;8,990</span>
+                  <span class="old-price">&#8369;10,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p15', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Category Block: Laptops & Computers -->
+      <div class="category-group-block" id="cat-laptops">
+        <div class="category-group-header">
+          <div class="category-group-title">
+            <span class="cat-icon">💻</span>
+            <h2 class="cat-heading">Laptops & Computers</h2>
+          </div>
+          <a href="products.html?cat=laptops" class="cat-view-all">View All Laptops &rarr;</a>
+        </div>
+        <!-- Subcategory Navigation Chips -->
+        <div class="subcategories-list">
+          <button class="subcategory-chip active" onclick="switchSubcategory('laptops', 1, this)">1. Gaming Battlestations</button>
+          <button class="subcategory-chip " onclick="switchSubcategory('laptops', 2, this)">2. OLED & Ultraportables</button>
+          <button class="subcategory-chip " onclick="switchSubcategory('laptops', 3, this)">3. Creator Studios</button>
+          <button class="subcategory-chip " onclick="switchSubcategory('laptops', 4, this)">4. Business & Enterprise</button>
+          <button class="subcategory-chip " onclick="switchSubcategory('laptops', 5, this)">5. 2-in-1 Convertibles</button>
+        </div>
+        <!-- Subcategory Panel 1 -->
+        <div class="subcategory-content active" id="sub-laptops-1">
+          <div class="product-grid">
+            <!-- Product Item: p16 -->
+            <div class="product-card" data-category="laptops" data-id="p16">
+              <div class="card-thumb">
+                <img src="asus-rog-zephyrus-g14.png" alt="ASUS ROG Zephyrus G14" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-17%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p16')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">ASUS</span>
+                <h3 class="product-title">ASUS ROG Zephyrus G14</h3>
+                <p class="product-spec">14" ROG Nebula QHD 165Hz IPS Display</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.7 (1187)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;74,995</span>
+                  <span class="old-price">&#8369;89,995</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p16', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p17 -->
+            <div class="product-card" data-category="laptops" data-id="p17">
+              <div class="card-thumb">
+                <img src="lenovo-legion-pro-7i-gen-9.jpg" alt="Lenovo Legion Pro 7i Gen 9" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-10%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p17')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Lenovo</span>
+                <h3 class="product-title">Lenovo Legion Pro 7i Gen 9</h3>
+                <p class="product-spec">16" WQXGA 240Hz PureSight Gaming Display</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.9 (624)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;129,990</span>
+                  <span class="old-price">&#8369;145,000</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p17', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p18 -->
+            <div class="product-card" data-category="laptops" data-id="p18">
+              <div class="card-thumb">
+                <img src="predator-helios-neo-16.jpg" alt="Predator Helios Neo 16" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-14%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p18')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Acer Predator</span>
+                <h3 class="product-title">Predator Helios Neo 16</h3>
+                <p class="product-spec">16" WQXGA 2560x1600 IPS 165Hz Display</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.7 (629)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;68,990</span>
+                  <span class="old-price">&#8369;79,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p18', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Subcategory Panel 2 -->
+        <div class="subcategory-content " id="sub-laptops-2">
+          <div class="product-grid">
+            <!-- Product Item: p19 -->
+            <div class="product-card" data-category="laptops" data-id="p19">
+              <div class="card-thumb">
+                <img src="lenovo-ideapad-5-pro-oled.png" alt="Lenovo IdeaPad 5 Pro OLED" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-16%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p19')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Lenovo</span>
+                <h3 class="product-title">Lenovo IdeaPad 5 Pro OLED</h3>
+                <p class="product-spec">14" 2.8K (2880x1800) OLED 120Hz Display</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                  <span class="rating-text">4.5 (843)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;52,995</span>
+                  <span class="old-price">&#8369;62,995</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p19', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p20 -->
+            <div class="product-card" data-category="laptops" data-id="p20">
+              <div class="card-thumb">
+                <img src="asus-zenbook-14-oled-ux3405.jpg" alt="ASUS Zenbook 14 OLED UX3405" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-12%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p20')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">ASUS</span>
+                <h3 class="product-title">ASUS Zenbook 14 OLED UX3405</h3>
+                <p class="product-spec">14" 3K (2880x1800) 120Hz ASUS Lumina OLED</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (915)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;64,995</span>
+                  <span class="old-price">&#8369;73,995</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p20', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p21 -->
+            <div class="product-card" data-category="laptops" data-id="p21">
+              <div class="card-thumb">
+                <img src="dell-xps-16-9640.jpg" alt="Dell XPS 16 (9640)" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-9%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p21')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Dell</span>
+                <h3 class="product-title">Dell XPS 16 (9640)</h3>
+                <p class="product-spec">16.3" 4K+ OLED InfinityEdge Touch Display</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.6 (310)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;149,990</span>
+                  <span class="old-price">&#8369;165,000</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p21', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Subcategory Panel 3 -->
+        <div class="subcategory-content " id="sub-laptops-3">
+          <div class="product-grid">
+            <!-- Product Item: p22 -->
+            <div class="product-card" data-category="laptops" data-id="p22">
+              <div class="card-thumb">
+                <img src="apple-macbook-pro-16-m3-max.jpg" alt="Apple MacBook Pro 16&quot; M3 Max" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-10%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p22')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Apple</span>
+                <h3 class="product-title">Apple MacBook Pro 16" M3 Max</h3>
+                <p class="product-spec">16.2" Liquid Retina XDR (1600 nits peak)</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.9 (420)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;189,990</span>
+                  <span class="old-price">&#8369;209,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p22', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p23 -->
+            <div class="product-card" data-category="laptops" data-id="p23">
+              <div class="card-thumb">
+                <img src="asus-proart-studiobook-16.jpg" alt="ASUS ProArt Studiobook 16" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-18%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p23')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">ASUS</span>
+                <h3 class="product-title">ASUS ProArt Studiobook 16</h3>
+                <p class="product-spec">16" 3.2K OLED HDR 120Hz Touchscreen Display</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (547)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;139,990</span>
+                  <span class="old-price">&#8369;169,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p23', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p24 -->
+            <div class="product-card" data-category="laptops" data-id="p24">
+              <div class="card-thumb">
+                <img src="msi-creator-z17-hx-studio.jpg" alt="MSI Creator Z17 HX Studio" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-10%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p24')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">MSI</span>
+                <h3 class="product-title">MSI Creator Z17 HX Studio</h3>
+                <p class="product-spec">17" QHD+ 2560x1600 165Hz Touch Display</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (428)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;149,990</span>
+                  <span class="old-price">&#8369;165,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p24', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Subcategory Panel 4 -->
+        <div class="subcategory-content " id="sub-laptops-4">
+          <div class="product-grid">
+            <!-- Product Item: p25 -->
+            <div class="product-card" data-category="laptops" data-id="p25">
+              <div class="card-thumb">
+                <img src="thinkpad-x1-carbon-gen-12.jpg" alt="ThinkPad X1 Carbon Gen 12" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-15%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p25')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Lenovo</span>
+                <h3 class="product-title">ThinkPad X1 Carbon Gen 12</h3>
+                <p class="product-spec">14" 2.8K 120Hz OLED Anti-Glare Display</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (580)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;109,990</span>
+                  <span class="old-price">&#8369;128,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p25', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p26 -->
+            <div class="product-card" data-category="laptops" data-id="p26">
+              <div class="card-thumb">
+                <img src="hp-elitebook-840-g10.jpg" alt="HP EliteBook 840 G10" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-18%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p26')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">HP</span>
+                <h3 class="product-title">HP EliteBook 840 G10</h3>
+                <p class="product-spec">14" WUXGA IPS 400 nits Low Blue Light</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.6 (340)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;67,990</span>
+                  <span class="old-price">&#8369;82,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p26', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p27 -->
+            <div class="product-card" data-category="laptops" data-id="p27">
+              <div class="card-thumb">
+                <img src="dell-latitude-7440-ultralight.jpg" alt="Dell Latitude 7440 Ultralight" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-14%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p27')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Dell</span>
+                <h3 class="product-title">Dell Latitude 7440 Ultralight</h3>
+                <p class="product-spec">14" FHD+ IPS Non-Touch Anti-Glare Display</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.7 (280)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;73,990</span>
+                  <span class="old-price">&#8369;85,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p27', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Subcategory Panel 5 -->
+        <div class="subcategory-content " id="sub-laptops-5">
+          <div class="product-grid">
+            <!-- Product Item: p28 -->
+            <div class="product-card" data-category="laptops" data-id="p28">
+              <div class="card-thumb">
+                <img src="hp-spectre-x360-14-oled.jpg" alt="HP Spectre x360 14 OLED" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-17%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p28')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">HP</span>
+                <h3 class="product-title">HP Spectre x360 14 OLED</h3>
+                <p class="product-spec">14" 2.8K (2880x1800) OLED 120Hz Touchscreen</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (490)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;79,990</span>
+                  <span class="old-price">&#8369;95,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p28', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p29 -->
+            <div class="product-card" data-category="laptops" data-id="p29">
+              <div class="card-thumb">
+                <img src="lenovo-yoga-9i-dual-oled.jpg" alt="Lenovo Yoga 9i Dual OLED" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-13%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p29')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Lenovo</span>
+                <h3 class="product-title">Lenovo Yoga 9i Dual OLED</h3>
+                <p class="product-spec">Dual 13.3" 2.8K OLED 100% DCI-P3 Screens</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.9 (370)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;99,995</span>
+                  <span class="old-price">&#8369;114,995</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p29', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p30 -->
+            <div class="product-card" data-category="laptops" data-id="p30">
+              <div class="card-thumb">
+                <img src="rog-flow-x13-convertible.jpg" alt="ROG Flow X13 Convertible" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-13%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p30')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">ASUS</span>
+                <h3 class="product-title">ROG Flow X13 Convertible</h3>
+                <p class="product-spec">13.4" QHD+ 165Hz ROG Nebula Touchscreen</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (310)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;89,990</span>
+                  <span class="old-price">&#8369;102,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p30', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Category Block: Audio & Headphones -->
+      <div class="category-group-block" id="cat-audio">
+        <div class="category-group-header">
+          <div class="category-group-title">
+            <span class="cat-icon">🎧</span>
+            <h2 class="cat-heading">Audio & Headphones</h2>
+          </div>
+          <a href="products.html?cat=audio" class="cat-view-all">View All Audio &rarr;</a>
+        </div>
+        <!-- Subcategory Navigation Chips -->
+        <div class="subcategories-list">
+          <button class="subcategory-chip active" onclick="switchSubcategory('audio', 1, this)">1. Over-Ear ANC</button>
+          <button class="subcategory-chip " onclick="switchSubcategory('audio', 2, this)">2. True Wireless (TWS)</button>
+          <button class="subcategory-chip " onclick="switchSubcategory('audio', 3, this)">3. Audiophile Studio</button>
+          <button class="subcategory-chip " onclick="switchSubcategory('audio', 4, this)">4. Bluetooth Speakers</button>
+          <button class="subcategory-chip " onclick="switchSubcategory('audio', 5, this)">5. Gaming Headsets</button>
+        </div>
+        <!-- Subcategory Panel 1 -->
+        <div class="subcategory-content active" id="sub-audio-1">
+          <div class="product-grid">
+            <!-- Product Item: p31 -->
+            <div class="product-card" data-category="audio" data-id="p31">
+              <div class="card-thumb">
+                <img src="sony-wh-1000xm5-anc.png" alt="Sony WH-1000XM5 ANC" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-20%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p31')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Sony</span>
+                <h3 class="product-title">Sony WH-1000XM5 ANC</h3>
+                <p class="product-spec">HD Noise Cancelling Processor QN1 + V1 Chip</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.9 (4521)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;18,495</span>
+                  <span class="old-price">&#8369;22,995</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p31', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p32 -->
+            <div class="product-card" data-category="audio" data-id="p32">
+              <div class="card-thumb">
+                <img src="jbl-tune-760nc-wireless.jpg" alt="JBL Tune 760NC Wireless" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-29%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p32')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">JBL</span>
+                <h3 class="product-title">JBL Tune 760NC Wireless</h3>
+                <p class="product-spec">Active Noise Cancelling (ANC)</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                  <span class="rating-text">4.4 (3102)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;4,995</span>
+                  <span class="old-price">&#8369;6,995</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p32', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p33 -->
+            <div class="product-card" data-category="audio" data-id="p33">
+              <div class="card-thumb">
+                <img src="bose-quietcomfort-ultra.jpg" alt="Bose QuietComfort Ultra" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-14%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p33')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Bose</span>
+                <h3 class="product-title">Bose QuietComfort Ultra</h3>
+                <p class="product-spec">Bose Immersive Audio Spatial Technology</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (1890)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;23,990</span>
+                  <span class="old-price">&#8369;27,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p33', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Subcategory Panel 2 -->
+        <div class="subcategory-content " id="sub-audio-2">
+          <div class="product-grid">
+            <!-- Product Item: p34 -->
+            <div class="product-card" data-category="audio" data-id="p34">
+              <div class="card-thumb">
+                <img src="apple-airpods-pro-2nd-gen.jpg" alt="Apple AirPods Pro (2nd Gen)" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-10%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p34')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Apple</span>
+                <h3 class="product-title">Apple AirPods Pro (2nd Gen)</h3>
+                <p class="product-spec">Apple H2 Headphone Chip + U1 Case Chip</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.9 (5820)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;13,490</span>
+                  <span class="old-price">&#8369;14,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p34', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p35 -->
+            <div class="product-card" data-category="audio" data-id="p35">
+              <div class="card-thumb">
+                <img src="sony-wf-1000xm5-wireless.jpg" alt="Sony WF-1000XM5 Wireless" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-18%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p35')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Sony</span>
+                <h3 class="product-title">Sony WF-1000XM5 Wireless</h3>
+                <p class="product-spec">Dynamic Driver X (8.4mm High Clarity)</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.7 (2140)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;13,990</span>
+                  <span class="old-price">&#8369;16,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p35', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p36 -->
+            <div class="product-card" data-category="audio" data-id="p36">
+              <div class="card-thumb">
+                <img src="samsung-galaxy-buds2-pro.jpg" alt="Samsung Galaxy Buds2 Pro" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-23%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p36')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Samsung</span>
+                <h3 class="product-title">Samsung Galaxy Buds2 Pro</h3>
+                <p class="product-spec">24-Bit Hi-Fi Audio (Samsung Seamless Codec)</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.6 (1750)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;8,490</span>
+                  <span class="old-price">&#8369;10,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p36', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Subcategory Panel 3 -->
+        <div class="subcategory-content " id="sub-audio-3">
+          <div class="product-grid">
+            <!-- Product Item: p37 -->
+            <div class="product-card" data-category="audio" data-id="p37">
+              <div class="card-thumb">
+                <img src="sennheiser-hd-660s2-open-back.jpg" alt="Sennheiser HD 660S2 Open-Back" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-12%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p37')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Sennheiser</span>
+                <h3 class="product-title">Sennheiser HD 660S2 Open-Back</h3>
+                <p class="product-spec">300-Ohm Impedance for High-End Amps</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.9 (640)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;29,990</span>
+                  <span class="old-price">&#8369;33,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p37', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p38 -->
+            <div class="product-card" data-category="audio" data-id="p38">
+              <div class="card-thumb">
+                <img src="ath-m50x-studio-monitor.jpg" alt="ATH-M50x Studio Monitor" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-14%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p38')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Audio-Technica</span>
+                <h3 class="product-title">ATH-M50x Studio Monitor</h3>
+                <p class="product-spec">Proprietary 45mm Large-Aperture Drivers</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (7800)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;8,990</span>
+                  <span class="old-price">&#8369;10,490</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p38', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p39 -->
+            <div class="product-card" data-category="audio" data-id="p39">
+              <div class="card-thumb">
+                <img src="beyerdynamic-dt-990-pro-250-ohm.jpg" alt="Beyerdynamic DT 990 Pro 250Ω" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-15%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p39')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Beyerdynamic</span>
+                <h3 class="product-title">Beyerdynamic DT 990 Pro 250Ω</h3>
+                <p class="product-spec">250-Ohm Dynamic Studio Transducers</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (3450)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;9,990</span>
+                  <span class="old-price">&#8369;11,800</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p39', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Subcategory Panel 4 -->
+        <div class="subcategory-content " id="sub-audio-4">
+          <div class="product-grid">
+            <!-- Product Item: p40 -->
+            <div class="product-card" data-category="audio" data-id="p40">
+              <div class="card-thumb">
+                <img src="jbl-charge-5-portable-speaker.jpg" alt="JBL Charge 5 Portable Speaker" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-17%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p40')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">JBL</span>
+                <h3 class="product-title">JBL Charge 5 Portable Speaker</h3>
+                <p class="product-spec">IP67 Waterproof & Dustproof Rating</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (4210)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;8,995</span>
+                  <span class="old-price">&#8369;10,795</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p40', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p41 -->
+            <div class="product-card" data-category="audio" data-id="p41">
+              <div class="card-thumb">
+                <img src="marshall-emberton-ii-bluetooth.jpg" alt="Marshall Emberton II Bluetooth" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-13%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p41')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Marshall</span>
+                <h3 class="product-title">Marshall Emberton II Bluetooth</h3>
+                <p class="product-spec">30+ Hours of Portable Playtime</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.7 (1620)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;9,990</span>
+                  <span class="old-price">&#8369;11,490</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p41', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p42 -->
+            <div class="product-card" data-category="audio" data-id="p42">
+              <div class="card-thumb">
+                <img src="ultimate-ears-boom-3-floats.jpg" alt="Ultimate Ears BOOM 3 Floats" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-20%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p42')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Ultimate Ears</span>
+                <h3 class="product-title">Ultimate Ears BOOM 3 Floats</h3>
+                <p class="product-spec">Immersive 360-Degree Spatial Sound</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.6 (2890)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;6,990</span>
+                  <span class="old-price">&#8369;8,790</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p42', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Subcategory Panel 5 -->
+        <div class="subcategory-content " id="sub-audio-5">
+          <div class="product-grid">
+            <!-- Product Item: p43 -->
+            <div class="product-card" data-category="audio" data-id="p43">
+              <div class="card-thumb">
+                <img src="hyperx-cloud-iii-wireless.jpg" alt="HyperX Cloud III Wireless" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-20%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p43')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">HyperX</span>
+                <h3 class="product-title">HyperX Cloud III Wireless</h3>
+                <p class="product-spec">Up to 120 Hours Battery Life on 2.4GHz</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.7 (2410)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;7,990</span>
+                  <span class="old-price">&#8369;9,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p43', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p44 -->
+            <div class="product-card" data-category="audio" data-id="p44">
+              <div class="card-thumb">
+                <img src="razer-blackshark-v2-pro.jpg" alt="Razer BlackShark V2 Pro" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-17%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p44')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Razer</span>
+                <h3 class="product-title">Razer BlackShark V2 Pro</h3>
+                <p class="product-spec">Razer HyperClear Super Wideband Mic</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (1950)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;9,490</span>
+                  <span class="old-price">&#8369;11,490</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p44', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p45 -->
+            <div class="product-card" data-category="audio" data-id="p45">
+              <div class="card-thumb">
+                <img src="logitech-g-pro-x-2-lightspeed.jpg" alt="Logitech G PRO X 2 LIGHTSPEED" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-13%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p45')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Logitech</span>
+                <h3 class="product-title">Logitech G PRO X 2 LIGHTSPEED</h3>
+                <p class="product-spec">PRO-G 50mm Graphene Audio Drivers</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.9 (1430)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;12,990</span>
+                  <span class="old-price">&#8369;14,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p45', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Category Block: Tablets & E-Readers -->
+      <div class="category-group-block" id="cat-tablets">
+        <div class="category-group-header">
+          <div class="category-group-title">
+            <span class="cat-icon">📟</span>
+            <h2 class="cat-heading">Tablets & E-Readers</h2>
+          </div>
+          <a href="products.html?cat=tablets" class="cat-view-all">View All Tablets &rarr;</a>
+        </div>
+        <!-- Subcategory Navigation Chips -->
+        <div class="subcategories-list">
+          <button class="subcategory-chip active" onclick="switchSubcategory('tablets', 1, this)">1. Pro Creative Tablets</button>
+          <button class="subcategory-chip " onclick="switchSubcategory('tablets', 2, this)">2. 2-in-1 Detachables</button>
+          <button class="subcategory-chip " onclick="switchSubcategory('tablets', 3, this)">3. Entertainment & Media</button>
+          <button class="subcategory-chip " onclick="switchSubcategory('tablets', 4, this)">4. Mini & E-Readers</button>
+          <button class="subcategory-chip " onclick="switchSubcategory('tablets', 5, this)">5. Stylus & Keyboards</button>
+        </div>
+        <!-- Subcategory Panel 1 -->
+        <div class="subcategory-content active" id="sub-tablets-1">
+          <div class="product-grid">
+            <!-- Product Item: p46 -->
+            <div class="product-card" data-category="tablets" data-id="p46">
+              <div class="card-thumb">
+                <img src="apple-ipad-pro-12-9-m2.jpg" alt="Apple iPad Pro 12.9&quot; M2" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-9%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p46')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Apple</span>
+                <h3 class="product-title">Apple iPad Pro 12.9" M2</h3>
+                <p class="product-spec">12.9" Liquid Retina XDR (1600 nits Peak)</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (987)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;62,990</span>
+                  <span class="old-price">&#8369;68,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p46', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p47 -->
+            <div class="product-card" data-category="tablets" data-id="p47">
+              <div class="card-thumb">
+                <img src="galaxy-tab-s9-ultra-14-6.jpg" alt="Galaxy Tab S9 Ultra 14.6&quot;" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-13%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p47')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Samsung</span>
+                <h3 class="product-title">Galaxy Tab S9 Ultra 14.6"</h3>
+                <p class="product-spec">14.6" Dynamic AMOLED 2X 120Hz Display</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (640)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;73,990</span>
+                  <span class="old-price">&#8369;84,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p47', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p48 -->
+            <div class="product-card" data-category="tablets" data-id="p48">
+              <div class="card-thumb">
+                <img src="apple-ipad-air-11-m2-chip.jpg" alt="Apple iPad Air 11&quot; M2 Chip" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-9%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p48')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Apple</span>
+                <h3 class="product-title">Apple iPad Air 11" M2 Chip</h3>
+                <p class="product-spec">11" Liquid Retina Display with P3 Wide Color</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.7 (1120)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;42,990</span>
+                  <span class="old-price">&#8369;46,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p48', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Subcategory Panel 2 -->
+        <div class="subcategory-content " id="sub-tablets-2">
+          <div class="product-grid">
+            <!-- Product Item: p49 -->
+            <div class="product-card" data-category="tablets" data-id="p49">
+              <div class="card-thumb">
+                <img src="samsung-galaxy-tab-s9-11.jpg" alt="Samsung Galaxy Tab S9 11&quot;" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-14%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p49')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Samsung</span>
+                <h3 class="product-title">Samsung Galaxy Tab S9 11"</h3>
+                <p class="product-spec">11" Dynamic AMOLED 2X 120Hz Screen</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.7 (890)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;42,990</span>
+                  <span class="old-price">&#8369;49,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p49', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p50 -->
+            <div class="product-card" data-category="tablets" data-id="p50">
+              <div class="card-thumb">
+                <img src="microsoft-surface-pro-9.jpg" alt="Microsoft Surface Pro 9" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-17%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p50')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Microsoft</span>
+                <h3 class="product-title">Microsoft Surface Pro 9</h3>
+                <p class="product-spec">13" PixelSense Flow 120Hz Touch Display</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.6 (520)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;69,990</span>
+                  <span class="old-price">&#8369;83,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p50', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p51 -->
+            <div class="product-card" data-category="tablets" data-id="p51">
+              <div class="card-thumb">
+                <img src="lenovo-tab-p12-pro-12-6.jpg" alt="Lenovo Tab P12 Pro 12.6&quot;" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-17%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p51')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Lenovo</span>
+                <h3 class="product-title">Lenovo Tab P12 Pro 12.6"</h3>
+                <p class="product-spec">12.6" 2K (2560x1600) AMOLED 120Hz Dolby Vision</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                  <span class="rating-text">4.5 (430)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;34,990</span>
+                  <span class="old-price">&#8369;41,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p51', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Subcategory Panel 3 -->
+        <div class="subcategory-content " id="sub-tablets-3">
+          <div class="product-grid">
+            <!-- Product Item: p52 -->
+            <div class="product-card" data-category="tablets" data-id="p52">
+              <div class="card-thumb">
+                <img src="apple-ipad-10th-generation.jpg" alt="Apple iPad (10th Generation)" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-12%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p52')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Apple</span>
+                <h3 class="product-title">Apple iPad (10th Generation)</h3>
+                <p class="product-spec">10.9" Liquid Retina True Tone Display</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.7 (3410)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;24,990</span>
+                  <span class="old-price">&#8369;28,490</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p52', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p53 -->
+            <div class="product-card" data-category="tablets" data-id="p53">
+              <div class="card-thumb">
+                <img src="xiaomi-pad-6-11-144hz.jpg" alt="Xiaomi Pad 6 11&quot; 144Hz" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-19%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p53')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Xiaomi</span>
+                <h3 class="product-title">Xiaomi Pad 6 11" 144Hz</h3>
+                <p class="product-spec">11" 2.8K (2880x1800) 144Hz 7-Stage Variable Refresh</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (2890)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;16,990</span>
+                  <span class="old-price">&#8369;20,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p53', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p54 -->
+            <div class="product-card" data-category="tablets" data-id="p54">
+              <div class="card-thumb">
+                <img src="realme-pad-2-11-5-120hz.jpg" alt="Realme Pad 2 11.5&quot; 120Hz" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-17%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p54')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">realme</span>
+                <h3 class="product-title">Realme Pad 2 11.5" 120Hz</h3>
+                <p class="product-spec">11.5" 2K (2000x1200) 120Hz Super Display</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                  <span class="rating-text">4.5 (1230)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;12,490</span>
+                  <span class="old-price">&#8369;14,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p54', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Subcategory Panel 4 -->
+        <div class="subcategory-content " id="sub-tablets-4">
+          <div class="product-grid">
+            <!-- Product Item: p55 -->
+            <div class="product-card" data-category="tablets" data-id="p55">
+              <div class="card-thumb">
+                <img src="apple-ipad-mini-6th-gen.jpg" alt="Apple iPad mini (6th Gen)" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-10%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p55')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Apple</span>
+                <h3 class="product-title">Apple iPad mini (6th Gen)</h3>
+                <p class="product-spec">8.3" Liquid Retina Display with True Tone</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (1980)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;29,990</span>
+                  <span class="old-price">&#8369;33,490</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p55', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p56 -->
+            <div class="product-card" data-category="tablets" data-id="p56">
+              <div class="card-thumb">
+                <img src="lenovo-legion-y700-gaming.jpg" alt="Lenovo Legion Y700 Gaming" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-15%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p56')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Lenovo</span>
+                <h3 class="product-title">Lenovo Legion Y700 Gaming</h3>
+                <p class="product-spec">8.8" 2.5K (2560x1600) 144Hz 500 nits Gaming Screen</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (740)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;22,990</span>
+                  <span class="old-price">&#8369;26,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p56', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p57 -->
+            <div class="product-card" data-category="tablets" data-id="p57">
+              <div class="card-thumb">
+                <img src="kindle-paperwhite-signature-6-8.jpg" alt="Kindle Paperwhite Signature 6.8&quot;" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-15%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p57')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Amazon</span>
+                <h3 class="product-title">Kindle Paperwhite Signature 6.8"</h3>
+                <p class="product-spec">6.8" Flush-Front 300 ppi Glare-Free E-Ink Paperwhite Display</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.9 (4520)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;9,990</span>
+                  <span class="old-price">&#8369;11,800</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p57', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Subcategory Panel 5 -->
+        <div class="subcategory-content " id="sub-tablets-5">
+          <div class="product-grid">
+            <!-- Product Item: p58 -->
+            <div class="product-card" data-category="tablets" data-id="p58">
+              <div class="card-thumb">
+                <img src="apple-pencil-pro-stylus.jpg" alt="Apple Pencil Pro Stylus" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-11%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p58')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Apple</span>
+                <h3 class="product-title">Apple Pencil Pro Stylus</h3>
+                <p class="product-spec">Squeeze Sensor to Switch Tools & Palettes Instantly</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.9 (1650)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;7,990</span>
+                  <span class="old-price">&#8369;8,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p58', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p59 -->
+            <div class="product-card" data-category="tablets" data-id="p59">
+              <div class="card-thumb">
+                <img src="magic-keyboard-for-ipad-pro.jpg" alt="Magic Keyboard for iPad Pro" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-12%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p59')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Apple</span>
+                <h3 class="product-title">Magic Keyboard for iPad Pro</h3>
+                <p class="product-spec">Floating Cantilever Magnet Stand with Angle Adjust</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (920)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;18,990</span>
+                  <span class="old-price">&#8369;21,490</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p59', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p60 -->
+            <div class="product-card" data-category="tablets" data-id="p60">
+              <div class="card-thumb">
+                <img src="samsung-s-pen-creator-edition.jpg" alt="Samsung S-Pen Creator Edition" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-17%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p60')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Samsung</span>
+                <h3 class="product-title">Samsung S-Pen Creator Edition</h3>
+                <p class="product-spec">Thicker Ergonomic Barrel for Extended Drawing Sessions</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.7 (610)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;4,990</span>
+                  <span class="old-price">&#8369;5,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p60', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Category Block: Wearables & Smartwatches -->
+      <div class="category-group-block" id="cat-wearables">
+        <div class="category-group-header">
+          <div class="category-group-title">
+            <span class="cat-icon">⌚</span>
+            <h2 class="cat-heading">Wearables & Smartwatches</h2>
+          </div>
+          <a href="products.html?cat=wearables" class="cat-view-all">View All Wearables &rarr;</a>
+        </div>
+        <!-- Subcategory Navigation Chips -->
+        <div class="subcategories-list">
+          <button class="subcategory-chip active" onclick="switchSubcategory('wearables', 1, this)">1. Flagship Smartwatches</button>
+          <button class="subcategory-chip " onclick="switchSubcategory('wearables', 2, this)">2. Fitness & Health Trackers</button>
+          <button class="subcategory-chip " onclick="switchSubcategory('wearables', 3, this)">3. Rugged & Outdoor</button>
+          <button class="subcategory-chip " onclick="switchSubcategory('wearables', 4, this)">4. Cellular LTE Editions</button>
+          <button class="subcategory-chip " onclick="switchSubcategory('wearables', 5, this)">5. Premium Bands & Straps</button>
+        </div>
+        <!-- Subcategory Panel 1 -->
+        <div class="subcategory-content active" id="sub-wearables-1">
+          <div class="product-grid">
+            <!-- Product Item: p61 -->
+            <div class="product-card" data-category="wearables" data-id="p61">
+              <div class="card-thumb">
+                <img src="apple-watch-series-9-gps.jpg" alt="Apple Watch Series 9 GPS" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-11%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p61')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Apple</span>
+                <h3 class="product-title">Apple Watch Series 9 GPS</h3>
+                <p class="product-spec">Apple S9 SiP Dual-Core 64-Bit Processor</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (2890)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;24,990</span>
+                  <span class="old-price">&#8369;27,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p61', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p62 -->
+            <div class="product-card" data-category="wearables" data-id="p62">
+              <div class="card-thumb">
+                <img src="galaxy-watch-6-classic-47mm.jpg" alt="Galaxy Watch 6 Classic 47mm" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-16%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p62')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Samsung</span>
+                <h3 class="product-title">Galaxy Watch 6 Classic 47mm</h3>
+                <p class="product-spec">Iconic Physical Rotating Mechanical Bezel</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.7 (1640)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;18,990</span>
+                  <span class="old-price">&#8369;22,490</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p62', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p63 -->
+            <div class="product-card" data-category="wearables" data-id="p63">
+              <div class="card-thumb">
+                <img src="google-pixel-watch-2-wifi.jpg" alt="Google Pixel Watch 2 WiFi" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-12%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p63')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Google</span>
+                <h3 class="product-title">Google Pixel Watch 2 WiFi</h3>
+                <p class="product-spec">3D Curved Domed Corning Gorilla Glass 5 Display</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.6 (980)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;21,990</span>
+                  <span class="old-price">&#8369;24,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p63', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Subcategory Panel 2 -->
+        <div class="subcategory-content " id="sub-wearables-2">
+          <div class="product-grid">
+            <!-- Product Item: p64 -->
+            <div class="product-card" data-category="wearables" data-id="p64">
+              <div class="card-thumb">
+                <img src="xiaomi-smart-band-8-active.jpg" alt="Xiaomi Smart Band 8 Active" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-26%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p64')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Xiaomi</span>
+                <h3 class="product-title">Xiaomi Smart Band 8 Active</h3>
+                <p class="product-spec">1.47" TFT Color Display with 100+ Custom Watchfaces</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.6 (5420)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;1,990</span>
+                  <span class="old-price">&#8369;2,690</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p64', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p65 -->
+            <div class="product-card" data-category="wearables" data-id="p65">
+              <div class="card-thumb">
+                <img src="fitbit-charge-6-advanced-gps.jpg" alt="Fitbit Charge 6 Advanced GPS" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-13%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p65')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Fitbit</span>
+                <h3 class="product-title">Fitbit Charge 6 Advanced GPS</h3>
+                <p class="product-spec">Built-in Standalone GPS + GLONASS</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.7 (1890)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;9,990</span>
+                  <span class="old-price">&#8369;11,490</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p65', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p66 -->
+            <div class="product-card" data-category="wearables" data-id="p66">
+              <div class="card-thumb">
+                <img src="huawei-band-8-ultra-thin.jpg" alt="Huawei Band 8 Ultra-Thin" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-21%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p66')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Huawei</span>
+                <h3 class="product-title">Huawei Band 8 Ultra-Thin</h3>
+                <p class="product-spec">1.47" Bezel-Less AMOLED Touchscreen</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.7 (3680)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;2,190</span>
+                  <span class="old-price">&#8369;2,790</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p66', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Subcategory Panel 3 -->
+        <div class="subcategory-content " id="sub-wearables-3">
+          <div class="product-grid">
+            <!-- Product Item: p67 -->
+            <div class="product-card" data-category="wearables" data-id="p67">
+              <div class="card-thumb">
+                <img src="garmin-fenix-7-pro-solar-gps.jpg" alt="Garmin Fenix 7 Pro Solar GPS" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-12%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p67')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Garmin</span>
+                <h3 class="product-title">Garmin Fenix 7 Pro Solar GPS</h3>
+                <p class="product-spec">Power Glass Solar Charging Lens for Months of Battery</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.9 (910)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;49,990</span>
+                  <span class="old-price">&#8369;56,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p67', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p68 -->
+            <div class="product-card" data-category="wearables" data-id="p68">
+              <div class="card-thumb">
+                <img src="apple-watch-ultra-2-49mm.jpg" alt="Apple Watch Ultra 2 (49mm)" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-10%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p68')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Apple</span>
+                <h3 class="product-title">Apple Watch Ultra 2 (49mm)</h3>
+                <p class="product-spec">49mm Aerospace-Grade Titanium Case with Flat Sapphire Front</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.9 (1430)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;54,990</span>
+                  <span class="old-price">&#8369;60,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p68', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p69 -->
+            <div class="product-card" data-category="wearables" data-id="p69">
+              <div class="card-thumb">
+                <img src="amazfit-t-rex-ultra-explorer.jpg" alt="Amazfit T-Rex Ultra Explorer" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-15%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p69')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Amazfit</span>
+                <h3 class="product-title">Amazfit T-Rex Ultra Explorer</h3>
+                <p class="product-spec">316L Stainless Steel Bezel with Mud-Resistant Buttons</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.7 (650)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;21,990</span>
+                  <span class="old-price">&#8369;25,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p69', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Subcategory Panel 4 -->
+        <div class="subcategory-content " id="sub-wearables-4">
+          <div class="product-grid">
+            <!-- Product Item: p70 -->
+            <div class="product-card" data-category="wearables" data-id="p70">
+              <div class="card-thumb">
+                <img src="apple-watch-series-9-gps-lte.jpg" alt="Apple Watch Series 9 GPS + LTE" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-11%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p70')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Apple</span>
+                <h3 class="product-title">Apple Watch Series 9 GPS + LTE</h3>
+                <p class="product-spec">Built-in Standalone Cellular LTE & UMTS eSIM</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (1120)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;30,990</span>
+                  <span class="old-price">&#8369;34,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p70', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p71 -->
+            <div class="product-card" data-category="wearables" data-id="p71">
+              <div class="card-thumb">
+                <img src="galaxy-watch-6-lte-44mm.jpg" alt="Galaxy Watch 6 LTE 44mm" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-14%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p71')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Samsung</span>
+                <h3 class="product-title">Galaxy Watch 6 LTE 44mm</h3>
+                <p class="product-spec">Standalone 4G LTE eSIM Connectivity</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.7 (890)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;17,990</span>
+                  <span class="old-price">&#8369;20,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p71', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p72 -->
+            <div class="product-card" data-category="wearables" data-id="p72">
+              <div class="card-thumb">
+                <img src="google-pixel-watch-2-lte.jpg" alt="Google Pixel Watch 2 LTE" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-10%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p72')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Google</span>
+                <h3 class="product-title">Google Pixel Watch 2 LTE</h3>
+                <p class="product-spec">4G LTE Wireless eSIM for Phone-Free Connectivity</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.6 (520)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;25,990</span>
+                  <span class="old-price">&#8369;28,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p72', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Subcategory Panel 5 -->
+        <div class="subcategory-content " id="sub-wearables-5">
+          <div class="product-grid">
+            <!-- Product Item: p73 -->
+            <div class="product-card" data-category="wearables" data-id="p73">
+              <div class="card-thumb">
+                <img src="apple-watch-milanese-loop-band.jpg" alt="Apple Watch Milanese Loop Band" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-15%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p73')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Apple</span>
+                <h3 class="product-title">Apple Watch Milanese Loop Band</h3>
+                <p class="product-spec">Woven Stainless Steel Mesh Architecture</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (2140)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;5,490</span>
+                  <span class="old-price">&#8369;6,490</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p73', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p74 -->
+            <div class="product-card" data-category="wearables" data-id="p74">
+              <div class="card-thumb">
+                <img src="hybrid-leather-t-buckle-band.jpg" alt="Hybrid Leather T-Buckle Band" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-20%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p74')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Samsung</span>
+                <h3 class="product-title">Hybrid Leather T-Buckle Band</h3>
+                <p class="product-spec">Top Grain Calfskin Leather Exterior</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.6 (870)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;2,490</span>
+                  <span class="old-price">&#8369;3,100</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p74', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p75 -->
+            <div class="product-card" data-category="wearables" data-id="p75">
+              <div class="card-thumb">
+                <img src="alpine-loop-rugged-strap-49mm.jpg" alt="Alpine Loop Rugged Strap 49mm" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-17%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p75')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Apple</span>
+                <h3 class="product-title">Alpine Loop Rugged Strap 49mm</h3>
+                <p class="product-spec">High-Strength Dual Seamless Textile Weave</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.9 (1680)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;4,990</span>
+                  <span class="old-price">&#8369;5,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p75', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Category Block: Gaming & Accessories -->
+      <div class="category-group-block" id="cat-gaming">
+        <div class="category-group-header">
+          <div class="category-group-title">
+            <span class="cat-icon">🎮</span>
+            <h2 class="cat-heading">Gaming & Accessories</h2>
+          </div>
+          <a href="products.html?cat=gaming" class="cat-view-all">View All Gaming Gear &rarr;</a>
+        </div>
+        <!-- Subcategory Navigation Chips -->
+        <div class="subcategories-list">
+          <button class="subcategory-chip active" onclick="switchSubcategory('gaming', 1, this)">1. Mechanical Keyboards</button>
+          <button class="subcategory-chip " onclick="switchSubcategory('gaming', 2, this)">2. Precision Gaming Mice</button>
+          <button class="subcategory-chip " onclick="switchSubcategory('gaming', 3, this)">3. Fast Refresh Displays</button>
+          <button class="subcategory-chip " onclick="switchSubcategory('gaming', 4, this)">4. Pro Controllers & Wheels</button>
+          <button class="subcategory-chip " onclick="switchSubcategory('gaming', 5, this)">5. Streaming Mics & Cams</button>
+        </div>
+        <!-- Subcategory Panel 1 -->
+        <div class="subcategory-content active" id="sub-gaming-1">
+          <div class="product-grid">
+            <!-- Product Item: p76 -->
+            <div class="product-card" data-category="gaming" data-id="p76">
+              <div class="card-thumb">
+                <img src="razer-blackwidow-v4-pro.jpg" alt="Razer BlackWidow V4 Pro" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-25%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p76')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Razer</span>
+                <h3 class="product-title">Razer BlackWidow V4 Pro</h3>
+                <p class="product-spec">Razer Mechanical Switches (Green Clicky / Yellow Linear)</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (1920)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;8,990</span>
+                  <span class="old-price">&#8369;11,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p76', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p77 -->
+            <div class="product-card" data-category="gaming" data-id="p77">
+              <div class="card-thumb">
+                <img src="keychron-q1-pro-qmk-wireless.jpg" alt="Keychron Q1 Pro QMK Wireless" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-16%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p77')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Keychron</span>
+                <h3 class="product-title">Keychron Q1 Pro QMK Wireless</h3>
+                <p class="product-spec">Full CNC Machined 6063 Aluminum Chassis</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.9 (1430)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;10,490</span>
+                  <span class="old-price">&#8369;12,500</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p77', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p78 -->
+            <div class="product-card" data-category="gaming" data-id="p78">
+              <div class="card-thumb">
+                <img src="logitech-g915-lightspeed-tkl.jpg" alt="Logitech G915 LIGHTSPEED TKL" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-17%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p78')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Logitech</span>
+                <h3 class="product-title">Logitech G915 LIGHTSPEED TKL</h3>
+                <p class="product-spec">Pro-Grade LIGHTSPEED 1ms Wireless + Bluetooth</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (2780)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;11,990</span>
+                  <span class="old-price">&#8369;14,500</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p78', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Subcategory Panel 2 -->
+        <div class="subcategory-content " id="sub-gaming-2">
+          <div class="product-grid">
+            <!-- Product Item: p79 -->
+            <div class="product-card" data-category="gaming" data-id="p79">
+              <div class="card-thumb">
+                <img src="logitech-g502-x-wireless.jpg" alt="Logitech G502 X Wireless" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-22%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p79')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Logitech</span>
+                <h3 class="product-title">Logitech G502 X Wireless</h3>
+                <p class="product-spec">LIGHTFORCE Hybrid Optical-Mechanical Switches</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (5890)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;4,290</span>
+                  <span class="old-price">&#8369;5,490</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p79', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p80 -->
+            <div class="product-card" data-category="gaming" data-id="p80">
+              <div class="card-thumb">
+                <img src="razer-viper-v3-pro-8000hz.jpg" alt="Razer Viper V3 Pro 8000Hz" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-14%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p80')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Razer</span>
+                <h3 class="product-title">Razer Viper V3 Pro 8000Hz</h3>
+                <p class="product-spec">Ultra-Lightweight 54g Ergonomic Esports Shape</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.9 (1120)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;8,990</span>
+                  <span class="old-price">&#8369;10,490</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p80', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p81 -->
+            <div class="product-card" data-category="gaming" data-id="p81">
+              <div class="card-thumb">
+                <img src="logitech-g-pro-x-superlight-2.jpg" alt="Logitech G PRO X SUPERLIGHT 2" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-11%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p81')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Logitech</span>
+                <h3 class="product-title">Logitech G PRO X SUPERLIGHT 2</h3>
+                <p class="product-spec">Sub-60g Ultra-Lightweight Construction</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.9 (3410)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;8,490</span>
+                  <span class="old-price">&#8369;9,490</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p81', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Subcategory Panel 3 -->
+        <div class="subcategory-content " id="sub-gaming-3">
+          <div class="product-grid">
+            <!-- Product Item: p82 -->
+            <div class="product-card" data-category="gaming" data-id="p82">
+              <div class="card-thumb">
+                <img src="rog-strix-gaming-monitor-27.jpg" alt="ROG Strix Gaming Monitor 27&quot;" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-21%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p82')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">ASUS</span>
+                <h3 class="product-title">ROG Strix Gaming Monitor 27"</h3>
+                <p class="product-spec">27" WQHD (2560x1440) Fast IPS Panel</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (1840)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;22,995</span>
+                  <span class="old-price">&#8369;28,995</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p82', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p83 -->
+            <div class="product-card" data-category="gaming" data-id="p83">
+              <div class="card-thumb">
+                <img src="odyssey-oled-g9-49-curved.jpg" alt="Odyssey OLED G9 49&quot; Curved" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-18%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p83')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Samsung</span>
+                <h3 class="product-title">Odyssey OLED G9 49" Curved</h3>
+                <p class="product-spec">49" Dual QHD (5120x1440) 1800R Curved OLED</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.9 (490)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;89,990</span>
+                  <span class="old-price">&#8369;109,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p83', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p84 -->
+            <div class="product-card" data-category="gaming" data-id="p84">
+              <div class="card-thumb">
+                <img src="lg-ultragear-27-240hz-oled.jpg" alt="LG UltraGear 27&quot; 240Hz OLED" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-15%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p84')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">LG</span>
+                <h3 class="product-title">LG UltraGear 27" 240Hz OLED</h3>
+                <p class="product-spec">27" QHD (2560x1440) OLED Anti-Glare Display</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (780)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;46,990</span>
+                  <span class="old-price">&#8369;54,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p84', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Subcategory Panel 4 -->
+        <div class="subcategory-content " id="sub-gaming-4">
+          <div class="product-grid">
+            <!-- Product Item: p85 -->
+            <div class="product-card" data-category="gaming" data-id="p85">
+              <div class="card-thumb">
+                <img src="xbox-wireless-controller-carbon.jpg" alt="Xbox Wireless Controller Carbon" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-15%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p85')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Microsoft</span>
+                <h3 class="product-title">Xbox Wireless Controller Carbon</h3>
+                <p class="product-spec">Sculpted Ergonomic Surfaces with Textured Grip</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (7120)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;3,290</span>
+                  <span class="old-price">&#8369;3,890</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p85', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p86 -->
+            <div class="product-card" data-category="gaming" data-id="p86">
+              <div class="card-thumb">
+                <img src="playstation-dualsense-edge.jpg" alt="PlayStation DualSense Edge" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-12%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p86')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Sony</span>
+                <h3 class="product-title">PlayStation DualSense Edge</h3>
+                <p class="product-spec">Replaceable Analog Stick Modules & Stick Caps</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (940)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;11,490</span>
+                  <span class="old-price">&#8369;12,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p86', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p87 -->
+            <div class="product-card" data-category="gaming" data-id="p87">
+              <div class="card-thumb">
+                <img src="8bitdo-ultimate-2-4g-controller.jpg" alt="8BitDo Ultimate 2.4G Controller" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-18%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p87')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">8BitDo</span>
+                <h3 class="product-title">8BitDo Ultimate 2.4G Controller</h3>
+                <p class="product-spec">Hall Effect Magnetic Sensing Anti-Drift Joysticks</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.7 (3100)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;2,690</span>
+                  <span class="old-price">&#8369;3,290</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p87', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Subcategory Panel 5 -->
+        <div class="subcategory-content " id="sub-gaming-5">
+          <div class="product-grid">
+            <!-- Product Item: p88 -->
+            <div class="product-card" data-category="gaming" data-id="p88">
+              <div class="card-thumb">
+                <img src="shure-mv7-plus-podcast-microphone.jpg" alt="Shure MV7+ Podcast Microphone" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-13%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p88')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Shure</span>
+                <h3 class="product-title">Shure MV7+ Podcast Microphone</h3>
+                <p class="product-spec">Dual USB-C and XLR Output Architecture</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.9 (1120)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;16,490</span>
+                  <span class="old-price">&#8369;18,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p88', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p89 -->
+            <div class="product-card" data-category="gaming" data-id="p89">
+              <div class="card-thumb">
+                <img src="elgato-wave-3-usb-condenser.jpg" alt="Elgato Wave:3 USB Condenser" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-17%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p89')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">Elgato</span>
+                <h3 class="product-title">Elgato Wave:3 USB Condenser</h3>
+                <p class="product-spec">Tight Cardioid Condenser Capsule (96kHz / 24-Bit)</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (2100)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;8,990</span>
+                  <span class="old-price">&#8369;10,800</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p89', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <!-- Product Item: p90 -->
+            <div class="product-card" data-category="gaming" data-id="p90">
+              <div class="card-thumb">
+                <img src="hyperx-quadcast-s-rgb-usb.jpg" alt="HyperX QuadCast S RGB USB" loading="lazy" />
+                <div class="card-badges">
+                  <span class="badge-chip badge-flash">-15%</span>
+                </div>
+                <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p90')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="card-body">
+                <span class="product-brand">HyperX</span>
+                <h3 class="product-title">HyperX QuadCast S RGB USB</h3>
+                <p class="product-spec">Radiant Dynamic RGB Lighting Customizable with NGENUITY</p>
+                <div class="rating-row">
+                  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                  <span class="rating-text">4.8 (4120)</span>
+                </div>
+                <div class="price-row">
+                  <span class="current-price">&#8369;8,490</span>
+                  <span class="old-price">&#8369;9,990</span>
+                </div>
+                <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p90', 1)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER (Consistent with Products / Home) -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col brand-col">
+          <a href="index.html" class="brand-link">
+            <img src="TechHub_Logo.png" alt="TechHub Logo" class="brand-logo" />
+            <span class="brand-text"><span class="brand-white">Tech</span><span class="brand-accent">Hub</span></span>
+          </a>
+          <p class="footer-tagline">Your premier destination for authentic, high-performance electronics.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Pages</h4>
+          <ul class="footer-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="categories.html">Categories Directory</a></li>
+            <li><a href="flash-sale.html">Flash Sale</a></li>
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="about.html">About Us & Reviews</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Categories</h4>
+          <ul class="footer-list">
+            <li><a href="categories.html#cat-smartphones">Smartphones</a></li>
+            <li><a href="categories.html#cat-laptops">Laptops</a></li>
+            <li><a href="categories.html#cat-audio">Audio Gear</a></li>
+            <li><a href="categories.html#cat-gaming">Gaming Hardware</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Support</h4>
+          <ul class="footer-list">
+            <li><a href="contact.html">Track Order</a></li>
+            <li><a href="contact.html">Warranty Claims</a></li>
+            <li><a href="contact.html">Shipping Guidelines</a></li>
+            <li><a href="about.html#reviews">Customer Reviews</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 TechHub Philippines Inc. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
