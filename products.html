@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -112,6 +112,8 @@
 
       <!-- Catalog Grid -->
       <div class="product-grid" id="products-catalog-grid">
+        <div id="no-products-message" style="display:none; grid-column:1/-1; text-align:center; padding:48px 16px; color:var(--text-secondary); font-weight:600;">No products found. Try a different category or search.</div>
+
         
         <!-- p1: Samsung S24 Ultra -->
         <div class="product-card" data-category="smartphones" data-id="p1">
@@ -368,18 +370,53 @@
 
   <script src="script.js"></script>
   <script>
-    function handleCatalogSearch(query) {
-      const q = query.toLowerCase().trim();
+    // ---- Catalog filtering: category tabs + search work together ----
+    let activeCategory = 'all';
+    let searchQuery = '';
+
+    function applyFilters() {
       const cards = document.querySelectorAll('#products-catalog-grid .product-card');
+      let visible = 0;
       cards.forEach(card => {
-        const text = card.textContent.toLowerCase();
-        if (!q || text.includes(q)) {
+        const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+        const matchesSearch = !searchQuery || card.textContent.toLowerCase().includes(searchQuery);
+        if (matchesCategory && matchesSearch) {
           card.style.display = 'flex';
+          visible++;
         } else {
           card.style.display = 'none';
         }
       });
+      const empty = document.getElementById('no-products-message');
+      if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
     }
+
+    function setActiveTab(filter) {
+      activeCategory = filter;
+      document.querySelectorAll('.filter-tabs .tab-btn').forEach(btn => {
+        const isActive = btn.dataset.filter === filter;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+      applyFilters();
+    }
+
+    function handleCatalogSearch(query) {
+      searchQuery = query.toLowerCase().trim();
+      applyFilters();
+    }
+
+    document.querySelectorAll('.filter-tabs .tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => setActiveTab(btn.dataset.filter));
+    });
+
+    // Support links like products.html?cat=gaming (tablets -> wearables tab)
+    (function initFromUrl() {
+      let cat = (new URLSearchParams(window.location.search).get('cat') || 'all').toLowerCase();
+      if (cat === 'tablets') cat = 'wearables';
+      const valid = Array.from(document.querySelectorAll('.filter-tabs .tab-btn')).map(b => b.dataset.filter);
+      setActiveTab(valid.includes(cat) ? cat : 'all');
+    })();
   </script>
 </body>
 </html>
