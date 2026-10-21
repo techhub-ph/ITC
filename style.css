@@ -994,20 +994,26 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 18px;
+  padding: 14px;
   overflow: hidden;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+/* Every product picture sits in the same square, rounded "tile" */
 .card-thumb img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 10px;
+  box-sizing: border-box;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
   transition: transform var(--transition-smooth, 0.3s ease);
 }
 
 .product-card:hover .card-thumb img {
-  transform: scale(1.06);
+  transform: scale(1.03);
 }
 
 /* CSS Product Image Placeholder */
@@ -1981,11 +1987,18 @@ h1, h2, h3, h4, h5, h6 {
   border-right: 1px solid var(--border-color);
 }
 
+/* Quick-view picture: fixed square size, soft rounded edges */
 .modal-main-img {
   width: 100%;
-  max-height: 360px;
+  max-width: 360px;
+  aspect-ratio: 1 / 1;
+  height: auto;
   object-fit: contain;
-  border-radius: var(--radius-md);
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 16px;
+  box-sizing: border-box;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
 }
 
 .modal-info {
