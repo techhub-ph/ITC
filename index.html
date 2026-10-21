@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -606,6 +606,40 @@
               </button>
             </div>
           </div>
+
+          <!-- Item p31 -->
+          <div class="product-card" data-category="audio" data-id="p31">
+            <div class="card-thumb">
+              <!-- CHANGE PICTURE HERE: Replace src with your image URL or file path -->
+                <img src="sony-wh-1000xm5-anc.png" alt="Sony WH-1000XM5 ANC" loading="lazy" />
+              <div class="card-badges">
+                <span class="badge-chip badge-flash">-20%</span>
+              </div>
+              <button class="wishlist-toggle" aria-label="Add to wishlist" onclick="toggleHeart(this, 'p31')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                </svg>
+              </button>
+            </div>
+            <div class="card-body">
+              <span class="product-brand">Sony</span>
+              <h3 class="product-title">Sony WH-1000XM5 ANC</h3>
+              <p class="product-spec">HD Noise Cancelling Processor QN1 + V1 Chip</p>
+              <div class="rating-row">
+                <div class="stars">★★★★★</div>
+                <span class="rating-text">4.9 (4,521)</span>
+              </div>
+              <div class="price-row">
+                <span class="current-price">₱18,495</span>
+                <span class="old-price">₱22,995</span>
+              </div>
+              <button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart('p31', 1)">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+
+          <div id="featured-empty" style="display:none; grid-column:1/-1; text-align:center; padding:40px 16px; color:var(--text-secondary); font-weight:600;">No featured items here yet. <a href="products.html">Browse the full catalog &rarr;</a></div>
         </div>
 
         <div style="text-align: center; margin-top: 36px;">
@@ -758,5 +792,34 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    // Featured Gear tabs: show only the cards matching the clicked category
+    (function () {
+      const tabs = document.querySelectorAll('.featured-section .filter-tabs .tab-btn');
+      const grid = document.getElementById('featured-grid');
+      if (!tabs.length || !grid) return;
+
+      function setFeaturedTab(filter) {
+        tabs.forEach(btn => {
+          const isActive = btn.dataset.filter === filter;
+          btn.classList.toggle('active', isActive);
+          btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+        let visible = 0;
+        grid.querySelectorAll('.product-card').forEach(card => {
+          // tablets are grouped with the Wearables tab
+          const group = card.dataset.category === 'tablets' ? 'wearables' : card.dataset.category;
+          const show = filter === 'all' || group === filter;
+          card.style.display = show ? '' : 'none';
+          if (show) visible++;
+        });
+        const empty = document.getElementById('featured-empty');
+        if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
+      }
+
+      tabs.forEach(btn => btn.addEventListener('click', () => setFeaturedTab(btn.dataset.filter)));
+      setFeaturedTab('all');
+    })();
+  </script>
 </body>
 </html>
