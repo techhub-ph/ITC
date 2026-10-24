@@ -2163,6 +2163,7 @@ function syncCatalogUI() {
       setText(card.querySelector('.current-price'), '\u20b1' + Number(p.price).toLocaleString('en-US'));
       const old = card.querySelector('.old-price');
       if (old) setText(old, p.oldPrice ? '\u20b1' + Number(p.oldPrice).toLocaleString('en-US') : '');
+      if (p.specs && p.specs.length && (o.added[id] || (o.edits[id] && o.edits[id].specs))) setText(card.querySelector('.product-spec'), p.specs[0]);
       const img = card.querySelector('.card-thumb img');
       if (img && img.getAttribute('src') !== p.image) img.setAttribute('src', p.image);
     }
@@ -2531,7 +2532,7 @@ function openProductModal(productId) {
 
   const specsContainer = document.getElementById('modal-specs');
   if (specsContainer && p.specs) {
-    specsContainer.innerHTML = p.specs.map(spec => `<li>${spec}</li>`).join('');
+    specsContainer.innerHTML = p.specs.map(spec => `<li>${escapeHtml(spec)}</li>`).join('');
   }
 
   const colorsContainer = document.getElementById('modal-colors');
