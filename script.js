@@ -2400,6 +2400,7 @@ function injectGlobalModals() {
           <a href="#" onclick="showToast('Demo account: TechHub / group4overflow', 'info'); return false;">Forgot password?</a>
         </div>
         <button type="submit" class="btn btn-primary btn-block glow-blue" style="margin-top: 4px;">Sign In</button>
+        <a href="admin.html" id="admin-login-link" style="display: block; margin-top: 14px; padding: 10px; text-align: center; font-size: 0.88rem; font-weight: 700; color: var(--accent-blue-light); border: 1px dashed var(--border-color); border-radius: 10px; text-decoration: none;">&#128274; Log in as an Admin</a>
       </form>
 
       <!-- Sign Up Form -->
