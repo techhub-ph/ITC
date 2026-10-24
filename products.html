@@ -243,7 +243,7 @@
             '<span class="product-brand">' + esc(p.brand) + '</span>' +
             '<h3 class="product-title">' + esc(p.name) + '</h3>' +
             '<p class="product-spec">' + esc((p.specs && p.specs[0]) || '') + '</p>' +
-            '<div class="rating-row"><div class="stars">' + stars + '</div><span class="rating-text">' + p.rating + ' (' + p.reviews.toLocaleString('en-US') + ')</span></div>' +
+            '<div class="rating-row"><div class="stars">' + stars + '</div><span class="rating-text">' + Number(p.rating).toFixed(1) + ' (' + Number(p.reviews).toLocaleString('en-US') + ')</span></div>' +
             '<div class="price-row"><span class="current-price">₱' + p.price.toLocaleString('en-US') + '</span>' + oldPrice + '</div>' +
             '<button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart(\'' + p.id + '\', 1)">Add to Cart</button>' +
           '</div>' +

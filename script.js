@@ -2132,6 +2132,24 @@ function saveOverrides(o) { localStorage.setItem('techhub_catalog', JSON.stringi
   o.deleted.forEach(id => { delete PRODUCTS_DATA[id]; });
 })();
 
+function getAllReviews() {
+  try { return JSON.parse(localStorage.getItem('techhub_reviews')) || []; } catch (e) { return []; }
+}
+
+// Every product starts at 5 stars with 0 reviews; real customer reviews change it
+(function applyReviewStats() {
+  const stats = {};
+  getAllReviews().forEach(r => {
+    const s = stats[r.productId] || (stats[r.productId] = { n: 0, sum: 0 });
+    s.n++; s.sum += Number(r.rating) || 0;
+  });
+  Object.keys(PRODUCTS_DATA).forEach(id => {
+    const s = stats[id];
+    PRODUCTS_DATA[id].reviews = s ? s.n : 0;
+    PRODUCTS_DATA[id].rating = s ? Math.round((s.sum / s.n) * 10) / 10 : 5;
+  });
+})();
+
 function getStock(id) {
   const o = readOverrides();
   if (o.soldout[id]) return 0;
@@ -2167,6 +2185,10 @@ function syncCatalogUI() {
       const img = card.querySelector('.card-thumb img');
       if (img && img.getAttribute('src') !== p.image) img.setAttribute('src', p.image);
     }
+    const starsEl = card.querySelector('.stars');
+    if (starsEl) setText(starsEl, '\u2605'.repeat(Math.min(5, Math.max(1, Math.round(p.rating)))));
+    const ratingEl = card.querySelector('.rating-text');
+    if (ratingEl) setText(ratingEl, Number(p.rating).toFixed(1) + ' (' + Number(p.reviews).toLocaleString('en-US') + ')');
     const stock = getStock(id);
     const sold = stock <= 0;
     card.classList.toggle('sold-out', sold);
@@ -2525,7 +2547,7 @@ function openProductModal(productId) {
   }
 
   const reviewsEl = document.getElementById('modal-reviews');
-  if (reviewsEl) reviewsEl.textContent = `${p.rating} (${p.reviews.toLocaleString()} reviews)`;
+  if (reviewsEl) reviewsEl.textContent = `${Number(p.rating).toFixed(1)} (${Number(p.reviews).toLocaleString()} ${p.reviews === 1 ? 'review' : 'reviews'})`;
 
   const descEl = document.getElementById('modal-desc');
   if (descEl) descEl.textContent = p.definition;

@@ -94,6 +94,7 @@
         <div class="contact-card">
           <h2 class="contact-heading">Send a Message</h2>
           <p class="contact-subheading">Fill out the form below and an agent will reply within 24 business hours.</p>
+          <button type="button" id="open-review-btn" class="btn btn-block" style="margin: 0 0 18px; border: 1px solid var(--accent-blue); color: var(--accent-blue-light); background: transparent; font-weight: 700;">&#11088; Review a Product</button>
 
           <form class="auth-form" id="contact-form" novalidate>
             <div class="form-group">
@@ -305,6 +306,74 @@
         }
       });
     });
+  </script>
+
+  <!-- REVIEW A PRODUCT -->
+  <style>
+    .rv-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.72); display: none; align-items: center; justify-content: center; padding: 16px; z-index: 3000; }
+    .rv-overlay.open { display: flex; }
+    .rv-box { position: relative; width: 100%; max-width: 520px; max-height: 92vh; overflow: auto; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 18px; padding: 26px; }
+    .rv-box h2 { font-size: 1.35rem; margin-bottom: 4px; }
+    .rv-close { position: absolute; top: 12px; right: 14px; font-size: 1.6rem; color: var(--text-secondary); background: none; border: 0; cursor: pointer; }
+    .rv-stars { display: flex; gap: 6px; margin: 6px 0 2px; }
+    .rv-star { font-size: 2rem; line-height: 1; background: none; border: 0; cursor: pointer; color: #475569; padding: 0; }
+    .rv-star.on { color: #fbbf24; }
+    .rv-hint { font-size: .8rem; color: var(--text-secondary); min-height: 1.1em; }
+  </style>
+  <div class="rv-overlay" id="review-overlay">
+    <div class="rv-box" role="dialog" aria-modal="true" aria-labelledby="rv-title">
+      <button type="button" class="rv-close" id="rv-close" aria-label="Close">&times;</button>
+      <h2 id="rv-title">Review a Product</h2>
+      <p style="color: var(--text-secondary); font-size: .88rem; margin-bottom: 14px;">Tell us what you think. Your rating and feedback are sent to the TechHub team.</p>
+      <form id="review-form" class="auth-form" novalidate>
+        <div class="form-group"><label class="form-label" for="rv-product">Product *</label><select id="rv-product" class="form-input" style="cursor:pointer;"></select></div>
+        <div class="form-group"><label class="form-label">Your rating *</label>
+          <div class="rv-stars" id="rv-stars"></div><div class="rv-hint" id="rv-hint">Tap a star</div></div>
+        <div class="form-group"><label class="form-label" for="rv-name">Your name *</label><input id="rv-name" class="form-input" placeholder="Juan Dela Cruz" maxlength="60" /></div>
+        <div class="form-group"><label class="form-label" for="rv-msg">Your feedback *</label><textarea id="rv-msg" class="form-input" rows="4" maxlength="500" placeholder="What did you like or not like about this product?" style="resize: vertical;"></textarea></div>
+        <button type="submit" class="btn btn-primary btn-block glow-blue">Submit Review</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var overlay = document.getElementById('review-overlay'), starsBox = document.getElementById('rv-stars'), rating = 0;
+      var labels = ['', 'Poor', 'Fair', 'Good', 'Very good', 'Excellent'];
+      for (var i = 1; i <= 5; i++) { var b = document.createElement('button'); b.type = 'button'; b.className = 'rv-star'; b.dataset.v = i; b.setAttribute('aria-label', i + ' star' + (i > 1 ? 's' : '')); b.innerHTML = '&#9733;'; starsBox.appendChild(b); }
+      function paint(n) { starsBox.querySelectorAll('.rv-star').forEach(function (s) { s.classList.toggle('on', Number(s.dataset.v) <= n); }); document.getElementById('rv-hint').textContent = n ? n + ' of 5: ' + labels[n] : 'Tap a star'; }
+      starsBox.addEventListener('click', function (e) { if (e.target.dataset.v) { rating = Number(e.target.dataset.v); paint(rating); } });
+      starsBox.addEventListener('mouseover', function (e) { if (e.target.dataset.v) paint(Number(e.target.dataset.v)); });
+      starsBox.addEventListener('mouseleave', function () { paint(rating); });
+      var select = document.getElementById('rv-product'), groups = {};
+      select.innerHTML = '<option value="">Choose a product...</option>';
+      Object.keys(PRODUCTS_DATA).forEach(function (id) { var p = PRODUCTS_DATA[id]; (groups[p.category] = groups[p.category] || []).push(p); });
+      Object.keys(groups).forEach(function (cat) {
+        var og = document.createElement('optgroup'); og.label = cat.charAt(0).toUpperCase() + cat.slice(1);
+        groups[cat].forEach(function (p) { var o = document.createElement('option'); o.value = p.id; o.textContent = p.name; og.appendChild(o); });
+        select.appendChild(og);
+      });
+      function open() { overlay.classList.add('open'); if (typeof currentUser !== 'undefined' && currentUser && !document.getElementById('rv-name').value) document.getElementById('rv-name').value = currentUser.name || ''; }
+      function close() { overlay.classList.remove('open'); }
+      document.getElementById('open-review-btn').addEventListener('click', open);
+      document.getElementById('rv-close').addEventListener('click', close);
+      overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+      document.getElementById('review-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var pid = select.value, name = document.getElementById('rv-name').value.trim(), msg = document.getElementById('rv-msg').value.trim();
+        if (!pid) { showToast('Please choose a product to review.', 'error'); return; }
+        if (!rating) { showToast('Please tap a star rating.', 'error'); return; }
+        if (!name) { showToast('Please enter your name.', 'error'); return; }
+        if (!msg) { showToast('Please write your feedback.', 'error'); return; }
+        try {
+          var list = JSON.parse(localStorage.getItem('techhub_reviews') || '[]');
+          list.unshift({ id: 'r' + Date.now(), productId: pid, productName: PRODUCTS_DATA[pid].name, rating: rating, name: name, email: (typeof currentUser !== 'undefined' && currentUser) ? currentUser.email : '', message: msg, date: new Date().toISOString() });
+          localStorage.setItem('techhub_reviews', JSON.stringify(list.slice(0, 500)));
+        } catch (err) { showToast('Could not save your review.', 'error'); return; }
+        showToast('Thank you! Your review was submitted.', 'success');
+        document.getElementById('review-form').reset(); rating = 0; paint(0); close();
+      });
+    })();
   </script>
 </body>
 </html>
