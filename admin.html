@@ -13,14 +13,17 @@
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg-primary, #070b16); color: var(--text-primary, #fff); min-height: 100vh; }
     .hidden { display: none !important; }
+    /* TechHub logo as a faint background (change the opacity value to make it lighter or stronger) */
+    body::before { content: ''; position: fixed; inset: 0; background: url('TechHub_Logo.png') center / min(70vmin, 640px) no-repeat; opacity: 0.08; pointer-events: none; z-index: 0; }
+    #login-view, #app { position: relative; z-index: 1; }
     .login-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
-    .panel { background: var(--bg-card, #0f1629); border: 1px solid var(--border-color, #1e2d4a); border-radius: 16px; padding: 24px; }
+    .panel { background: rgba(15, 22, 41, 0.88); border: 1px solid var(--border-color, #1e2d4a); border-radius: 16px; padding: 24px; }
     .login-card { width: 100%; max-width: 380px; }
     .login-card h1, .adm-brand { font-family: 'Outfit', sans-serif; font-weight: 800; }
     .fld { display: block; margin-top: 14px; font-size: .82rem; font-weight: 700; color: var(--text-secondary, #94a3b8); }
     .fld input, .fld select, .fld textarea { width: 100%; margin-top: 6px; padding: 11px 12px; border-radius: 10px; border: 1px solid var(--border-color, #1e2d4a); background: #0a1020; color: #fff; font: inherit; }
     .err { color: #f87171; font-size: .85rem; min-height: 1.2em; margin-top: 10px; }
-    .adm-top { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; padding: 14px 24px; border-bottom: 1px solid var(--border-color, #1e2d4a); position: sticky; top: 0; background: #070b16; z-index: 20; }
+    .adm-top { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; padding: 14px 24px; border-bottom: 1px solid var(--border-color, #1e2d4a); position: sticky; top: 0; background: rgba(7, 11, 22, 0.88); backdrop-filter: blur(6px); z-index: 20; }
     .adm-brand { font-size: 1.3rem; } .adm-brand span { color: var(--accent-blue-light, #60a5fa); }
     .tabs { display: flex; gap: 6px; flex-wrap: wrap; }
     .tab { padding: 9px 16px; border-radius: 10px; border: 1px solid var(--border-color, #1e2d4a); background: transparent; color: var(--text-secondary, #94a3b8); font-weight: 700; cursor: pointer; }
