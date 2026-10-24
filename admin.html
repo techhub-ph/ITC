@@ -13,8 +13,8 @@
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg-primary, #070b16); color: var(--text-primary, #fff); min-height: 100vh; }
     .hidden { display: none !important; }
-    /* TechHub logo as a faint background (change the opacity value to make it lighter or stronger) */
-    body::before { content: ''; position: fixed; inset: 0; background: url('TechHub_Logo.png') center / min(70vmin, 640px) no-repeat; opacity: 0.08; pointer-events: none; z-index: 0; }
+    /* TechHub logo as a faint background for admin panel lang po towww */
+    body::before { content: ''; position: fixed; inset: 0; background: url('TechHub_Logo.png') center / min(70vmin, 640px) no-repeat; opacity: 0.10; pointer-events: none; z-index: 0; }
     #login-view, #app { position: relative; z-index: 1; }
     .login-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
     .panel { background: rgba(15, 22, 41, 0.88); border: 1px solid var(--border-color, #1e2d4a); border-radius: 16px; padding: 24px; }
@@ -65,7 +65,7 @@
       <label class="fld">Password<input id="a-pass" type="password" required /></label>
       <div class="err" id="login-err"></div>
       <button class="btn btn-primary btn-block glow-blue" type="submit" style="margin-top:6px">Sign In</button>
-      <p class="muted" style="margin-top:14px"><a href="index.html" style="color:#60a5fa">&larr; Back to the store</a></p>
+      <p class="muted" style="margin-top:14px"><a href="index.html" style="color:#60a5fa">&larr; Go back to store</a></p>
     </form>
   </div>
 
@@ -115,9 +115,9 @@
 
   <script src="script.js"></script>
   <script>
-    // ====== CHANGE THE ADMIN LOGIN HERE ======
-    const ADMIN_USER = 'admin';
-    const ADMIN_PASS = 'TechHub@2026';
+    // ====== Admin Account!! ======
+    const ADMIN_USER = 'techhub';
+    const ADMIN_PASS = 'gowiththeflowerroroverflow';
     // =========================================
     const $ = (id) => document.getElementById(id);
     const peso = (n) => '\u20b1' + Number(n || 0).toLocaleString('en-US');
