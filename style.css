@@ -3226,3 +3226,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* ---- Sold-out state (set from the admin panel) ---- */
+.product-card.sold-out .card-thumb img { filter: grayscale(1) brightness(0.55); }
+.soldout-ribbon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-12deg); background: rgba(239, 68, 68, 0.94); color: #fff; font-weight: 800; letter-spacing: 0.14em; padding: 8px 20px; border-radius: 8px; z-index: 3; pointer-events: none; font-size: 0.95rem; }
+.add-cart-btn:disabled, #modal-add-btn:disabled { opacity: 0.5; cursor: not-allowed; filter: grayscale(1); box-shadow: none; }

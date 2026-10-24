@@ -1,4 +1,4 @@
-﻿/**
+/**
  * TechHub Philippines - Global Store Engine & Interactive Controller
  * Features:
  * - Unified 90-Product Catalog Database (p1 - p90)
@@ -2112,6 +2112,90 @@ const PRODUCTS_DATA = {
 };
 
 
+/* ==========================================================================
+   ADMIN / STORE LAYER (stock, sold-out, admin edits). Data lives in localStorage.
+   ========================================================================== */
+const DEFAULT_STOCK = 20;
+const LOW_STOCK_LIMIT = 5;
+
+function readOverrides() {
+  let o = {};
+  try { o = JSON.parse(localStorage.getItem('techhub_catalog')) || {}; } catch (e) { o = {}; }
+  return { edits: o.edits || {}, added: o.added || {}, deleted: o.deleted || [], stock: o.stock || {}, soldout: o.soldout || {} };
+}
+function saveOverrides(o) { localStorage.setItem('techhub_catalog', JSON.stringify(o)); }
+
+(function applyCatalogOverrides() {
+  const o = readOverrides();
+  Object.keys(o.added).forEach(id => { PRODUCTS_DATA[id] = o.added[id]; });
+  Object.keys(o.edits).forEach(id => { if (PRODUCTS_DATA[id]) Object.assign(PRODUCTS_DATA[id], o.edits[id]); });
+  o.deleted.forEach(id => { delete PRODUCTS_DATA[id]; });
+})();
+
+function getStock(id) {
+  const o = readOverrides();
+  if (o.soldout[id]) return 0;
+  return o.stock[id] !== undefined ? Number(o.stock[id]) : DEFAULT_STOCK;
+}
+function isSoldOut(id) { return getStock(id) <= 0; }
+
+// Called once per placed order: lowers the stock of each purchased item
+function reduceStockForOrder(order) {
+  const o = readOverrides();
+  (order.items || []).forEach(it => {
+    const cur = o.stock[it.id] !== undefined ? Number(o.stock[it.id]) : DEFAULT_STOCK;
+    o.stock[it.id] = Math.max(0, cur - (it.qty || 1));
+  });
+  saveOverrides(o);
+}
+
+// Keeps every product card on every page in sync with the admin's changes
+function syncCatalogUI() {
+  const o = readOverrides();
+  const setText = (el, t) => { if (el && el.textContent !== t) el.textContent = t; };
+  document.querySelectorAll('.product-card[data-id]').forEach(card => {
+    const id = card.dataset.id;
+    const p = PRODUCTS_DATA[id];
+    if (!p) { card.style.display = 'none'; return; }
+    if (o.edits[id] || o.added[id]) {
+      setText(card.querySelector('.product-title'), p.name);
+      setText(card.querySelector('.product-brand'), p.brand);
+      setText(card.querySelector('.current-price'), '\u20b1' + Number(p.price).toLocaleString('en-US'));
+      const old = card.querySelector('.old-price');
+      if (old) setText(old, p.oldPrice ? '\u20b1' + Number(p.oldPrice).toLocaleString('en-US') : '');
+      const img = card.querySelector('.card-thumb img');
+      if (img && img.getAttribute('src') !== p.image) img.setAttribute('src', p.image);
+    }
+    const stock = getStock(id);
+    const sold = stock <= 0;
+    card.classList.toggle('sold-out', sold);
+    const btn = card.querySelector('.add-cart-btn');
+    if (btn) { btn.disabled = sold; setText(btn, sold ? 'Sold Out' : 'Add to Cart'); }
+    const thumb = card.querySelector('.card-thumb');
+    let ribbon = card.querySelector('.soldout-ribbon');
+    if (sold && thumb && !ribbon) {
+      ribbon = document.createElement('div');
+      ribbon.className = 'soldout-ribbon';
+      ribbon.textContent = 'SOLD OUT';
+      thumb.appendChild(ribbon);
+    } else if (!sold && ribbon) { ribbon.remove(); }
+    const warn = card.querySelector('.stock-warning');
+    if (warn && o.stock[id] !== undefined) {
+      setText(warn, 'Only ' + stock + ' left!');
+      warn.style.display = (stock > 0 && stock <= 10) ? '' : 'none';
+    }
+  });
+}
+function initCatalogSync() {
+  syncCatalogUI();
+  let queued = false;
+  new MutationObserver(() => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(() => { queued = false; syncCatalogUI(); });
+  }).observe(document.body, { childList: true, subtree: true });
+}
+
 // Demo timeline: each order status stage advances every N seconds (set to 20 for demo)
 const DEMO_STATUS_SECONDS = 20;
 
@@ -2178,6 +2262,7 @@ function initFlashSaleTimer() {
    DOM INITIALIZATION & DYNAMIC COMPONENT INJECTION
    ========================================================================== */
 document.addEventListener('DOMContentLoaded', () => {
+  if (document.body.dataset.page === 'admin') return; // the admin page has its own layout
   injectGlobalModals();
   initGlobalNavigation();
   initSearchAutocomplete();
@@ -2186,6 +2271,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateWishlistUI();
   checkAuthUI();
   bindCategoryCards();
+  initCatalogSync();
 });
 
 function injectGlobalModals() {
@@ -2470,6 +2556,9 @@ function openProductModal(productId) {
       addToCart(p.id, modalQuantity, currentSelectedModalColor);
       closeProductModal();
     };
+    const soldOut = isSoldOut(p.id);
+    addBtn.disabled = soldOut;
+    addBtn.textContent = soldOut ? 'Sold Out' : 'Add to Cart';
   }
 
   const backdrop = document.getElementById('modal-backdrop');
@@ -2524,6 +2613,11 @@ function addToCart(productId, qty = 1, variant = null) {
   const p = PRODUCTS_DATA[productId];
   if (!p) return;
 
+  // Stock check (set by the admin panel)
+  if (isSoldOut(productId)) { showToast(`Sorry, "${p.name}" is sold out.`, 'error'); return; }
+  const inCart = cart.filter(i => i.id === productId).reduce((n, i) => n + i.qty, 0);
+  if (inCart + qty > getStock(productId)) { showToast(`Only ${getStock(productId)} left in stock for "${p.name}".`, 'error'); return; }
+
   const chosenVariant = variant || (p.colors ? p.colors[0] : 'Standard');
   const existing = cart.find(item => item.id === productId && item.variant === chosenVariant);
 
@@ -2547,6 +2641,10 @@ function addToCart(productId, qty = 1, variant = null) {
 
 function updateCartQty(index, delta) {
   if (!cart[index]) return;
+  if (delta > 0) {
+    const total = cart.filter(i => i.id === cart[index].id).reduce((n, i) => n + i.qty, 0);
+    if (total + delta > getStock(cart[index].id)) { showToast('No more stock available for this item.', 'error'); return; }
+  }
   cart[index].qty += delta;
   if (cart[index].qty <= 0) {
     cart.splice(index, 1);
@@ -2654,6 +2752,7 @@ function createOrder(order) {
   if (orders.some(o => o.orderNum === order.orderNum)) return;
   orders.unshift(order);
   localStorage.setItem(key, JSON.stringify(orders.slice(0, 100)));
+  reduceStockForOrder(order);
 }
 
 function showOrderSuccessModal(order) {
