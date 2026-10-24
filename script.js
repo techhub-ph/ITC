@@ -2150,6 +2150,63 @@ function getAllReviews() {
   });
 })();
 
+const SUBCATEGORIES = {
+  smartphones: ['Flagship 5G', 'Gaming Performance', 'Foldable & Flip', 'Camera & Creator', 'Budget & Daily'],
+  laptops: ['Gaming Battlestations', 'OLED & Ultraportables', 'Creator Studios', 'Business & Enterprise', '2-in-1 Convertibles'],
+  audio: ['Over-Ear ANC', 'True Wireless (TWS)', 'Audiophile Studio', 'Bluetooth Speakers', 'Gaming Headsets'],
+  tablets: ['Pro Creative Tablets', '2-in-1 Detachables', 'Entertainment & Media', 'Mini & E-Readers', 'Stylus & Keyboards'],
+  wearables: ['Flagship Smartwatches', 'Fitness & Health Trackers', 'Rugged & Outdoor', 'Cellular LTE Editions', 'Premium Bands & Straps'],
+  gaming: ['Mechanical Keyboards', 'Precision Gaming Mice', 'Fast Refresh Displays', 'Pro Controllers & Wheels', 'Streaming Mics & Cams']
+};
+// Sub-category number (1-5) of a product. The original 90 products are grouped 3 per sub-category.
+function getSubIndex(p) {
+  if (p.sub) return Number(p.sub);
+  if (/^p\d+$/.test(String(p.id))) return Math.floor(((parseInt(String(p.id).slice(1), 10) - 1) % 15) / 3) + 1;
+  return 1;
+}
+function getSubName(p) { return (SUBCATEGORIES[p.category] || [])[getSubIndex(p) - 1] || ''; }
+
+function buildProductCard(p) {
+  const heartPath = 'M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z';
+  const saved = (typeof wishlist !== 'undefined' && wishlist.indexOf(p.id) > -1) ? ' active' : '';
+  const badge = p.discount ? '<span class="badge-chip badge-flash">-' + p.discount + '%</span>' : '';
+  const oldPrice = p.oldPrice ? '<span class="old-price">\u20b1' + Number(p.oldPrice).toLocaleString('en-US') + '</span>' : '';
+  return '<div class="product-card" data-category="' + escapeHtml(p.category) + '" data-id="' + escapeHtml(p.id) + '">' +
+    '<div class="card-thumb"><img src="' + escapeHtml(p.image) + '" alt="' + escapeHtml(p.name) + '" loading="lazy" /><div class="card-badges">' + badge + '</div>' +
+    '<button class="wishlist-toggle' + saved + '" aria-label="Add to wishlist" onclick="toggleHeart(this, \'' + p.id + '\')"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="' + heartPath + '"></path></svg></button></div>' +
+    '<div class="card-body"><span class="product-brand">' + escapeHtml(p.brand) + '</span><h3 class="product-title">' + escapeHtml(p.name) + '</h3>' +
+    '<p class="product-spec">' + escapeHtml((p.specs && p.specs[0]) || '') + '</p>' +
+    '<div class="rating-row"><div class="stars">\u2605\u2605\u2605\u2605\u2605</div><span class="rating-text">5.0 (0)</span></div>' +
+    '<div class="price-row"><span class="current-price">\u20b1' + Number(p.price).toLocaleString('en-US') + '</span>' + oldPrice + '</div>' +
+    '<button class="btn btn-primary btn-block add-cart-btn" onclick="addToCart(\'' + p.id + '\', 1)">Add to Cart</button></div></div>';
+}
+
+// Categories page: put admin-added products (and moved ones) into their chosen category + sub-category panel
+function placeProductsInCategoryPage() {
+  if (!document.querySelector('.subcategory-content')) return;
+  const o = readOverrides();
+  const ids = Object.keys(o.added).concat(Object.keys(o.edits).filter(id => o.edits[id].category || o.edits[id].sub));
+  ids.forEach(id => {
+    const p = PRODUCTS_DATA[id];
+    if (!p) return;
+    const grid = document.querySelector('#sub-' + p.category + '-' + getSubIndex(p) + ' .product-grid');
+    if (!grid) return;
+    const card = document.querySelector('.product-card[data-id="' + id + '"]');
+    if (!card) grid.insertAdjacentHTML('beforeend', buildProductCard(p));
+    else if (card.parentElement !== grid) { grid.appendChild(card); card.dataset.category = p.category; }
+  });
+}
+
+const EYE_SHOW = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>';
+const EYE_HIDE = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>';
+function togglePasswordVisibility(id, btn) {
+  const input = document.getElementById(id);
+  if (!input) return;
+  const reveal = input.type === 'password';
+  input.type = reveal ? 'text' : 'password';
+  if (btn) { btn.innerHTML = reveal ? EYE_HIDE : EYE_SHOW; btn.setAttribute('aria-label', reveal ? 'Hide password' : 'Show password'); }
+}
+
 function getStock(id) {
   const o = readOverrides();
   if (o.soldout[id]) return 0;
@@ -2210,6 +2267,7 @@ function syncCatalogUI() {
   });
 }
 function initCatalogSync() {
+  placeProductsInCategoryPage();
   syncCatalogUI();
   let queued = false;
   new MutationObserver(() => {
@@ -2351,7 +2409,7 @@ function injectGlobalModals() {
           
           <div class="modal-rating-row">
             <span class="stars" id="modal-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-            <span class="rating-text" id="modal-reviews">4.8 (1,200 reviews)</span>
+            <span class="rating-text" id="modal-reviews">5.0 (0 reviews)</span>
           </div>
 
           <div class="modal-price-row">
@@ -2414,7 +2472,10 @@ function injectGlobalModals() {
         </div>
         <div class="form-group">
           <label class="form-label">Password</label>
-          <input type="password" required placeholder="group4overflow" class="form-input" id="login-pass" value="group4overflow" />
+          <div style="position:relative;">
+            <input type="password" required placeholder="group4overflow" class="form-input" id="login-pass" value="group4overflow" style="padding-right:46px; width:100%; box-sizing:border-box;" />
+            <button type="button" aria-label="Show password" onclick="togglePasswordVisibility('login-pass', this)" style="position:absolute; right:6px; top:0; bottom:0; width:40px; display:flex; align-items:center; justify-content:center; background:none; border:none; color:#94a3b8; cursor:pointer;">${EYE_SHOW}</button>
+          </div>
         </div>
         <div class="form-helper">
           <label style="display: flex; align-items: center; gap: 4px; cursor: pointer;">
@@ -2439,15 +2500,15 @@ function injectGlobalModals() {
         <div class="form-group">
           <label class="form-label">Password</label>
           <div style="position:relative;">
-            <input type="password" required placeholder="Minimum 8 characters" class="form-input" id="signup-pass" />
-            <button type="button" onclick="togglePasswordVisibility('signup-pass')" style="position:absolute; right:10px; top:12px; background:none; border:none; color:#888; cursor:pointer;">&#128065;</button>
+            <input type="password" required placeholder="Minimum 8 characters" class="form-input" id="signup-pass" style="padding-right:46px; width:100%; box-sizing:border-box;" />
+            <button type="button" aria-label="Show password" onclick="togglePasswordVisibility('signup-pass', this)" style="position:absolute; right:6px; top:0; bottom:0; width:40px; display:flex; align-items:center; justify-content:center; background:none; border:none; color:#94a3b8; cursor:pointer;">${EYE_SHOW}</button>
           </div>
         </div>
         <div class="form-group">
           <label class="form-label">Confirm Password</label>
           <div style="position:relative;">
-            <input type="password" required placeholder="Re-enter password" class="form-input" id="signup-confirm-pass" />
-            <button type="button" onclick="togglePasswordVisibility('signup-confirm-pass')" style="position:absolute; right:10px; top:12px; background:none; border:none; color:#888; cursor:pointer;">&#128065;</button>
+            <input type="password" required placeholder="Re-enter password" class="form-input" id="signup-confirm-pass" style="padding-right:46px; width:100%; box-sizing:border-box;" />
+            <button type="button" aria-label="Show password" onclick="togglePasswordVisibility('signup-confirm-pass', this)" style="position:absolute; right:6px; top:0; bottom:0; width:40px; display:flex; align-items:center; justify-content:center; background:none; border:none; color:#94a3b8; cursor:pointer;">${EYE_SHOW}</button>
           </div>
         </div>
         <button type="submit" class="btn btn-primary btn-block glow-blue" style="margin-top: 4px;">Create My Account</button>

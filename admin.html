@@ -62,7 +62,7 @@
       <h1>Tech<span style="color:#60a5fa">Hub</span> Admin</h1>
       <p class="muted" style="margin-top:6px">Sign in to manage products, stock, and customer messages.</p>
       <label class="fld">Username<input id="a-user" type="text" required /></label>
-      <label class="fld">Password<input id="a-pass" type="password" required /></label>
+      <label class="fld">Password<span style="position:relative; display:block; margin-top:6px;"><input id="a-pass" type="password" required style="margin-top:0; padding-right:46px;" /><button type="button" id="eye-btn" aria-label="Show password" onclick="togglePasswordVisibility('a-pass', this)" style="position:absolute; right:6px; top:0; bottom:0; width:40px; display:flex; align-items:center; justify-content:center; background:none; border:none; color:#94a3b8; cursor:pointer;"></button></span></label>
       <div class="err" id="login-err"></div>
       <button class="btn btn-primary btn-block glow-blue" type="submit" style="margin-top:6px">Sign In</button>
       <p class="muted" style="margin-top:14px"><a href="index.html" style="color:#60a5fa">&larr; Back to the store</a></p>
@@ -98,6 +98,7 @@
         <label class="fld">Brand<input id="f-brand" required /></label>
         <label class="fld">Category<select id="f-cat"></select></label>
       </div>
+      <label class="fld">Sub-category<select id="f-sub"></select></label>
       <div class="row2">
         <label class="fld">Price (&#8369;)<input id="f-price" type="number" min="1" required /></label>
         <label class="fld">Old price (&#8369;, optional)<input id="f-old" type="number" min="0" /></label>
@@ -200,8 +201,8 @@
         $('p-reset').addEventListener('click', () => { if (confirm('Remove every admin change (new products, edits, stock, sold-out)?')) { localStorage.removeItem('techhub_catalog'); location.reload(); } });
       }
       const list = Object.values(PRODUCTS_DATA).filter(p => (cat === 'all' || p.category === cat) && (p.name + ' ' + p.brand).toLowerCase().indexOf(q) > -1);
-      $('p-list').innerHTML = '<table><tr><th></th><th>Product</th><th>Category</th><th>Price</th><th>Stock</th><th>Status</th><th>Actions</th></tr>' + list.map(p =>
-        '<tr><td><img class="thumb" src="' + escapeHtml(p.image) + '" alt="" onerror="this.style.visibility=\'hidden\'"></td><td><b>' + escapeHtml(p.name) + '</b><div class="muted">' + escapeHtml(p.brand) + '</div></td><td>' + escapeHtml(p.category) + '</td><td>' + peso(p.price) + '</td>' +
+      $('p-list').innerHTML = '<table><tr><th></th><th>Product</th><th>Category / Sub-category</th><th>Price</th><th>Stock</th><th>Status</th><th>Actions</th></tr>' + list.map(p =>
+        '<tr><td><img class="thumb" src="' + escapeHtml(p.image) + '" alt="" onerror="this.style.visibility=\'hidden\'"></td><td><b>' + escapeHtml(p.name) + '</b><div class="muted">' + escapeHtml(p.brand) + '</div></td><td>' + escapeHtml(p.category) + '<div class="muted">' + escapeHtml(getSubName(p)) + '</div></td><td>' + peso(p.price) + '</td>' +
         '<td><input class="stk" type="number" min="0" value="' + getStock(p.id) + '" data-stock="' + p.id + '"></td><td>' + statusChip(p.id) + '</td>' +
         '<td><div class="actions"><button class="btn-s" data-sold="' + p.id + '">' + (isSoldOut(p.id) ? 'Restock' : 'Mark sold out') + '</button><button class="btn-s" data-edit="' + p.id + '">Edit</button><button class="btn-s danger" data-del="' + p.id + '">Delete</button></div></td></tr>').join('') + '</table>' + (list.length ? '' : '<div class="empty">No products match.</div>');
     }
@@ -224,11 +225,14 @@
 
     // ---------- product form ----------
     $('f-cat').innerHTML = CATS.map(c => '<option>' + c + '</option>').join('');
+    function fillSubs(selected) { $('f-sub').innerHTML = (SUBCATEGORIES[$('f-cat').value] || []).map((n, i) => '<option value="' + (i + 1) + '">' + (i + 1) + '. ' + escapeHtml(n) + '</option>').join(''); $('f-sub').value = String(selected || 1); }
+    $('f-cat').addEventListener('change', () => fillSubs(1));
+    $('eye-btn').innerHTML = EYE_SHOW;
     function openForm(id) {
       editingId = id; imageData = null; $('pm-err').textContent = ''; $('f-file').value = '';
       const p = id ? PRODUCTS_DATA[id] : {};
       $('pm-title').textContent = id ? 'Edit Product' : 'Add Product';
-      $('f-name').value = p.name || ''; $('f-brand').value = p.brand || ''; $('f-cat').value = p.category || 'smartphones';
+      $('f-name').value = p.name || ''; $('f-brand').value = p.brand || ''; $('f-cat').value = p.category || 'smartphones'; fillSubs(p.id ? getSubIndex(p) : 1);
       $('f-price').value = p.price || ''; $('f-old').value = p.oldPrice || ''; $('f-stock').value = id ? getStock(id) : 20;
       $('f-img').value = p.image && p.image.indexOf('data:') !== 0 ? p.image : ''; $('f-def').value = p.definition || '';
       $('f-specs').value = (p.specs || []).join('\n'); $('f-colors').value = (p.colors || []).join(', ');
@@ -245,7 +249,7 @@
       e.preventDefault();
       const price = Number($('f-price').value), old = Number($('f-old').value) || 0;
       if (old && old <= price) { $('pm-err').textContent = 'Old price must be higher than the price (or leave it empty).'; return; }
-      const data = { name: $('f-name').value.trim(), brand: $('f-brand').value.trim(), category: $('f-cat').value, price: price, oldPrice: old, discount: old ? Math.round((old - price) / old * 100) : 0, image: imageData || $('f-img').value.trim() || (editingId ? PRODUCTS_DATA[editingId].image : ''), definition: $('f-def').value.trim(),
+      const data = { name: $('f-name').value.trim(), brand: $('f-brand').value.trim(), category: $('f-cat').value, sub: Number($('f-sub').value) || 1, price: price, oldPrice: old, discount: old ? Math.round((old - price) / old * 100) : 0, image: imageData || $('f-img').value.trim() || (editingId ? PRODUCTS_DATA[editingId].image : ''), definition: $('f-def').value.trim(),
         specs: $('f-specs').value.split('\n').map(x => x.trim()).filter(Boolean),
         colors: $('f-colors').value.split(',').map(x => x.replace(/['"<>`\\]/g, '').trim()).filter(Boolean) };
       if (!data.colors.length) data.colors = ['Standard'];
