@@ -1,3 +1,4 @@
+<!-- Group 4 TechHub Admin Panel (Vibe coding with ourselves)-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,8 +18,8 @@
     @media (max-width: 600px) { main { padding: 14px; } .adm-top { padding: 12px 14px; } .panel { padding: 16px; } }
     .cols > * { min-width: 0; }
     .hidden { display: none !important; }
-    /* TechHub logo as a faint background (change the opacity value to make it lighter or stronger) */
-    body::before { content: ''; position: fixed; inset: 0; background: url('TechHub_Logo.png') center / min(70vmin, 640px) no-repeat; opacity: 0.08; pointer-events: none; z-index: 0; }
+    /* TechHub logo as a faint background for admin side lang towsss */
+    body::before { content: ''; position: fixed; inset: 0; background: url('TechHub_Logo.png') center / min(70vmin, 640px) no-repeat; opacity: 0.15; pointer-events: none; z-index: 0; }
     #login-view, #app { position: relative; z-index: 1; }
     .login-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
     .panel { background: rgba(15, 22, 41, 0.88); border: 1px solid var(--border-color, #1e2d4a); border-radius: 16px; padding: 24px; }
@@ -128,9 +129,9 @@
 
   <script src="script.js"></script>
   <script>
-    // ====== CHANGE THE ADMIN LOGIN HERE ======
-    const ADMIN_USER = 'admin';
-    const ADMIN_PASS = 'TechHub@2026';
+    // ====== Admin Acc info here ======
+    const ADMIN_USER = 'techhub';
+    const ADMIN_PASS = 'gowiththeflowerroroverflow';
     // =========================================
     const $ = (id) => document.getElementById(id);
     const peso = (n) => '\u20b1' + Number(n || 0).toLocaleString('en-US');
