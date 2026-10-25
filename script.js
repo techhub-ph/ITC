@@ -2207,6 +2207,15 @@ function togglePasswordVisibility(id, btn) {
   if (btn) { btn.innerHTML = reveal ? EYE_HIDE : EYE_SHOW; btn.setAttribute('aria-label', reveal ? 'Hide password' : 'Show password'); }
 }
 
+function renderProductReviews(id) {
+  const list = getAllReviews().filter(r => r.productId === id).sort((a, b) => new Date(b.date) - new Date(a.date));
+  let html = '<h4 style="font-size:1rem; margin-bottom:10px;">Customer Reviews</h4>';
+  if (!list.length) return html + '<p style="color:var(--text-secondary); font-size:0.88rem;">No reviews yet. Bought this item? <a href="contact.html" style="color:var(--accent-blue-light); font-weight:700;">Write the first review</a>.</p>';
+  html += list.slice(0, 3).map(r => '<div style="margin-bottom:12px;"><div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;"><span style="color:#fbbf24; letter-spacing:2px;">' + '\u2605'.repeat(Number(r.rating)) + '</span><strong style="font-size:0.9rem;">' + escapeHtml(r.name) + '</strong>' + (r.verified ? '<span style="font-size:0.68rem; font-weight:800; color:#34d399; background:rgba(16,185,129,.15); padding:2px 8px; border-radius:99px;">VERIFIED BUYER</span>' : '') + '<span style="color:var(--text-secondary); font-size:0.75rem;">' + new Date(r.date).toLocaleDateString() + '</span></div><p style="margin:4px 0 0; color:#cbd5e1; font-size:0.88rem; line-height:1.5;">' + escapeHtml(r.message) + '</p></div>').join('');
+  if (list.length > 3) html += '<p style="color:var(--text-secondary); font-size:0.8rem;">+ ' + (list.length - 3) + ' more review' + (list.length - 3 > 1 ? 's' : '') + '</p>';
+  return html;
+}
+
 function getStock(id) {
   const o = readOverrides();
   if (o.soldout[id]) return 0;
@@ -2439,6 +2448,7 @@ function injectGlobalModals() {
               Add to Cart
             </button>
           </div>
+          <div id="modal-reviews-list" style="margin-top:22px; border-top:1px solid var(--border-color); padding-top:16px;"></div>
         </div>
       </div>
     </div>
@@ -2452,8 +2462,9 @@ function injectGlobalModals() {
         <button class="auth-tab-btn" id="tab-signup-btn" onclick="switchAuthTab('signup')">Create Account</button>
       </div>
 
-      <!-- Demo Account Notice Card -->
-      <div class="demo-credentials-card">
+      <!-- Demo Account Notice Card (hidden until the link is clicked) -->
+      <a href="#" id="demo-toggle" onclick="document.getElementById('demo-card').style.display='block'; this.style.display='none'; return false;" style="display:block; margin-bottom:12px; font-size:0.82rem; font-weight:700; color: var(--accent-blue-light); text-align:center;">Show demo account</a>
+      <div class="demo-credentials-card" id="demo-card" style="display:none;">
         <div class="demo-card-header">
           <span class="badge-chip badge-cyan">DEMO ACCOUNT</span>
           <button type="button" style="font-size: 0.72rem; color: var(--accent-blue-light); font-weight: 700; text-decoration: underline;" onclick="fillDemoCredentials()">Auto-Fill</button>
@@ -2468,12 +2479,12 @@ function injectGlobalModals() {
       <form class="auth-form" id="login-form" onsubmit="handleAuthSubmit(event, 'login')">
         <div class="form-group">
           <label class="form-label">Username or Email</label>
-          <input type="text" required placeholder="TechHub" class="form-input" id="login-email" value="TechHub" />
+          <input type="text" required placeholder="Username or email" class="form-input" id="login-email" />
         </div>
         <div class="form-group">
           <label class="form-label">Password</label>
           <div style="position:relative;">
-            <input type="password" required placeholder="group4overflow" class="form-input" id="login-pass" value="group4overflow" style="padding-right:46px; width:100%; box-sizing:border-box;" />
+            <input type="password" required placeholder="Enter your password" class="form-input" id="login-pass" style="padding-right:46px; width:100%; box-sizing:border-box;" />
             <button type="button" aria-label="Show password" onclick="togglePasswordVisibility('login-pass', this)" style="position:absolute; right:6px; top:0; bottom:0; width:40px; display:flex; align-items:center; justify-content:center; background:none; border:none; color:#94a3b8; cursor:pointer;">${EYE_SHOW}</button>
           </div>
         </div>
@@ -2607,6 +2618,8 @@ function openProductModal(productId) {
     starsEl.textContent = '\u2605'.repeat(fullStars) + '\u2606'.repeat(5 - fullStars);
   }
 
+  const reviewsListEl = document.getElementById('modal-reviews-list');
+  if (reviewsListEl) reviewsListEl.innerHTML = renderProductReviews(p.id);
   const reviewsEl = document.getElementById('modal-reviews');
   if (reviewsEl) reviewsEl.textContent = `${Number(p.rating).toFixed(1)} (${Number(p.reviews).toLocaleString()} ${p.reviews === 1 ? 'review' : 'reviews'})`;
 
@@ -2907,6 +2920,8 @@ function showOrderSuccessModal(order) {
 const STATUS_STAGES = ['Order Placed', 'Packed', 'Shipped', 'Out for Delivery', 'Delivered'];
 
 function getOrderStatus(order) {
+  // Status set manually by the admin wins over the automatic demo timeline
+  if (order.adminStatus) return order.adminStatus;
   // If manually set to Received, honour it
   if (order.receivedAt) return 'Received';
   if (order.status === 'Received') return 'Received';
@@ -3491,6 +3506,10 @@ function handleAuthSubmit(e, type) {
 
     // Check registered users
     const foundUser = users.find(u => (u.email === userOrEmail || u.name === userOrEmail) && u.password === pass);
+    if (foundUser && foundUser.blocked) {
+      showToast('This account has been blocked. Please contact support.', 'error');
+      return;
+    }
     if (foundUser) {
       currentUser = { name: foundUser.name, email: foundUser.email, role: 'Customer' };
       localStorage.setItem('techhub_user', JSON.stringify(currentUser));

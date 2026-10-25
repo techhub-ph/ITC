@@ -12,6 +12,10 @@
   <link rel="icon" type="image/png" href="TechHub_Logo.png" />
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg-primary, #070b16); color: var(--text-primary, #fff); min-height: 100vh; }
+    .cols-even { grid-template-columns: 1fr 1fr; } @media (max-width: 900px) { .cols-even { grid-template-columns: 1fr; } }
+    html, body { overflow-x: hidden; } .stats { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+    @media (max-width: 600px) { main { padding: 14px; } .adm-top { padding: 12px 14px; } .panel { padding: 16px; } }
+    .cols > * { min-width: 0; }
     .hidden { display: none !important; }
     /* TechHub logo as a faint background (change the opacity value to make it lighter or stronger) */
     body::before { content: ''; position: fixed; inset: 0; background: url('TechHub_Logo.png') center / min(70vmin, 640px) no-repeat; opacity: 0.08; pointer-events: none; z-index: 0; }
@@ -76,15 +80,21 @@
       <div class="tabs">
         <button class="tab active" data-tab="dashboard">Dashboard</button>
         <button class="tab" data-tab="products">Products</button>
+        <button class="tab" data-tab="orders">Orders</button>
         <button class="tab" data-tab="messages">Messages<span class="pill hidden" id="msg-pill">0</span></button>
         <button class="tab" data-tab="reviews">Reviews<span class="pill hidden" id="rev-pill">0</span></button>
+        <button class="tab" data-tab="users">Users</button>
+        <button class="tab" data-tab="settings">Settings</button>
       </div>
       <div class="actions"><a class="btn-s" href="index.html" target="_blank" rel="noopener">View Store</a><button class="btn-s danger" id="logout-btn">Log out</button></div>
     </div>
     <main>
       <section id="tab-dashboard"></section>
       <section id="tab-products" class="hidden"></section>
+      <section id="tab-orders" class="hidden"></section>
       <section id="tab-messages" class="hidden"></section>
+      <section id="tab-users" class="hidden"></section>
+      <section id="tab-settings" class="hidden"></section>
       <section id="tab-reviews" class="hidden"></section>
     </main>
   </div>
@@ -140,17 +150,18 @@
     function statusChip(id) { const s = getStock(id); return s <= 0 ? '<span class="chip out">Sold out</span>' : s <= LOW_STOCK_LIMIT ? '<span class="chip low">Low</span>' : '<span class="chip ok">In stock</span>'; }
 
     // ---------- login ----------
-    function showApp() { $('login-view').classList.add('hidden'); $('app').classList.remove('hidden'); renderAll(); }
+    function showApp() { $('login-view').classList.add('hidden'); $('app').classList.remove('hidden'); renderAll(); renderSettings(); }
     $('login-form').addEventListener('submit', e => {
       e.preventDefault();
-      if ($('a-user').value.trim() === ADMIN_USER && $('a-pass').value === ADMIN_PASS) { sessionStorage.setItem('techhub_admin', '1'); showApp(); }
+      if ($('a-user').value.trim() === ADMIN_USER && $('a-pass').value === (localStorage.getItem('techhub_admin_pass') || ADMIN_PASS)) { sessionStorage.setItem('techhub_admin', '1'); showApp(); }
       else $('login-err').textContent = 'Wrong username or password.';
     });
     $('logout-btn').addEventListener('click', () => { sessionStorage.removeItem('techhub_admin'); location.reload(); });
     document.querySelectorAll('.tab').forEach(b => b.addEventListener('click', () => {
       document.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x === b));
-      ['dashboard', 'products', 'messages', 'reviews'].forEach(t => $('tab-' + t).classList.toggle('hidden', t !== b.dataset.tab));
+      ['dashboard', 'products', 'orders', 'messages', 'reviews', 'users', 'settings'].forEach(t => $('tab-' + t).classList.toggle('hidden', t !== b.dataset.tab));
       if (b.dataset.tab === 'reviews') localStorage.setItem('techhub_reviews_seen', new Date().toISOString());
+      if (b.dataset.tab === 'settings') renderSettings();
       renderAll();
     }));
 
@@ -175,6 +186,72 @@
       localStorage.setItem('techhub_reviews', JSON.stringify(allReviews().filter(r => r.id !== id))); renderAll();
     });
 
+    function salesChart(orders) {
+      const days = []; for (let i = 6; i >= 0; i--) { const d = new Date(); d.setHours(0, 0, 0, 0); d.setDate(d.getDate() - i); days.push(d); }
+      const totals = days.map(d => orders.filter(o => new Date(o.date).toDateString() === d.toDateString()).reduce((n, o) => n + (Number(o.total) || 0), 0));
+      const max = Math.max.apply(null, totals.concat([1]));
+      const bars = totals.map((v, i) => { const h = Math.round(v / max * 110), x = 20 + i * 60; return '<rect x="' + x + '" y="' + (135 - h) + '" width="38" height="' + h + '" rx="6" fill="#3b82f6"></rect><text x="' + (x + 19) + '" y="155" text-anchor="middle" fill="#94a3b8" font-size="11">' + days[i].toLocaleDateString('en-US', { weekday: 'short' }) + '</text>' + (v ? '<text x="' + (x + 19) + '" y="' + (129 - h) + '" text-anchor="middle" fill="#e2e8f0" font-size="10">' + peso(v) + '</text>' : ''); }).join('');
+      return '<div class="panel" style="margin-bottom:16px"><h2>Sales, last 7 days</h2><svg viewBox="0 0 440 165" style="width:100%;max-height:230px">' + bars + '</svg></div>';
+    }
+
+    // ---------- orders ----------
+    function renderOrders() {
+      const orders = allOrders(), opts = '<option value="">Auto (by time)</option>' + STATUS_STAGES.map(x => '<option>' + x + '</option>').join('');
+      $('tab-orders').innerHTML = '<div class="panel"><h2>All orders (' + orders.length + ')</h2><div class="tbl-wrap"><table><tr><th>Order</th><th>Customer</th><th>Date</th><th>Total</th><th>Payment</th><th>Status</th><th>Set status</th></tr>' +
+        orders.map(o => '<tr><td><b>' + escapeHtml(o.orderNum) + '</b></td><td>' + escapeHtml(o.customer) + '<div class="muted">' + escapeHtml((o.delivery && o.delivery.fullName) || '') + (o.delivery && o.delivery.city ? ', ' + escapeHtml(o.delivery.city) : '') + '</div></td><td>' + new Date(o.date).toLocaleString() + '</td><td>' + peso(o.total) + '</td><td>' + escapeHtml((o.payment && o.payment.method) || '') + '</td><td><span class="chip new">' + escapeHtml(getOrderStatus(o)) + '</span></td>' +
+          '<td><select class="stk" style="width:150px" data-ost="' + escapeHtml(o.customer + '|' + o.orderNum) + '">' + opts.replace('<option>' + (o.adminStatus || '\u0000') + '</option>', '<option selected>' + o.adminStatus + '</option>').replace('<option value="">', o.adminStatus ? '<option value="">' : '<option value="" selected>') + '</select></td></tr>' +
+          '<tr><td colspan="7" class="muted" style="border-top:0; padding-top:0">' + (o.items || []).map(i => escapeHtml(i.qty + ' x ' + i.name)).join(', ') + '</td></tr>').join('') + '</table></div>' + (orders.length ? '' : '<div class="empty">No orders yet in this browser.</div>') + '</div>';
+    }
+    $('tab-orders').addEventListener('change', e => {
+      const v = e.target.dataset.ost; if (!v) return;
+      const cut = v.indexOf('|'), key = 'techhub_orders_' + v.slice(0, cut), num = v.slice(cut + 1), list = loadJSON(key, []), o = list.find(x => x.orderNum === num);
+      if (!o) return; if (e.target.value) o.adminStatus = e.target.value; else delete o.adminStatus;
+      localStorage.setItem(key, JSON.stringify(list)); toast('Order status updated'); setTimeout(renderAll, 0);
+    });
+
+    // ---------- users ----------
+    function renderUsers() {
+      const users = loadJSON('techhub_users', []), orders = allOrders();
+      $('tab-users').innerHTML = '<div class="panel"><h2>Registered users (' + users.length + ')</h2><div class="tbl-wrap"><table><tr><th>Name</th><th>Email</th><th>Orders</th><th>Status</th><th>Actions</th></tr>' +
+        users.map(u => '<tr><td><b>' + escapeHtml(u.name) + '</b></td><td>' + escapeHtml(u.email) + '</td><td>' + orders.filter(o => o.customer === u.email).length + '</td><td><span class="chip ' + (u.blocked ? 'out' : 'ok') + '">' + (u.blocked ? 'Blocked' : 'Active') + '</span></td><td><div class="actions"><button class="btn-s" data-ublock="' + escapeHtml(u.email) + '">' + (u.blocked ? 'Unblock' : 'Block') + '</button><button class="btn-s danger" data-udel="' + escapeHtml(u.email) + '">Remove</button></div></td></tr>').join('') + '</table></div>' + (users.length ? '' : '<div class="empty">No registered users yet in this browser.</div>') + '</div>';
+    }
+    $('tab-users').addEventListener('click', e => {
+      const users = loadJSON('techhub_users', []), t = e.target;
+      if (t.dataset.ublock) { const u = users.find(x => x.email === t.dataset.ublock); u.blocked = !u.blocked; }
+      else if (t.dataset.udel) { if (!confirm('Remove this user account?')) return; users.splice(users.findIndex(x => x.email === t.dataset.udel), 1); }
+      else return;
+      localStorage.setItem('techhub_users', JSON.stringify(users)); renderAll();
+    });
+
+    // ---------- settings (backup, password, review rule) ----------
+    function renderSettings() {
+      const st = loadJSON('techhub_settings', {});
+      $('tab-settings').innerHTML = '<div class="cols cols-even">' +
+        '<div class="panel"><h2>Backup</h2><p class="muted" style="margin-bottom:12px">All data lives in this browser. Download a backup file, then import it in another browser or after clearing data.</p><div class="actions"><button class="btn-s btn-p" id="s-export">Download backup</button><label class="btn-s" style="cursor:pointer">Import backup<input type="file" id="s-import" accept="application/json" style="display:none"></label></div></div>' +
+        '<div class="panel"><h2>Change admin password</h2><label class="fld">Current password<input type="password" id="s-old"></label><label class="fld">New password (6+ characters)<input type="password" id="s-new"></label><div class="err" id="s-err"></div><button class="btn-s btn-p" id="s-pass">Save password</button></div>' +
+        '<div class="panel"><h2>Review rule</h2><label style="display:flex;gap:10px;align-items:center;cursor:pointer"><input type="checkbox" id="s-verified"' + (st.requireVerified ? ' checked' : '') + '> Only customers who bought an item can review it</label><p class="muted" style="margin-top:8px">Off by default so anyone can leave a review during the demo.</p></div></div>';
+    }
+    $('tab-settings').addEventListener('click', e => {
+      if (e.target.id === 's-export') {
+        const data = {}; for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k.indexOf('techhub_') === 0) data[k] = localStorage.getItem(k); }
+        const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify({ app: 'techhub', exportedAt: new Date().toISOString(), data: data }, null, 2)], { type: 'application/json' })); a.download = 'techhub-backup-' + new Date().toISOString().slice(0, 10) + '.json'; a.click(); toast('Backup downloaded');
+      }
+      if (e.target.id === 's-pass') {
+        const cur = localStorage.getItem('techhub_admin_pass') || ADMIN_PASS, nw = $('s-new').value;
+        if ($('s-old').value !== cur) { $('s-err').textContent = 'Current password is wrong.'; return; }
+        if (nw.length < 6) { $('s-err').textContent = 'New password must be at least 6 characters.'; return; }
+        localStorage.setItem('techhub_admin_pass', nw); renderSettings(); toast('Password changed');
+      }
+    });
+    $('tab-settings').addEventListener('change', e => {
+      if (e.target.id === 's-verified') { const st = loadJSON('techhub_settings', {}); st.requireVerified = e.target.checked; localStorage.setItem('techhub_settings', JSON.stringify(st)); toast('Saved'); }
+      if (e.target.id === 's-import') {
+        const f = e.target.files[0]; if (!f) return; const r = new FileReader();
+        r.onload = () => { try { const j = JSON.parse(r.result); if (j.app !== 'techhub' || !j.data) throw 0; if (!confirm('Replace the data in this browser with the backup?')) return; Object.keys(j.data).forEach(k => { if (k.indexOf('techhub_') === 0) localStorage.setItem(k, j.data[k]); }); toast('Backup restored'); setTimeout(() => location.reload(), 600); } catch (err) { toast('That file is not a TechHub backup.'); } };
+        r.readAsText(f);
+      }
+    });
+
     // ---------- dashboard ----------
     function renderDashboard() {
       const orders = allOrders(), users = loadJSON('techhub_users', []), msgs = loadJSON('techhub_messages', []);
@@ -183,7 +260,7 @@
       const stat = (l, v) => '<div class="panel stat"><small>' + l + '</small><b>' + v + '</b></div>';
       const rows = orders.slice(0, 8).map(o => '<tr><td>' + escapeHtml(o.orderNum) + '</td><td>' + escapeHtml(o.customer) + '</td><td>' + new Date(o.date).toLocaleDateString() + '</td><td>' + (o.items || []).length + '</td><td>' + peso(o.total) + '</td></tr>').join('');
       const watch = sold.concat(low).slice(0, 10).map(i => '<tr><td>' + escapeHtml(PRODUCTS_DATA[i].name) + '</td><td>' + getStock(i) + '</td><td>' + statusChip(i) + '</td></tr>').join('');
-      $('tab-dashboard').innerHTML = '<div class="stats">' + stat('Total sales', peso(sales)) + stat('Orders', orders.length) + stat('Registered users', users.length) + stat('Products', ids.length) + stat('Sold out', sold.length) + stat('Low stock', low.length) + stat('New messages', fresh) + stat('Product reviews', allReviews().length) + '</div>' +
+      $('tab-dashboard').innerHTML = salesChart(orders) + '<div class="stats">' + stat('Total sales', peso(sales)) + stat('Orders', orders.length) + stat('Registered users', users.length) + stat('Products', ids.length) + stat('Sold out', sold.length) + stat('Low stock', low.length) + stat('New messages', fresh) + stat('Product reviews', allReviews().length) + '</div>' +
         '<div class="cols"><div class="panel"><h2>Recent orders</h2><div class="tbl-wrap"><table><tr><th>Order</th><th>Customer</th><th>Date</th><th>Items</th><th>Total</th></tr>' + (rows || '') + '</table></div>' + (rows ? '' : '<div class="empty">No orders yet in this browser.</div>') + '</div>' +
         '<div class="panel"><h2>Stock watch</h2><div class="tbl-wrap"><table><tr><th>Product</th><th>Stock</th><th>Status</th></tr>' + (watch || '') + '</table></div>' + (watch ? '' : '<div class="empty">All products are well stocked.</div>') + '</div></div>';
     }
@@ -270,20 +347,22 @@
       const show = msgs.filter(m => mf === 'all' || m.status === mf);
       $('tab-messages').innerHTML = '<div class="bar"><select id="m-f"><option value="all">All messages</option><option value="new">New</option><option value="resolved">Resolved</option></select><span class="muted">' + msgs.length + ' total, ' + fresh + ' new</span></div><div class="panel">' +
         (show.map(m => '<div class="msg"><div class="msg-head"><div><b>' + escapeHtml(m.name) + '</b> <span class="muted">' + escapeHtml(m.email) + '</span></div><div><span class="chip ' + (m.status === 'new' ? 'new' : 'ok') + '">' + (m.status === 'new' ? 'New' : 'Resolved') + '</span> <span class="muted">' + new Date(m.date).toLocaleString() + '</span></div></div>' +
-          '<div class="muted" style="margin-top:6px">Subject: ' + escapeHtml(m.subject) + '</div><p>' + escapeHtml(m.message) + '</p><div class="actions"><button class="btn-s" data-toggle="' + m.id + '">' + (m.status === 'new' ? 'Mark resolved' : 'Mark as new') + '</button><a class="btn-s" href="mailto:' + encodeURIComponent(m.email) + '?subject=' + encodeURIComponent('Re: ' + m.subject) + '">Reply by email</a><button class="btn-s danger" data-mdel="' + m.id + '">Delete</button></div></div>').join('') || '<div class="empty">No messages yet. Messages sent through the Contact Us page appear here.</div>') + '</div>';
+          '<div class="muted" style="margin-top:6px">Subject: ' + escapeHtml(m.subject) + '</div><p>' + escapeHtml(m.message) + '</p>' + (m.reply ? '<div class="panel" style="margin:0 0 10px; padding:12px"><b style="color:#60a5fa;font-size:.8rem">Your reply (' + new Date(m.repliedAt).toLocaleDateString() + ')</b><p style="margin:4px 0 0">' + escapeHtml(m.reply) + '</p></div>' : '<textarea id="rp-' + m.id + '" rows="2" placeholder="Write a reply..." style="width:100%;margin:0 0 8px;padding:10px;border-radius:10px;border:1px solid #1e2d4a;background:#0a1020;color:#fff;font:inherit"></textarea><button class="btn-s btn-p" data-reply="' + m.id + '" style="margin-bottom:8px">Send reply</button>') + '<div class="actions"><button class="btn-s" data-toggle="' + m.id + '">' + (m.status === 'new' ? 'Mark resolved' : 'Mark as new') + '</button><a class="btn-s" href="mailto:' + encodeURIComponent(m.email) + '?subject=' + encodeURIComponent('Re: ' + m.subject) + '">Reply by email</a><button class="btn-s danger" data-mdel="' + m.id + '">Delete</button></div></div>').join('') || '<div class="empty">No messages yet. Messages sent through the Contact Us page appear here.</div>') + '</div>';
       $('m-f').value = mf;
     }
     $('tab-messages').addEventListener('change', e => { if (e.target.id === 'm-f') { mf = e.target.value; setTimeout(renderMessages, 0); } });
     $('tab-messages').addEventListener('click', e => {
       const t = e.target, msgs = loadJSON('techhub_messages', []);
       if (t.dataset.toggle) { const m = msgs.find(x => x.id === t.dataset.toggle); m.status = m.status === 'new' ? 'resolved' : 'new'; }
+      else if (t.dataset.reply) { const m = msgs.find(x => x.id === t.dataset.reply), txt = ($('rp-' + t.dataset.reply) || {}).value; if (!txt || !txt.trim()) return; m.reply = txt.trim(); m.repliedAt = new Date().toISOString(); m.status = 'resolved'; toast('Reply saved'); }
       else if (t.dataset.mdel) { if (!confirm('Delete this message?')) return; msgs.splice(msgs.findIndex(x => x.id === t.dataset.mdel), 1); }
       else return;
       localStorage.setItem('techhub_messages', JSON.stringify(msgs)); renderAll();
     });
 
-    function renderAll() { renderDashboard(); renderProducts(); renderMessages(); renderReviews(); }
-    if (sessionStorage.getItem('techhub_admin') === '1') showApp();
+    function renderAll() { renderDashboard(); renderProducts(); renderOrders(); renderMessages(); renderReviews(); renderUsers(); }
+    function showAppInit() { renderSettings(); showApp(); }
+    if (sessionStorage.getItem('techhub_admin') === '1') showAppInit();
   </script>
 </body>
 </html>

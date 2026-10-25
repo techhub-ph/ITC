@@ -95,6 +95,7 @@
           <h2 class="contact-heading">Send a Message</h2>
           <p class="contact-subheading">Fill out the form below and an agent will reply within 24 business hours.</p>
           <button type="button" id="open-review-btn" class="btn btn-block" style="margin: 0 0 18px; border: 1px solid var(--accent-blue); color: var(--accent-blue-light); background: transparent; font-weight: 700;">&#11088; Review a Product</button>
+          <a href="track.html" style="display:block; margin: -6px 0 16px; text-align:center; font-size:0.85rem; font-weight:700; color: var(--accent-blue-light);">Track an order &rarr;</a>
 
           <form class="auth-form" id="contact-form" novalidate>
             <div class="form-group">
@@ -203,6 +204,37 @@
 
       </div>
     </div>
+
+      <!-- REPLIES FROM THE TEAM -->
+      <div class="container" style="margin-top: 36px; max-width: 760px;">
+        <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 18px; padding: 24px;">
+          <h3 style="font-size: 1.2rem; margin-bottom: 4px;">Replies from our team</h3>
+          <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 14px;">Sent us a message? Enter the same email to see our answer.</p>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <input id="reply-email" class="form-input" type="email" placeholder="you@email.com" style="flex: 1; min-width: 200px;" />
+            <button type="button" class="btn btn-primary" id="reply-check">Check replies</button>
+          </div>
+          <div id="reply-results" style="margin-top: 14px;"></div>
+        </div>
+      </div>
+      <script>
+        (function () {
+          var box = document.getElementById('reply-results'), input = document.getElementById('reply-email');
+          if (typeof currentUser !== 'undefined' && currentUser) input.value = currentUser.email;
+          function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+          document.getElementById('reply-check').addEventListener('click', function () {
+            var email = input.value.trim().toLowerCase(), list = [];
+            try { list = JSON.parse(localStorage.getItem('techhub_messages') || '[]'); } catch (e) {}
+            var mine = list.filter(function (m) { return m.email && m.email.toLowerCase() === email; });
+            if (!email) { box.innerHTML = '<p style="color:#f87171;">Please enter your email.</p>'; return; }
+            if (!mine.length) { box.innerHTML = '<p style="color:var(--text-secondary);">No messages found for this email.</p>'; return; }
+            box.innerHTML = mine.map(function (m) {
+              return '<div style="border-top:1px solid var(--border-color); padding:12px 0;"><div style="color:var(--text-secondary); font-size:0.8rem;">' + esc(m.subject) + ' &middot; ' + new Date(m.date).toLocaleDateString() + '</div><p style="margin:6px 0; color:#cbd5e1;">' + esc(m.message) + '</p>' +
+                (m.reply ? '<div style="background:rgba(59,130,246,.12); border-radius:10px; padding:10px 12px;"><strong style="color:var(--accent-blue-light); font-size:0.8rem;">TechHub Support replied:</strong><p style="margin:4px 0 0;">' + esc(m.reply) + '</p></div>' : '<span style="color:#fbbf24; font-size:0.82rem;">Waiting for a reply...</span>') + '</div>';
+            }).join('');
+          });
+        })();
+      </script>
   </main>
 
   <!-- FOOTER -->
@@ -365,12 +397,21 @@
         if (!rating) { showToast('Please tap a star rating.', 'error'); return; }
         if (!name) { showToast('Please enter your name.', 'error'); return; }
         if (!msg) { showToast('Please write your feedback.', 'error'); return; }
+        var updated = false;
         try {
+          var email = (typeof currentUser !== 'undefined' && currentUser) ? currentUser.email : '';
+          var bought = false;
+          if (email) { try { bought = JSON.parse(localStorage.getItem('techhub_orders_' + email) || '[]').some(function (o) { return (o.items || []).some(function (i) { return i.id === pid; }); }); } catch (e2) {} }
+          var settings = {}; try { settings = JSON.parse(localStorage.getItem('techhub_settings') || '{}'); } catch (e3) {}
+          if (settings.requireVerified && !bought) { showToast('Only customers who bought this item can review it. Please log in with the account you ordered with.', 'error'); return; }
           var list = JSON.parse(localStorage.getItem('techhub_reviews') || '[]');
-          list.unshift({ id: 'r' + Date.now(), productId: pid, productName: PRODUCTS_DATA[pid].name, rating: rating, name: name, email: (typeof currentUser !== 'undefined' && currentUser) ? currentUser.email : '', message: msg, date: new Date().toISOString() });
+          var who = (email || name).toLowerCase();
+          var existing = list.find(function (r) { return r.productId === pid && (r.email || r.name).toLowerCase() === who; });
+          if (existing) { existing.rating = rating; existing.message = msg; existing.name = name; existing.verified = bought; existing.date = new Date().toISOString(); updated = true; }
+          else list.unshift({ id: 'r' + Date.now(), productId: pid, productName: PRODUCTS_DATA[pid].name, rating: rating, name: name, email: email, verified: bought, message: msg, date: new Date().toISOString() });
           localStorage.setItem('techhub_reviews', JSON.stringify(list.slice(0, 500)));
         } catch (err) { showToast('Could not save your review.', 'error'); return; }
-        showToast('Thank you! Your review was submitted.', 'success');
+        showToast(updated ? 'Your earlier review of this product was updated.' : 'Thank you! Your review was submitted.', 'success');
         document.getElementById('review-form').reset(); rating = 0; paint(0); close();
       });
     })();

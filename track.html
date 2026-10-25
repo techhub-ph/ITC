@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Track Your Order — TechHub</title>
+  <meta name="description" content="Track your TechHub order status." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="TechHub_Logo.png" />
+  <meta name="theme-color" content="#0f172a" />
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container announcement-inner">
+      <div class="announcement-text">
+        <span class="announcement-pill">ABOUT TECHHUB</span>
+        <span>Trusted by 6 satisfied customers nationwide since birth</span>
+      </div>
+      <div class="announcement-links">
+        <a href="contact.html">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header / Navigation -->
+    <header class="site-header" id="navbar">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-link" aria-label="TechHub Home">
+        <img src="TechHub_Logo.png" alt="TechHub Logo" class="brand-logo" id="main-logo" />
+        <span class="brand-text"><span class="brand-white">Tech</span><span class="brand-accent">Hub</span></span>
+      </a>
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link" data-page="index.html">Home</a>
+        <a href="categories.html" class="nav-link" data-page="categories.html">Categories</a>
+        <a href="flash-sale.html" class="nav-link" data-page="flash-sale.html">Flash Sale</a>
+        <a href="products.html" class="nav-link" data-page="products.html">Products</a>
+        <a href="about.html" class="nav-link" data-page="about.html">About Us</a>
+        <a href="contact.html" class="nav-link" data-page="contact.html">Contact Us</a>
+      </nav>
+      <div class="header-actions">
+        <button class="action-btn" id="search-btn" aria-label="Search products" title="Search">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+        </button>
+        <button class="action-btn" id="wishlist-btn" aria-label="Wishlist" title="Saved Items">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path></svg>
+          <span class="badge" id="wishlist-count">0</span>
+        </button>
+        <button class="action-btn cart-btn" id="cart-btn" aria-label="Shopping cart" title="View Cart">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 01-8 0"></path></svg>
+          <span class="badge badge-accent" id="cart-count">0</span>
+        </button>
+        <div id="user-auth-area"></div>
+        <button class="action-btn mobile-menu-btn" id="mobile-toggle" aria-label="Toggle Mobile Menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-drawer" id="mobile-drawer">
+      <nav class="mobile-nav">
+        <a href="index.html" class="mobile-link">Home</a>
+        <a href="categories.html" class="mobile-link">Categories</a>
+        <a href="flash-sale.html" class="mobile-link">Flash Sale</a>
+        <a href="products.html" class="mobile-link">Products</a>
+        <a href="about.html" class="mobile-link">About Us & Reviews</a>
+        <a href="contact.html" class="mobile-link">Contact Us</a>
+        <div class="mobile-cta" id="mobile-user-auth-area">
+          <button class="btn btn-primary btn-block" onclick="openAuthModal('login')">Sign In / Register</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="pill-badge">ORDER TRACKING</span>
+      <h1>Track Your <span class="gradient-text">Order</span></h1>
+      <p>Enter your order number to see where your TechHub order is right now.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width: 760px;">
+      <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 18px; padding: 24px;">
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <input id="track-input" class="form-input" placeholder="Order number, e.g. TH-123456" style="flex: 1; min-width: 220px;" />
+          <button class="btn btn-primary" id="track-btn" type="button">Track</button>
+        </div>
+        <p style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 10px;">Orders placed in this browser are found automatically. Your order number is on your receipt and in My Orders.</p>
+        <div id="track-result" style="margin-top: 18px;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col brand-col">
+          <a href="index.html" class="brand-link">
+            <img src="TechHub_Logo.png" alt="TechHub Logo" class="brand-logo" />
+            <span class="brand-text"><span class="brand-white">Tech</span><span class="brand-accent">Hub</span></span>
+          </a>
+          <p class="footer-tagline">Your premier destination for authentic, high-performance electronics.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Pages</h4>
+          <ul class="footer-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="categories.html">Categories</a></li>
+            <li><a href="flash-sale.html">Flash Sale</a></li>
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="about.html">About Us & Reviews</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Customer Reviews</h4>
+          <ul class="footer-list">
+            <li><a href="#reviews">Verified Buyer Quotes</a></li>
+            <li><a href="#reviews">Rating Metrics</a></li>
+            <li><a href="contact.html">Submit Your Feedback</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Need Support?</h4>
+          <ul class="footer-list">
+            <li><a href="contact.html">Official Warranty Claims</a></li>
+            <li><a href="track.html">Order Status & Tracking</a></li>
+            <li><a href="contact.html">Contact Support Team</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 TechHub Philippines Inc. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    (function () {
+      var box = document.getElementById('track-result'), input = document.getElementById('track-input');
+      function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+      function find(num) {
+        for (var i = 0; i < localStorage.length; i++) {
+          var k = localStorage.key(i);
+          if (k.indexOf('techhub_orders_') !== 0) continue;
+          try { var o = JSON.parse(localStorage.getItem(k)).find(function (x) { return x.orderNum.toLowerCase() === num; }); if (o) return o; } catch (e) {}
+        }
+        return null;
+      }
+      function track() {
+        var num = input.value.trim().toLowerCase();
+        if (!num) { box.innerHTML = '<p style="color:#f87171;">Please enter an order number.</p>'; return; }
+        var o = find(num);
+        if (!o) { box.innerHTML = '<p style="color:#f87171;">No order found with that number in this browser.</p>'; return; }
+        var status = getOrderStatus(o), idx = STATUS_STAGES.indexOf(status);
+        if (status === 'Received') idx = STATUS_STAGES.length - 1;
+        var steps = STATUS_STAGES.map(function (s, n) {
+          var done = n <= idx;
+          return '<div style="flex:1; min-width:90px; text-align:center;"><div style="width:30px; height:30px; margin:0 auto 6px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; background:' + (done ? '#3b82f6' : '#1e293b') + '; color:#fff;">' + (done ? '&#10003;' : n + 1) + '</div><div style="font-size:0.78rem; color:' + (done ? '#fff' : '#64748b') + ';">' + s + '</div></div>';
+        }).join('');
+        var items = (o.items || []).map(function (i) { return '<li>' + esc(i.qty) + ' x ' + esc(i.name) + '</li>'; }).join('');
+        var d = o.delivery || {};
+        box.innerHTML = '<h3 style="margin-bottom:4px;">Order ' + esc(o.orderNum) + '</h3><p style="color:var(--text-secondary); font-size:0.85rem;">Placed ' + new Date(o.date).toLocaleString() + '</p>' +
+          '<div style="display:flex; flex-wrap:wrap; gap:6px; margin:18px 0;">' + steps + '</div>' +
+          '<p><strong>Status:</strong> <span style="color:#60a5fa; font-weight:700;">' + esc(status) + '</span></p>' +
+          '<ul style="margin:10px 0 10px 18px; color:#cbd5e1;">' + items + '</ul>' +
+          '<p><strong>Total:</strong> &#8369;' + Number(o.total || 0).toLocaleString('en-US') + (o.payment && o.payment.method ? ' &middot; ' + esc(o.payment.method) : '') + '</p>' +
+          (d.fullName ? '<p style="color:var(--text-secondary); font-size:0.85rem; margin-top:6px;">Deliver to: ' + esc(d.fullName) + ', ' + esc(d.city || '') + '</p>' : '');
+      }
+      document.getElementById('track-btn').addEventListener('click', track);
+      input.addEventListener('keydown', function (e) { if (e.key === 'Enter') track(); });
+      var q = new URLSearchParams(location.search).get('order'); if (q) { input.value = q; track(); }
+    })();
+  </script>
+</body>
+</html>

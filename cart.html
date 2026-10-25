@@ -771,6 +771,14 @@
         return;
       }
 
+      // Re-check stock (an item may have sold out while it sat in the cart)
+      for (const it of cart) {
+        if (isSoldOut(it.id) || it.qty > getStock(it.id)) {
+          showToast('"' + it.name + '" is no longer available in that quantity. Please update your cart.', 'error');
+          return;
+        }
+      }
+
       const collected = validateAndCollect();
       if (!collected) {
         // Scroll to first error
