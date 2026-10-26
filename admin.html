@@ -1,3 +1,4 @@
+<!--Admin Panel we create this by vibe coding, through suggestion, brainstorming and own knowledge in coding-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +20,7 @@
     :root { --a-bg: #070b16; --a-input: #0a1020; --a-top: rgba(7, 11, 22, 0.88); --a-panel: rgba(15, 22, 41, 0.88); --a-btn: #121b33; --a-text: #fff; --a-msg: #cbd5e1; --a-track: #1e293b; }
     html[data-theme="light"] { --a-bg: #eef2f7; --a-input: #ffffff; --a-top: rgba(255, 255, 255, 0.9); --a-panel: rgba(255, 255, 255, 0.92); --a-btn: #f1f5f9; --a-text: #0f172a; --a-msg: #334155; --a-track: #e2e8f0; }
     .hidden { display: none !important; }
-    /* TechHub logo as a faint background (change the opacity value to make it lighter or stronger) */
+    /* TechHub logo as a faint background only for admin side towsss */
     body::before { content: ''; position: fixed; inset: 0; background: url('TechHub_Logo.png') center / min(70vmin, 640px) no-repeat; opacity: 0.08; pointer-events: none; z-index: 0; }
     #login-view, #app { position: relative; z-index: 1; }
     .login-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
@@ -66,12 +67,12 @@
   <!-- LOGIN -->
   <div class="login-wrap" id="login-view">
     <form class="panel login-card" id="login-form" autocomplete="off">
-      <h1>Tech<span style="color:#60a5fa">Hub</span> Admin</h1>
-      <p class="muted" style="margin-top:6px">Sign in to manage products, stock, and customer messages.</p>
+      <h1>Tech<span style="color:#60a5fa">Hub</span> Master</h1>
+      <p class="muted" style="margin-top:6px">Sign in to manage all things in Store^^.</p>
       <label class="fld">Username<input id="a-user" type="text" required /></label>
       <label class="fld">Password<span style="position:relative; display:block; margin-top:6px;"><input id="a-pass" type="password" required style="margin-top:0; padding-right:46px;" /><button type="button" id="eye-btn" aria-label="Show password" onclick="togglePasswordVisibility('a-pass', this)" style="position:absolute; right:6px; top:0; bottom:0; width:40px; display:flex; align-items:center; justify-content:center; background:none; border:none; color:#94a3b8; cursor:pointer;"></button></span></label>
       <div class="err" id="login-err"></div>
-      <button class="btn btn-primary btn-block glow-blue" type="submit" style="margin-top:6px">Sign In</button>
+      <button class="btn btn-primary btn-block glow-blue" type="submit" style="margin-top:6px">Sign In:></button>
       <p class="muted" style="margin-top:14px"><a href="index.html" style="color:#60a5fa">&larr; Back to the store</a></p>
     </form>
   </div>
@@ -133,9 +134,9 @@
 
   <script src="script.js"></script>
   <script>
-    // ====== CHANGE THE ADMIN LOGIN HERE ======
-    const ADMIN_USER = 'admin';
-    const ADMIN_PASS = 'TechHub@2026';
+    // ====== Admin Account ======
+    const ADMIN_USER = 'techhub';
+    const ADMIN_PASS = 'gowiththeflowerroroverflow';
     // =========================================
     const $ = (id) => document.getElementById(id);
     const peso = (n) => '\u20b1' + Number(n || 0).toLocaleString('en-US');
@@ -336,7 +337,7 @@
       }
     });
 
-    // ---------- product form ----------
+    // ---------- product form (where you add the items ----------
     $('f-cat').innerHTML = CATS.map(c => '<option>' + c + '</option>').join('');
     function fillSubs(selected) { $('f-sub').innerHTML = (SUBCATEGORIES[$('f-cat').value] || []).map((n, i) => '<option value="' + (i + 1) + '">' + (i + 1) + '. ' + escapeHtml(n) + '</option>').join(''); $('f-sub').value = String(selected || 1); }
     $('f-cat').addEventListener('change', () => fillSubs(1));
