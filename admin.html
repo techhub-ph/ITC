@@ -1,4 +1,3 @@
-<!-- Group 4 TechHub Admin Panel (Vibe coding with ourselves)-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,23 +11,25 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" href="TechHub_Logo.png" />
   <style>
-    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg-primary, #070b16); color: var(--text-primary, #fff); min-height: 100vh; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--a-bg); color: var(--a-text); min-height: 100vh; }
     .cols-even { grid-template-columns: 1fr 1fr; } @media (max-width: 900px) { .cols-even { grid-template-columns: 1fr; } }
     html, body { overflow-x: hidden; } .stats { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
     @media (max-width: 600px) { main { padding: 14px; } .adm-top { padding: 12px 14px; } .panel { padding: 16px; } }
     .cols > * { min-width: 0; }
+    :root { --a-bg: #070b16; --a-input: #0a1020; --a-top: rgba(7, 11, 22, 0.88); --a-panel: rgba(15, 22, 41, 0.88); --a-btn: #121b33; --a-text: #fff; --a-msg: #cbd5e1; --a-track: #1e293b; }
+    html[data-theme="light"] { --a-bg: #eef2f7; --a-input: #ffffff; --a-top: rgba(255, 255, 255, 0.9); --a-panel: rgba(255, 255, 255, 0.92); --a-btn: #f1f5f9; --a-text: #0f172a; --a-msg: #334155; --a-track: #e2e8f0; }
     .hidden { display: none !important; }
-    /* TechHub logo as a faint background for admin side lang towsss */
-    body::before { content: ''; position: fixed; inset: 0; background: url('TechHub_Logo.png') center / min(70vmin, 640px) no-repeat; opacity: 0.15; pointer-events: none; z-index: 0; }
+    /* TechHub logo as a faint background (change the opacity value to make it lighter or stronger) */
+    body::before { content: ''; position: fixed; inset: 0; background: url('TechHub_Logo.png') center / min(70vmin, 640px) no-repeat; opacity: 0.08; pointer-events: none; z-index: 0; }
     #login-view, #app { position: relative; z-index: 1; }
     .login-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
-    .panel { background: rgba(15, 22, 41, 0.88); border: 1px solid var(--border-color, #1e2d4a); border-radius: 16px; padding: 24px; }
+    .panel { background: var(--a-panel); border: 1px solid var(--border-color, #1e2d4a); border-radius: 16px; padding: 24px; }
     .login-card { width: 100%; max-width: 380px; }
     .login-card h1, .adm-brand { font-family: 'Outfit', sans-serif; font-weight: 800; }
     .fld { display: block; margin-top: 14px; font-size: .82rem; font-weight: 700; color: var(--text-secondary, #94a3b8); }
-    .fld input, .fld select, .fld textarea { width: 100%; margin-top: 6px; padding: 11px 12px; border-radius: 10px; border: 1px solid var(--border-color, #1e2d4a); background: #0a1020; color: #fff; font: inherit; }
+    .fld input, .fld select, .fld textarea { width: 100%; margin-top: 6px; padding: 11px 12px; border-radius: 10px; border: 1px solid var(--border-color, #1e2d4a); background: var(--a-input); color: var(--a-text); font: inherit; }
     .err { color: #f87171; font-size: .85rem; min-height: 1.2em; margin-top: 10px; }
-    .adm-top { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; padding: 14px 24px; border-bottom: 1px solid var(--border-color, #1e2d4a); position: sticky; top: 0; background: rgba(7, 11, 22, 0.88); backdrop-filter: blur(6px); z-index: 20; }
+    .adm-top { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; padding: 14px 24px; border-bottom: 1px solid var(--border-color, #1e2d4a); position: sticky; top: 0; background: var(--a-top); backdrop-filter: blur(6px); z-index: 20; }
     .adm-brand { font-size: 1.3rem; } .adm-brand span { color: var(--accent-blue-light, #60a5fa); }
     .tabs { display: flex; gap: 6px; flex-wrap: wrap; }
     .tab { padding: 9px 16px; border-radius: 10px; border: 1px solid var(--border-color, #1e2d4a); background: transparent; color: var(--text-secondary, #94a3b8); font-weight: 700; cursor: pointer; }
@@ -45,19 +46,20 @@
     .thumb { width: 46px; height: 46px; object-fit: contain; background: #fff; border-radius: 8px; }
     .chip { display: inline-block; padding: 3px 10px; border-radius: 99px; font-size: .72rem; font-weight: 800; }
     .ok { background: rgba(16,185,129,.18); color: #34d399; } .low { background: rgba(245,158,11,.18); color: #fbbf24; } .out { background: rgba(239,68,68,.18); color: #f87171; } .new { background: rgba(59,130,246,.2); color: #60a5fa; }
-    .stk { width: 78px; padding: 7px; border-radius: 8px; border: 1px solid var(--border-color, #1e2d4a); background: #0a1020; color: #fff; font: inherit; }
-    .btn-s { padding: 7px 12px; border-radius: 8px; border: 1px solid var(--border-color, #1e2d4a); background: #121b33; color: #fff; font-weight: 700; font-size: .8rem; cursor: pointer; }
+    .stk { width: 78px; padding: 7px; border-radius: 8px; border: 1px solid var(--border-color, #1e2d4a); background: var(--a-input); color: var(--a-text); font: inherit; }
+    .btn-s { padding: 7px 12px; border-radius: 8px; border: 1px solid var(--border-color, #1e2d4a); background: var(--a-btn); color: var(--a-text); font-weight: 700; font-size: .8rem; cursor: pointer; }
     .btn-s:hover { border-color: var(--accent-blue, #3b82f6); } .btn-s.danger { color: #f87171; } .btn-p { background: var(--accent-blue, #3b82f6); border-color: var(--accent-blue, #3b82f6); }
-    .bar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; align-items: center; } .bar input, .bar select { padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border-color, #1e2d4a); background: #0a1020; color: #fff; font: inherit; }
+    .bar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; align-items: center; } .bar input, .bar select { padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border-color, #1e2d4a); background: var(--a-input); color: var(--a-text); font: inherit; }
     .bar .grow { flex: 1; min-width: 180px; }
     .msg { border-top: 1px solid var(--border-color, #1e2d4a); padding: 14px 4px; } .msg:first-child { border-top: 0; }
-    .msg-head { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; } .msg p { margin: 10px 0; color: #cbd5e1; white-space: pre-wrap; line-height: 1.55; }
+    .msg-head { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; } .msg p { margin: 10px 0; color: var(--a-msg); white-space: pre-wrap; line-height: 1.55; }
     .muted { color: var(--text-secondary, #94a3b8); font-size: .82rem; } .actions { display: flex; gap: 8px; flex-wrap: wrap; }
     .modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,.7); display: flex; align-items: center; justify-content: center; padding: 16px; z-index: 50; }
     .modal-box { width: 100%; max-width: 560px; max-height: 92vh; overflow: auto; } .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .toast-a { position: fixed; bottom: 22px; right: 22px; background: #10b981; color: #04210f; font-weight: 700; padding: 11px 18px; border-radius: 10px; z-index: 99; }
     .empty { color: var(--text-secondary, #94a3b8); padding: 22px 6px; text-align: center; }
   </style>
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('techhub_theme') === 'light' ? 'light' : 'dark');</script>
 </head>
 <body data-page="admin">
 
@@ -84,16 +86,18 @@
         <button class="tab" data-tab="orders">Orders</button>
         <button class="tab" data-tab="messages">Messages<span class="pill hidden" id="msg-pill">0</span></button>
         <button class="tab" data-tab="reviews">Reviews<span class="pill hidden" id="rev-pill">0</span></button>
+        <button class="tab" data-tab="promos">Promos</button>
         <button class="tab" data-tab="users">Users</button>
         <button class="tab" data-tab="settings">Settings</button>
       </div>
-      <div class="actions"><a class="btn-s" href="index.html" target="_blank" rel="noopener">View Store</a><button class="btn-s danger" id="logout-btn">Log out</button></div>
+      <div class="actions"><button class="btn-s" id="theme-btn" data-theme-toggle="label" type="button" onclick="toggleTheme()"></button><a class="btn-s" href="index.html" target="_blank" rel="noopener">View Store</a><button class="btn-s danger" id="logout-btn">Log out</button></div>
     </div>
     <main>
       <section id="tab-dashboard"></section>
       <section id="tab-products" class="hidden"></section>
       <section id="tab-orders" class="hidden"></section>
       <section id="tab-messages" class="hidden"></section>
+      <section id="tab-promos" class="hidden"></section>
       <section id="tab-users" class="hidden"></section>
       <section id="tab-settings" class="hidden"></section>
       <section id="tab-reviews" class="hidden"></section>
@@ -129,9 +133,9 @@
 
   <script src="script.js"></script>
   <script>
-    // ====== Admin Acc info here ======
-    const ADMIN_USER = 'techhub';
-    const ADMIN_PASS = 'gowiththeflowerroroverflow';
+    // ====== CHANGE THE ADMIN LOGIN HERE ======
+    const ADMIN_USER = 'admin';
+    const ADMIN_PASS = 'TechHub@2026';
     // =========================================
     const $ = (id) => document.getElementById(id);
     const peso = (n) => '\u20b1' + Number(n || 0).toLocaleString('en-US');
@@ -151,7 +155,7 @@
     function statusChip(id) { const s = getStock(id); return s <= 0 ? '<span class="chip out">Sold out</span>' : s <= LOW_STOCK_LIMIT ? '<span class="chip low">Low</span>' : '<span class="chip ok">In stock</span>'; }
 
     // ---------- login ----------
-    function showApp() { $('login-view').classList.add('hidden'); $('app').classList.remove('hidden'); renderAll(); renderSettings(); }
+    function showApp() { updateThemeButtons(); $('login-view').classList.add('hidden'); $('app').classList.remove('hidden'); renderAll(); renderSettings(); }
     $('login-form').addEventListener('submit', e => {
       e.preventDefault();
       if ($('a-user').value.trim() === ADMIN_USER && $('a-pass').value === (localStorage.getItem('techhub_admin_pass') || ADMIN_PASS)) { sessionStorage.setItem('techhub_admin', '1'); showApp(); }
@@ -160,7 +164,7 @@
     $('logout-btn').addEventListener('click', () => { sessionStorage.removeItem('techhub_admin'); location.reload(); });
     document.querySelectorAll('.tab').forEach(b => b.addEventListener('click', () => {
       document.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x === b));
-      ['dashboard', 'products', 'orders', 'messages', 'reviews', 'users', 'settings'].forEach(t => $('tab-' + t).classList.toggle('hidden', t !== b.dataset.tab));
+      ['dashboard', 'products', 'orders', 'messages', 'reviews', 'promos', 'users', 'settings'].forEach(t => $('tab-' + t).classList.toggle('hidden', t !== b.dataset.tab));
       if (b.dataset.tab === 'reviews') localStorage.setItem('techhub_reviews_seen', new Date().toISOString());
       if (b.dataset.tab === 'settings') renderSettings();
       renderAll();
@@ -175,7 +179,7 @@
       $('rev-pill').textContent = unseen; $('rev-pill').classList.toggle('hidden', !unseen || onTab);
       const avg = list.length ? (list.reduce((n, r) => n + Number(r.rating), 0) / list.length).toFixed(1) : '0.0';
       const show = list.filter(r => rf === 'all' || String(r.rating) === rf);
-      const stars = n => '<span style="color:#fbbf24;letter-spacing:2px">' + '\u2605'.repeat(n) + '</span><span style="color:#475569;letter-spacing:2px">' + '\u2605'.repeat(5 - n) + '</span>';
+      const stars = n => '<span style="color:#fbbf24;letter-spacing:2px">' + '\u2605'.repeat(n) + '</span><span style="color:var(--text-muted);letter-spacing:2px">' + '\u2605'.repeat(5 - n) + '</span>';
       $('tab-reviews').innerHTML = '<div class="bar"><select id="r-f"><option value="all">All ratings</option>' + [5, 4, 3, 2, 1].map(n => '<option value="' + n + '">' + n + ' stars</option>').join('') + '</select><span class="muted">' + list.length + ' reviews, average ' + avg + ' / 5</span></div><div class="panel">' +
         (show.map(r => '<div class="msg"><div class="msg-head"><div><b>' + escapeHtml(r.productName) + '</b><div>' + stars(Number(r.rating)) + '</div></div><span class="muted">' + new Date(r.date).toLocaleString() + '</span></div>' +
           '<div class="muted" style="margin-top:6px">By ' + escapeHtml(r.name) + (r.email ? ' (' + escapeHtml(r.email) + ')' : '') + '</div><p>' + escapeHtml(r.message) + '</p><div class="actions"><button class="btn-s danger" data-rdel="' + r.id + '">Delete review</button></div></div>').join('') || '<div class="empty">No reviews yet. Reviews sent from the Contact Us page appear here.</div>') + '</div>';
@@ -187,12 +191,43 @@
       localStorage.setItem('techhub_reviews', JSON.stringify(allReviews().filter(r => r.id !== id))); renderAll();
     });
 
+    function categoryChart(orders) {
+      const sums = {}; orders.forEach(o => (o.items || []).forEach(i => { const p = PRODUCTS_DATA[i.id], c = p ? p.category : 'other'; sums[c] = (sums[c] || 0) + (Number(i.price) || 0) * (Number(i.qty) || 1); }));
+      const rows = Object.keys(sums).sort((a, b) => sums[b] - sums[a]), max = Math.max.apply(null, rows.map(k => sums[k]).concat([1])), total = rows.reduce((n, k) => n + sums[k], 0) || 1;
+      const colors = ['#3b82f6', '#06b6d4', '#10b981', '#f59e0b', '#8b5cf6', '#ef4444'];
+      return '<div class="panel"><h2>Sales by category</h2>' + (rows.length ? rows.map((k, i) => '<div style="margin-bottom:12px"><div style="display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:5px"><b style="text-transform:capitalize">' + escapeHtml(k) + '</b><span class="muted">' + peso(sums[k]) + ' (' + Math.round(sums[k] / total * 100) + '%)</span></div><div style="height:12px;border-radius:99px;background:var(--a-track);overflow:hidden"><div style="height:100%;width:' + Math.max(3, Math.round(sums[k] / max * 100)) + '%;background:' + colors[i % colors.length] + ';border-radius:99px"></div></div></div>').join('') : '<div class="empty">No sales yet. Orders will be grouped by category here.</div>') + '</div>';
+    }
+
+    // ---------- promo codes ----------
+    function renderPromos() {
+      const list = getPromos();
+      $('tab-promos').innerHTML = '<div class="panel" style="margin-bottom:16px"><h2>Create a promo code</h2><form id="promo-form" autocomplete="off"><div class="row2"><label class="fld">Code (letters and numbers)<input id="pr-code" maxlength="20" placeholder="SAVE10" required></label><label class="fld">Type<select id="pr-type"><option value="percent">Percent off (%)</option><option value="fixed">Fixed amount off (&#8369;)</option></select></label></div>' +
+        '<div class="row2"><label class="fld">Value<input id="pr-value" type="number" min="1" placeholder="10" required></label><label class="fld">Minimum spend (&#8369;, 0 = none)<input id="pr-min" type="number" min="0" value="0"></label></div><label class="fld">Maximum uses (0 = unlimited)<input id="pr-max" type="number" min="0" value="0"></label><div class="err" id="pr-err"></div><button class="btn-s btn-p" type="submit">Add promo code</button></form></div>' +
+        '<div class="panel"><h2>All promo codes (' + list.length + ')</h2><div class="tbl-wrap"><table><tr><th>Code</th><th>Discount</th><th>Min spend</th><th>Used</th><th>Status</th><th>Actions</th></tr>' +
+        list.map(p => '<tr><td><b>' + escapeHtml(p.code) + '</b></td><td>' + escapeHtml(describePromo(p)) + '</td><td>' + (p.minSpend ? peso(p.minSpend) : 'None') + '</td><td>' + (p.uses || 0) + (p.maxUses ? ' / ' + p.maxUses : '') + '</td><td><span class="chip ' + (p.active ? 'ok' : 'out') + '">' + (p.active ? 'Active' : 'Off') + '</span></td><td><div class="actions"><button class="btn-s" data-ptoggle="' + escapeHtml(p.code) + '">' + (p.active ? 'Turn off' : 'Turn on') + '</button><button class="btn-s danger" data-pdel="' + escapeHtml(p.code) + '">Delete</button></div></td></tr>').join('') + '</table></div>' + (list.length ? '' : '<div class="empty">No promo codes. Customers will see "Invalid promo code".</div>') + '</div>';
+    }
+    $('tab-promos').addEventListener('submit', e => {
+      e.preventDefault();
+      const code = $('pr-code').value.trim().toUpperCase(), type = $('pr-type').value, value = Number($('pr-value').value), min = Number($('pr-min').value) || 0, max = Number($('pr-max').value) || 0, list = getPromos();
+      if (!/^[A-Z0-9]{3,20}$/.test(code)) { $('pr-err').textContent = 'Code must be 3-20 letters or numbers, no spaces.'; return; }
+      if (list.some(p => p.code === code)) { $('pr-err').textContent = 'That code already exists.'; return; }
+      if (!(value > 0) || (type === 'percent' && value > 100)) { $('pr-err').textContent = type === 'percent' ? 'Percent must be between 1 and 100.' : 'Enter an amount above 0.'; return; }
+      list.push({ code: code, type: type, value: value, minSpend: min, maxUses: max, uses: 0, active: true }); savePromos(list); toast('Promo code added'); renderPromos();
+    });
+    $('tab-promos').addEventListener('click', e => {
+      const t = e.target, list = getPromos();
+      if (t.dataset.ptoggle) { const p = list.find(x => x.code === t.dataset.ptoggle); p.active = !p.active; }
+      else if (t.dataset.pdel) { if (!confirm('Delete promo code ' + t.dataset.pdel + '?')) return; list.splice(list.findIndex(x => x.code === t.dataset.pdel), 1); }
+      else return;
+      savePromos(list); renderPromos();
+    });
+
     function salesChart(orders) {
       const days = []; for (let i = 6; i >= 0; i--) { const d = new Date(); d.setHours(0, 0, 0, 0); d.setDate(d.getDate() - i); days.push(d); }
       const totals = days.map(d => orders.filter(o => new Date(o.date).toDateString() === d.toDateString()).reduce((n, o) => n + (Number(o.total) || 0), 0));
       const max = Math.max.apply(null, totals.concat([1]));
-      const bars = totals.map((v, i) => { const h = Math.round(v / max * 110), x = 20 + i * 60; return '<rect x="' + x + '" y="' + (135 - h) + '" width="38" height="' + h + '" rx="6" fill="#3b82f6"></rect><text x="' + (x + 19) + '" y="155" text-anchor="middle" fill="#94a3b8" font-size="11">' + days[i].toLocaleDateString('en-US', { weekday: 'short' }) + '</text>' + (v ? '<text x="' + (x + 19) + '" y="' + (129 - h) + '" text-anchor="middle" fill="#e2e8f0" font-size="10">' + peso(v) + '</text>' : ''); }).join('');
-      return '<div class="panel" style="margin-bottom:16px"><h2>Sales, last 7 days</h2><svg viewBox="0 0 440 165" style="width:100%;max-height:230px">' + bars + '</svg></div>';
+      const bars = totals.map((v, i) => { const h = Math.round(v / max * 110), x = 20 + i * 60; return '<rect x="' + x + '" y="' + (135 - h) + '" width="38" height="' + h + '" rx="6" fill="#3b82f6"></rect><text x="' + (x + 19) + '" y="155" text-anchor="middle" style="fill:var(--text-secondary)" font-size="11">' + days[i].toLocaleDateString('en-US', { weekday: 'short' }) + '</text>' + (v ? '<text x="' + (x + 19) + '" y="' + (129 - h) + '" text-anchor="middle" style="fill:var(--a-text)" font-size="10">' + peso(v) + '</text>' : ''); }).join('');
+      return '<div class="panel"><h2>Sales, last 7 days</h2><svg viewBox="0 0 440 165" style="width:100%;max-height:230px">' + bars + '</svg></div>';
     }
 
     // ---------- orders ----------
@@ -261,7 +296,7 @@
       const stat = (l, v) => '<div class="panel stat"><small>' + l + '</small><b>' + v + '</b></div>';
       const rows = orders.slice(0, 8).map(o => '<tr><td>' + escapeHtml(o.orderNum) + '</td><td>' + escapeHtml(o.customer) + '</td><td>' + new Date(o.date).toLocaleDateString() + '</td><td>' + (o.items || []).length + '</td><td>' + peso(o.total) + '</td></tr>').join('');
       const watch = sold.concat(low).slice(0, 10).map(i => '<tr><td>' + escapeHtml(PRODUCTS_DATA[i].name) + '</td><td>' + getStock(i) + '</td><td>' + statusChip(i) + '</td></tr>').join('');
-      $('tab-dashboard').innerHTML = salesChart(orders) + '<div class="stats">' + stat('Total sales', peso(sales)) + stat('Orders', orders.length) + stat('Registered users', users.length) + stat('Products', ids.length) + stat('Sold out', sold.length) + stat('Low stock', low.length) + stat('New messages', fresh) + stat('Product reviews', allReviews().length) + '</div>' +
+      $('tab-dashboard').innerHTML = '<div class="cols cols-even" style="margin-bottom:16px">' + salesChart(orders) + categoryChart(orders) + '</div><div class="stats">' + stat('Total sales', peso(sales)) + stat('Orders', orders.length) + stat('Registered users', users.length) + stat('Products', ids.length) + stat('Sold out', sold.length) + stat('Low stock', low.length) + stat('New messages', fresh) + stat('Product reviews', allReviews().length) + '</div>' +
         '<div class="cols"><div class="panel"><h2>Recent orders</h2><div class="tbl-wrap"><table><tr><th>Order</th><th>Customer</th><th>Date</th><th>Items</th><th>Total</th></tr>' + (rows || '') + '</table></div>' + (rows ? '' : '<div class="empty">No orders yet in this browser.</div>') + '</div>' +
         '<div class="panel"><h2>Stock watch</h2><div class="tbl-wrap"><table><tr><th>Product</th><th>Stock</th><th>Status</th></tr>' + (watch || '') + '</table></div>' + (watch ? '' : '<div class="empty">All products are well stocked.</div>') + '</div></div>';
     }
@@ -348,7 +383,7 @@
       const show = msgs.filter(m => mf === 'all' || m.status === mf);
       $('tab-messages').innerHTML = '<div class="bar"><select id="m-f"><option value="all">All messages</option><option value="new">New</option><option value="resolved">Resolved</option></select><span class="muted">' + msgs.length + ' total, ' + fresh + ' new</span></div><div class="panel">' +
         (show.map(m => '<div class="msg"><div class="msg-head"><div><b>' + escapeHtml(m.name) + '</b> <span class="muted">' + escapeHtml(m.email) + '</span></div><div><span class="chip ' + (m.status === 'new' ? 'new' : 'ok') + '">' + (m.status === 'new' ? 'New' : 'Resolved') + '</span> <span class="muted">' + new Date(m.date).toLocaleString() + '</span></div></div>' +
-          '<div class="muted" style="margin-top:6px">Subject: ' + escapeHtml(m.subject) + '</div><p>' + escapeHtml(m.message) + '</p>' + (m.reply ? '<div class="panel" style="margin:0 0 10px; padding:12px"><b style="color:#60a5fa;font-size:.8rem">Your reply (' + new Date(m.repliedAt).toLocaleDateString() + ')</b><p style="margin:4px 0 0">' + escapeHtml(m.reply) + '</p></div>' : '<textarea id="rp-' + m.id + '" rows="2" placeholder="Write a reply..." style="width:100%;margin:0 0 8px;padding:10px;border-radius:10px;border:1px solid #1e2d4a;background:#0a1020;color:#fff;font:inherit"></textarea><button class="btn-s btn-p" data-reply="' + m.id + '" style="margin-bottom:8px">Send reply</button>') + '<div class="actions"><button class="btn-s" data-toggle="' + m.id + '">' + (m.status === 'new' ? 'Mark resolved' : 'Mark as new') + '</button><a class="btn-s" href="mailto:' + encodeURIComponent(m.email) + '?subject=' + encodeURIComponent('Re: ' + m.subject) + '">Reply by email</a><button class="btn-s danger" data-mdel="' + m.id + '">Delete</button></div></div>').join('') || '<div class="empty">No messages yet. Messages sent through the Contact Us page appear here.</div>') + '</div>';
+          '<div class="muted" style="margin-top:6px">Subject: ' + escapeHtml(m.subject) + '</div><p>' + escapeHtml(m.message) + '</p>' + (m.reply ? '<div class="panel" style="margin:0 0 10px; padding:12px"><b style="color:#60a5fa;font-size:.8rem">Your reply (' + new Date(m.repliedAt).toLocaleDateString() + ')</b><p style="margin:4px 0 0">' + escapeHtml(m.reply) + '</p></div>' : '<textarea id="rp-' + m.id + '" rows="2" placeholder="Write a reply..." style="width:100%;margin:0 0 8px;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--a-input);color:var(--a-text);font:inherit"></textarea><button class="btn-s btn-p" data-reply="' + m.id + '" style="margin-bottom:8px">Send reply</button>') + '<div class="actions"><button class="btn-s" data-toggle="' + m.id + '">' + (m.status === 'new' ? 'Mark resolved' : 'Mark as new') + '</button><a class="btn-s" href="mailto:' + encodeURIComponent(m.email) + '?subject=' + encodeURIComponent('Re: ' + m.subject) + '">Reply by email</a><button class="btn-s danger" data-mdel="' + m.id + '">Delete</button></div></div>').join('') || '<div class="empty">No messages yet. Messages sent through the Contact Us page appear here.</div>') + '</div>';
       $('m-f').value = mf;
     }
     $('tab-messages').addEventListener('change', e => { if (e.target.id === 'm-f') { mf = e.target.value; setTimeout(renderMessages, 0); } });
@@ -361,7 +396,7 @@
       localStorage.setItem('techhub_messages', JSON.stringify(msgs)); renderAll();
     });
 
-    function renderAll() { renderDashboard(); renderProducts(); renderOrders(); renderMessages(); renderReviews(); renderUsers(); }
+    function renderAll() { renderDashboard(); renderProducts(); renderOrders(); renderMessages(); renderReviews(); renderPromos(); renderUsers(); }
     function showAppInit() { renderSettings(); showApp(); }
     if (sessionStorage.getItem('techhub_admin') === '1') showAppInit();
   </script>

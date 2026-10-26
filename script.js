@@ -1,11 +1,12 @@
 /**
- * TechHub Group 4 - Vibe coding + Brainstorming + Own knowledge in coding
+ * TechHub Philippines - Global Store Engine & Interactive Controller
  * Features:
  * - Unified 90-Product Catalog Database (p1 - p90)
  * - Dynamic Modals (Product Detail, Auth, Wishlist, Cart Drawer)
+ * - Sub-Category Tab Switching (#cat-smartphones, #sub-smartphones-1, etc.)
  * - Live Instant Search & Auto-complete
  * - Cart Management with LocalStorage persistence & Login Enforced Checkout
- * - mostly dito lahat ng nagpapaganda sa interaction ng web 
+ * - Clean Unicode Formatting for Philippine Peso (\u20b1) & Star Ratings (\u2605)
  */
 
 /* ==========================================================================
@@ -2131,6 +2132,49 @@ function saveOverrides(o) { localStorage.setItem('techhub_catalog', JSON.stringi
   o.deleted.forEach(id => { delete PRODUCTS_DATA[id]; });
 })();
 
+// ---------- Promo codes (managed in the admin panel) ----------
+const DEFAULT_PROMOS = [{ code: 'TECH500', type: 'fixed', value: 500, minSpend: 0, maxUses: 0, uses: 0, active: true }];
+function getPromos() {
+  try { const l = JSON.parse(localStorage.getItem('techhub_promos')); if (Array.isArray(l)) return l; } catch (e) {}
+  return DEFAULT_PROMOS.map(p => Object.assign({}, p));
+}
+function savePromos(list) { localStorage.setItem('techhub_promos', JSON.stringify(list)); }
+function findPromo(code) { return getPromos().find(p => p.code === String(code || '').trim().toUpperCase()); }
+function promoDiscountFor(p, subtotal) {
+  if (!p || !p.active || subtotal < (p.minSpend || 0)) return 0;
+  return p.type === 'percent' ? Math.round(subtotal * p.value / 100) : Math.min(p.value, subtotal);
+}
+function describePromo(p) { return p.type === 'percent' ? p.value + '% off' : '\u20b1' + Number(p.value).toLocaleString('en-US') + ' off'; }
+function recordPromoUse(code) {
+  if (!code) return;
+  const list = getPromos(), p = list.find(x => x.code === code);
+  if (p) { p.uses = (p.uses || 0) + 1; savePromos(list); }
+}
+
+// ---------- Light / dark mode ----------
+const ICON_SUN = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>';
+const ICON_MOON = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg>';
+function getTheme() { return localStorage.getItem('techhub_theme') === 'light' ? 'light' : 'dark'; }
+function updateThemeButtons() {
+  const light = getTheme() === 'light';
+  document.querySelectorAll('[data-theme-toggle]').forEach(b => {
+    b.innerHTML = (light ? ICON_MOON : ICON_SUN) + (b.dataset.themeToggle === 'label' ? ' ' + (light ? 'Dark mode' : 'Light mode') : '');
+    b.setAttribute('aria-label', light ? 'Switch to dark mode' : 'Switch to light mode');
+  });
+}
+function applyTheme() { document.documentElement.setAttribute('data-theme', getTheme()); updateThemeButtons(); }
+function toggleTheme() { localStorage.setItem('techhub_theme', getTheme() === 'light' ? 'dark' : 'light'); applyTheme(); }
+function initThemeToggle() {
+  const host = document.querySelector('.header-actions');
+  if (!host || document.getElementById('theme-btn')) return;
+  const btn = document.createElement('button');
+  btn.className = 'action-btn'; btn.id = 'theme-btn'; btn.setAttribute('data-theme-toggle', ''); btn.title = 'Switch light / dark mode';
+  btn.addEventListener('click', toggleTheme);
+  host.insertBefore(btn, host.firstChild);
+  updateThemeButtons();
+}
+applyTheme();
+
 function getAllReviews() {
   try { return JSON.parse(localStorage.getItem('techhub_reviews')) || []; } catch (e) { return []; }
 }
@@ -2353,6 +2397,7 @@ function initFlashSaleTimer() {
 document.addEventListener('DOMContentLoaded', () => {
   if (document.body.dataset.page === 'admin') return; // the admin page has its own layout
   injectGlobalModals();
+  initThemeToggle();
   initGlobalNavigation();
   initSearchAutocomplete();
   initFlashSaleTimer();
@@ -2850,6 +2895,7 @@ function createOrder(order) {
   orders.unshift(order);
   localStorage.setItem(key, JSON.stringify(orders.slice(0, 100)));
   reduceStockForOrder(order);
+  recordPromoUse(order.promoCode);
 }
 
 function showOrderSuccessModal(order) {
