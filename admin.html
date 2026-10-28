@@ -264,7 +264,7 @@
     function renderSettings() {
       const st = loadJSON('techhub_settings', {});
       $('tab-settings').innerHTML = '<div class="cols cols-even">' +
-        '<div class="panel"><h2>Backup</h2><p class="muted" style="margin-bottom:12px">All data lives in this browser. Download a backup file, then import it in another browser or after clearing data.</p><div class="actions"><button class="btn-s btn-p" id="s-export">Download backup</button><label class="btn-s" style="cursor:pointer">Import backup<input type="file" id="s-import" accept="application/json" style="display:none"></label></div></div>' +
+        '<div class="panel"><h2>Backup</h2><p class="muted" style="margin-bottom:12px">All data lives only in this browser. You can download a backup file, then import it in another browser >o<.</p><div class="actions"><button class="btn-s btn-p" id="s-export">Download backup</button><label class="btn-s" style="cursor:pointer">Import backup<input type="file" id="s-import" accept="application/json" style="display:none"></label></div></div>' +
         '<div class="panel"><h2>Change admin password</h2><label class="fld">Current password<input type="password" id="s-old"></label><label class="fld">New password (6+ characters)<input type="password" id="s-new"></label><div class="err" id="s-err"></div><button class="btn-s btn-p" id="s-pass">Save password</button></div>' +
         '<div class="panel"><h2>Review rule</h2><label style="display:flex;gap:10px;align-items:center;cursor:pointer"><input type="checkbox" id="s-verified"' + (st.requireVerified ? ' checked' : '') + '> Only customers who bought an item can review it</label><p class="muted" style="margin-top:8px">Off by default so anyone can leave a review during the demo.</p></div></div>';
     }
