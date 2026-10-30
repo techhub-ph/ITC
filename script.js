@@ -1,12 +1,10 @@
 /**
- * TechHub Philippines - Global Store Engine & Interactive Controller
+ * TechHub JavaScript whole codes
  * Features:
- * - Unified 90-Product Catalog Database (p1 - p90)
  * - Dynamic Modals (Product Detail, Auth, Wishlist, Cart Drawer)
  * - Sub-Category Tab Switching (#cat-smartphones, #sub-smartphones-1, etc.)
  * - Live Instant Search & Auto-complete
  * - Cart Management with LocalStorage persistence & Login Enforced Checkout
- * - Clean Unicode Formatting for Philippine Peso (\u20b1) & Star Ratings (\u2605)
  */
 
 /* ==========================================================================
